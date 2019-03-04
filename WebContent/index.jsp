@@ -220,17 +220,23 @@
 			        <!-- <div class="price">$200</div> -->
 			        <a href=""> <img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap"> </a> </div>
 			      <div class="card-body">
-			        <h4 class="card-title"><a>11</a></h4>
+			        <h4 class="card-title"><a>斗破苍穹</a></h4>
 			        <ul class="list-inline product-meta">
-			          <li class="list-inline-item"> <a><em class="fa fa-folder-open-o"></em>Electronics</a></li>
-			          <li class="list-inline-item"> <a><em class="fa fa-calendar"></em>26th December</a></li>
+			          <li class="list-inline-item"> <a><em class="fa fa-folder-open-o"></em> ISBN-9604</a></li>
+			          <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.3.4</a></li>
 		            </ul>
-			        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
+			        <p class="card-text">这是一个属于斗气的世界，没有花俏艳丽的魔法，有的，仅仅是繁衍到巅峰的斗气！在斗气大陆上，真正的强者都是用实力说话的！</p>
 			        <div class="product-ratings">
 			          <ul class="list-inline">
-			        
+			        	<li class="list-inline-item selected"><a >评价：</a></li>
+		    			<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    			<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    			<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    			<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    			<li class="list-inline-item"><i class="fa fa-star"></i></li>
 		              </ul>
 		            </div>
+		            <p>￥：30.0元 </p>
 		          </div>
 		        </div>
 		      </div>
