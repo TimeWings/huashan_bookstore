@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.huashan.encrypt.Encrypt;
 import org.huashan.entity.*;
 
 /**
@@ -32,11 +33,14 @@ public class DataBase
     public static void main(String[] args)
     {
     	DataBase dataBase = new DataBase();
-        List<Commodity> commodities = dataBase.getAllCommodities();
-        for (Commodity commodity : commodities)
-		{
-			System.out.println(commodity.id+" "+commodity.name);
-		}
+    	dataBase.register("admin", "admin");
+    	dataBase.login("admin", "admin");
+//        List<Commodity> commodities = dataBase.getAllCommodities();
+//        for (Commodity commodity : commodities)
+//		{
+//			System.out.println(commodity.id+" "+commodity.name);
+//		}
+    	
     }
     
     static 
@@ -79,7 +83,7 @@ public class DataBase
         	//Class.forName("com.mysql.jdbc.Driver");
     	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
     	    {
-    	    	String sql = "select name from user";
+    	    	String sql = "select id from user";
     	    	Statement statement = connection.createStatement();
     	    	ResultSet resultSet = statement.executeQuery(sql);
     	    	while(resultSet.next())
@@ -92,10 +96,11 @@ public class DataBase
     	    		}
     	    	}
     	    	
-    	    	sql = "insert into user(name,password) values(?,?)";
+    	    	sql = "insert into user(id,password) values(?,?)";
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, username);
-                pstmt.setString(2, password);
+                String password_encrypt = Encrypt.getResult(password);
+                pstmt.setString(2, password_encrypt);
                 int result = pstmt.executeUpdate();
                 System.out.println("成功插入"+result+"行");
                 return true;
@@ -117,7 +122,7 @@ public class DataBase
         	//Class.forName("com.mysql.jdbc.Driver");
     	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
     	    {
-    	    	String sql = "select name,password from user";
+    	    	String sql = "select id,password from user";
                 Statement statement = connection.createStatement();
                 
                 ResultSet resultSet = statement.executeQuery(sql);
@@ -127,7 +132,8 @@ public class DataBase
                 			resultSet.getString(1),
                 			resultSet.getString(2)
                 			);
-                	if(username.equals(user.username) && password.equals(user.password) )
+                	String password_encrypt = Encrypt.getResult(password);
+                	if(username.equals(user.username) && password_encrypt.equals(user.password) )
                 	{
                 		System.out.println("用户"+username+"登录成功");
                 		return true;
