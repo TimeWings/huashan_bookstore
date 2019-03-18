@@ -29,7 +29,7 @@
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg  navigation">
 					<a class="navbar-brand" href="index.html">
-						<img src="images/logo.png" alt="">
+						<img src="images/logo.png" alt=""  width="200" height="50">
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -37,12 +37,12 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						
 						<ul class="navbar-nav ml-auto mt-10">
-							<li class="nav-item">
-								<a class="nav-link login-button" href="index.html">返回</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link add-button" href="#"><i class="fa fa-plus-circle"></i> 购物车</a>
-							</li>
+							<a  href="主页.html" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
+							</div>
+							
+							     &nbsp;
+					  
+								<a href="购物车.html" style="background-color: burlywood; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >购物车</a>
 						</ul>
 					</div>
 				</nav>
@@ -54,7 +54,7 @@
 =            User Profile            =
 ===================================-->
 <section class="dashboard section">
-	<!-- Container Start -->
+	
 	<div class="container">
 		<!-- Row Start -->
 		<div class="row">
@@ -71,7 +71,38 @@
 						<p>个人信息</p>
 						<p>简介....</p>
 					</div>
-					<!-- Dashboard Links -->				</div>
+				</div>
+				
+				<div class="widget user">
+<h4><a href="">Jonathon Andrew</a></h4>
+						<p class="member-time">Member Since Jun 27, 2017</p>
+						<a href="">See all ads</a>
+						<ul class="list-inline mt-20">
+							<li class="list-inline-item"><a href="" class="btn btn-contact">Contact</a></li>
+							<li class="list-inline-item"><a href="" class="btn btn-offer">Make an offer</a></li>
+						</ul>
+					</div>
+				
+				<div class="widget disclaimer">
+						<h5 class="widget-header">Safety Tips</h5>
+						<ul>
+							<li>Meet seller at a public place</li>
+							<li>Check the item before you buy</li>
+							<li>Pay only after collecting the item</li>
+							<li>Pay only after collecting the item</li>
+						</ul>
+					</div>
+				
+				<div class="widget coupon text-center">
+						
+						<p>请点击按钮提交更新的信息
+						</p>
+					
+						<a href="" class="btn btn-transparent-white">提交</a>
+					</div>
+					
+				
+				
 			</div>
 			<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
 				<!-- Recently Favorited -->
@@ -82,8 +113,8 @@
 							<tr>
 								<th>图片</th>
 								<th>信息</th>
-								<th class="text-center">价钱</th>
-								<th class="text-center">选项</th>
+								<th >价钱</th>
+								<th >选项</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -247,11 +278,7 @@
 	</div>
 	<!-- Container End -->
 </section>
-<!--============================
-=            Footer            =
-=============================-->
 
-<!-- Footer Bottom -->
 <footer class="footer-bottom">
     <!-- Container Start -->
     <div class="container">
@@ -259,21 +286,24 @@
         <div class="col-sm-6 col-12">
           <!-- Copyright -->
           <div class="copyright">
-			<p>制作团队：</p>
-			</div>
+            <p>制作团队：  郭榕 邓家豪 何俊霖 梁卓越</p>
+          </div>
         </div>
         <div class="col-sm-6 col-12">
           <!-- Social Icons -->
           <ul class="social-media-icons text-right">
-              <li class="fa fa-apple"></li>
-              <li class="fa fa-wechat" ></li>
-              <li class="fa fa-qq"></li>
-              <li class="fa fa-weibo"></li>
-          </ul>
+			  
+              <li><a class="fa fa-apple"></a></li>
+              <li><a class="fa fa-wechat"></a></li>
+              <li><a class="fa fa-qq"></a></li>
+              <li><a class="fa fa-weibo"></a></li>
+			  
+			  
+            </ul>
         </div>
       </div>
     </div>
-   
+
 </footer>
 
 

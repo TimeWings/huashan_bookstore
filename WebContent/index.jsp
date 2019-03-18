@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,14 +13,15 @@
   
   
   <!-- Bootstrap -->
-  <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
- <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+ <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
 
-  <link href="css/style.css" rel="stylesheet">
+<%String path= request.getContextPath();%>
+  <link href="<%=path %>/css/style.css" rel="stylesheet">
 	
 	<!-- 导航   -->
-  <link href="css/dh.css" rel="stylesheet">
+  <link href="<%=path %>/css/dh.css" rel="stylesheet">
 
  
 <style>
@@ -33,7 +35,6 @@
 <body class="body-wrapper">
 
 <section>
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -90,21 +91,22 @@
 </div>			
 	</div>
 	
-					<div class="topD">					
-                  <ul class="navbar-nav ml-auto mt-10">
-				
-	             <li class="nav-item">
-				  <a class="nav-link login-button" href="登录界面.html"  target="_blank">登录</a>
-			  </li>
-					  <li class="nav-item">
-				  <a class="nav-link login-button" href="我的订单.html"  target="_blank">我的订单</a>
-			  </li>
-					  
-					  <li class="nav-item ">
-								<a class="nav-link add-button" href="购物车.html" target="_blank">购物车 </a> <b class="nav-link add-button">1</b> &nbsp;&nbsp;
-							</li>
-	
-					  </ul>
+					<div class="topD">
+						<div class="topf text-center">
+							
+							<a  href="登录界面.html" target="_parent" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >登录</a>
+							</div>
+						
+						<div class="topg text-center" >
+							<a href="我的订单.html" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >订单</a>
+							</div>
+						
+						<div class="toph text-center">
+							
+							<a href="购物车.html" style="background-color: burlywood; border: none;  color: white;  padding: 4px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 15px; border-radius: 15px;" >购物车<b>0</b></a>
+							
+							</div>
+						
 					</div>
 				</nav>
 			</div>
@@ -137,7 +139,7 @@
 						<!-- Store Search -->
 							
 						<div class="ctbox" >								
-								<div class="block d-flex"  style=" vertical-align:middel;">
+								<div class="block d-flex"  style=" vertical-align:middel">
 								  <input type="text"  class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="请输入关键字">
 									
 								  <button class="btn btn-main">搜索</button>
@@ -221,23 +223,17 @@
 			        <!-- <div class="price">$200</div> -->
 			        <a href=""> <img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap"> </a> </div>
 			      <div class="card-body">
-			        <h4 class="card-title"><a>斗破苍穹</a></h4>
+			        <h4 class="card-title"><a>11</a></h4>
 			        <ul class="list-inline product-meta">
-			          <li class="list-inline-item"> <a><em class="fa fa-folder-open-o"></em> ISBN-9604</a></li>
-			          <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.3.4</a></li>
+			          <li class="list-inline-item"> <a><em class="fa fa-folder-open-o"></em>Electronics</a></li>
+			          <li class="list-inline-item"> <a><em class="fa fa-calendar"></em>26th December</a></li>
 		            </ul>
-			        <p class="card-text">这是一个属于斗气的世界，没有花俏艳丽的魔法，有的，仅仅是繁衍到巅峰的斗气！在斗气大陆上，真正的强者都是用实力说话的！</p>
+			        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
 			        <div class="product-ratings">
 			          <ul class="list-inline">
-			        	<li class="list-inline-item selected"><a >评价：</a></li>
-		    			<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    			<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    			<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    			<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    			<li class="list-inline-item"><i class="fa fa-star"></i></li>
+			        
 		              </ul>
 		            </div>
-		            <p>￥：30.0元 </p>
 		          </div>
 		        </div>
 		      </div>
@@ -685,6 +681,7 @@
               <li><a class="fa fa-wechat"></a></li>
               <li><a class="fa fa-qq"></a></li>
               <li><a class="fa fa-weibo"></a></li>
+			  
 			  
             </ul>
         </div>

@@ -48,6 +48,10 @@ label {
   color: #848484;
 }
 
+.gw_num{border: 3px solid ;width: 110px;line-height: 26px;overflow: hidden;}
+.gw_num a{display: block;height: 26px;width: 26px;float: left;color: #7A7979;border-right: 1px solid #dbdbdb;text-align: center;cursor: pointer;}
+.gw_num .num{display: block;float: left;text-align: center;width: 52px;font-style: normal;font-size: 14px;line-height: 24px;border: 0;}
+.gw_num a.add{float: right;border-right: 0;border-left: 1px solid #dbdbdb;}
 .nav-pills .nav-link {
   font-size: 16px;
 }
@@ -1028,12 +1032,14 @@ ul.pagination .active a {
   padding: 40px 0;
 }
 
-.dashboard-container .product-dashboard-table .product-thumb {
-  width: 15%;
+.checkbox{	
+width: 25px;
+height: 25px;
+	
 }
 
 .dashboard-container .product-dashboard-table .product-details {
-  width: 45%;
+  width: 250px;
 }
 
 .dashboard-container .product-dashboard-table .product-details span {
@@ -1044,12 +1050,13 @@ ul.pagination .active a {
 
 .dashboard-container .product-dashboard-table .product-details span strong {
   color: #666;
-  width: 30%;
+  width: 15%;
+  font-size: 12px;
   display: inline-block;
 }
 
 .dashboard-container .product-dashboard-table .product-details .title {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .dashboard-container .product-dashboard-table .product-details .status.active {
@@ -1058,12 +1065,12 @@ ul.pagination .active a {
 
 .dashboard-container .product-dashboard-table .product-category {
   width: 15%;
-  text-align: center;
+  
 }
 
 .dashboard-container .product-dashboard-table .action {
-  width: 20%;
-  text-align: center;
+  width: 200px;
+ 
 }
 
 .dashboard-container .product-dashboard-table .action a {

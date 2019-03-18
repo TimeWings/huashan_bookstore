@@ -1,4 +1,4 @@
-﻿/* CSS Document */
+/* CSS Document */
 
 
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0; padding:0;}ul,ol,input{margin:0;padding:0;}li {list-style: none;}
@@ -9,17 +9,19 @@ a:hover{text-decoration:inline;color: #ee0000; transition: all 0.2s;}
 
 
 
-/*导航框*/
+
 
 .ctbox{ margin:0 auto; width:500px; }
 	
 .topC{ width: 60%; height: 64px; float: left; position: relative; z-index: 20;}
-.topD{ width: 30%; height: 64px; float: right; position: relative; z-index: 20;}
-
+.topD{ width: 48%; height: 64px; float: right; position: relative; z-index: 20;  }
+.topf{ width: 30%; height: 64px; top: 0; left: 45px; bottom: 0; right: 0;  position:absolute;}
+.topg{ width: 30%; height: 64px; top: 0; left: 20; bottom: 0; right: 122px; position: absolute;}
+.toph{ width: 30%; height: 64px; line-height: 48px; top: 0; left: 40; bottom: 0; right: 0; position:  absolute;}
 	.dg {width: 18%; height: 64px;  line-height: 64px; clear: both; position: relative; z-index: 26;}
 
 
-/*下拉菜单*/
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -36,7 +38,7 @@ a:hover{text-decoration:inline;color: #ee0000; transition: all 0.2s;}
 .dropdown:hover .dropdown-content {
     display: block;
 }
-/*头*/
+
 
 
 .zg_topNav{ width: 100%; height: 64px; line-height: 64px; clear: both; position: relative; z-index: 26;}
