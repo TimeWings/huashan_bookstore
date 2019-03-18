@@ -12,6 +12,8 @@ public class User
 	public String username;
 	public String password;
 	public boolean is_admin = false;
+	public String address;
+	public String phone;
 	
 	/**
 	 *@author 何俊霖

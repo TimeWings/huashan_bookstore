@@ -11,10 +11,10 @@ import java.sql.Date;
  */
 public class Order
 {
-	int id;
-	int com_id;
-	String status;
-	Date buy_date;
-	Date ship_date;
-	Date receipt_date;
+	public int id;
+	public int com_id;
+	public String status;
+	public Date buy_date;
+	public Date ship_date;
+	public Date receipt_date;
 }
