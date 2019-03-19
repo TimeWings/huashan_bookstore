@@ -22,6 +22,8 @@ public class Commodity
 	public int stock;
 	public int destine;
 	public int sales;
+	public String type;
+	public int count = 1;
 	
 	/**
 	 *@author 何俊霖

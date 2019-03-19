@@ -33,14 +33,17 @@ public class DataBase
     public static void main(String[] args)
     {
     	DataBase dataBase = new DataBase();
-    	dataBase.register("admin", "admin");
-    	dataBase.login("admin", "admin");
+    	//dataBase.register("admin", "admin");
+    	//dataBase.login("admin", "admin");
 //        List<Commodity> commodities = dataBase.getAllCommodities();
 //        for (Commodity commodity : commodities)
 //		{
 //			System.out.println(commodity.id+" "+commodity.name);
 //		}
-    	
+    	//Commodity commodity = dataBase.getOneCommodity("1");
+    	//System.out.println(commodity.id+" "+commodity.name);
+    	Order order = dataBase.getOneOrder("1");
+    	System.out.println(order.id + " "+order.status+" "+order.commodities.size());
     }
     
     static 
@@ -178,10 +181,97 @@ public class DataBase
                 	commodity.stock = resultSet.getInt(9);
                 	commodity.destine = resultSet.getInt(10);
                 	commodity.sales = resultSet.getInt(11);
+                	commodity.type = resultSet.getString(12);
                 	commodities.add(commodity);
                 }
                 
                 return commodities;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public Commodity getOneCommodity(String id)
+    {
+    	
+        try
+        {
+        	//Class.forName("com.mysql.jdbc.Driver");
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "select * from commodity where id = ?";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, id);
+                ResultSet resultSet = pstmt.executeQuery();
+                Commodity commodity = new Commodity();
+				
+                while(resultSet.next())
+                {
+                	commodity.id = resultSet.getInt(1);
+                	commodity.name = resultSet.getString(2);
+                	commodity.author = resultSet.getString(3);
+                	commodity.description = resultSet.getString(4);
+                	commodity.ISBN = resultSet.getString(5);
+                	commodity.price = resultSet.getDouble(6);
+                	commodity.publisher = resultSet.getString(7);
+                	commodity.editor = resultSet.getString(8);
+                	commodity.stock = resultSet.getInt(9);
+                	commodity.destine = resultSet.getInt(10);
+                	commodity.sales = resultSet.getInt(11);
+                	commodity.type = resultSet.getString(12);
+                }
+                
+                return commodity;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public Order getOneOrder(String id)
+    {
+    	
+        try
+        {
+        	//Class.forName("com.mysql.jdbc.Driver");
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "select * from `order` where id = ?";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, id);
+                ResultSet resultSet = pstmt.executeQuery();
+                Order order = new Order();
+				
+                while(resultSet.next())
+                {
+                	order.id = resultSet.getString(1);
+                	order.status = resultSet.getString(2);
+                	order.buy_date = resultSet.getDate(3);
+                	order.ship_date = resultSet.getDate(4);
+                	order.receipt_date = resultSet.getDate(5);
+                	order.u_id = resultSet.getString(6);
+                	order.u_address = resultSet.getString(7);
+                	order.u_Phone = resultSet.getString(8);
+                }
+                sql = "select * from `orderlist` where o_id = ?";
+                pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, id);
+                resultSet = pstmt.executeQuery();
+                while(resultSet.next())
+                {
+                	Commodity commodity = getOneCommodity(resultSet.getString(2));
+                	//System.out.println(commodity.name);
+                	commodity.count = resultSet.getInt(3);
+                	order.commodities.add(commodity);
+                }
+                return order;
              }
         }
         catch(SQLException e)
