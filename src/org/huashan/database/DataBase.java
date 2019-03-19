@@ -42,8 +42,13 @@ public class DataBase
 //		}
     	//Commodity commodity = dataBase.getOneCommodity("1");
     	//System.out.println(commodity.id+" "+commodity.name);
-    	Order order = dataBase.getOneOrder("1");
-    	System.out.println(order.id + " "+order.status+" "+order.commodities.size());
+    	//Order order = dataBase.getOneOrder("1");
+    	//System.out.println(order.id + " "+order.status+" "+order.commodities.get(0).count);
+    	List<Order> orders = dataBase.getOrdersFromUser("hhhh");
+    	for(int i=0;i<orders.size();i++)
+    	{
+    		System.out.println(orders.get(i).id+" "+orders.get(i).status);
+    	}
     }
     
     static 
@@ -78,6 +83,13 @@ public class DataBase
         }
     }
     
+    /**
+     * 用户注册
+     *@author 何俊霖
+     * @param username 用户名
+     * @param password 密码
+     * @return 注册是否成功
+     */
     public boolean register(String username,String password)
     {
     	
@@ -117,6 +129,13 @@ public class DataBase
 		
     }
     
+    /**
+     * 用户登录
+     *@author 何俊霖
+     * @param username 用户名
+     * @param password 密码
+     * @return 登录是否成功
+     */
     public boolean login(String username,String password)
     {
     	
@@ -153,9 +172,14 @@ public class DataBase
         }
     }
     
+    /**
+     * 查找所有商品
+     *@author 何俊霖
+     * @return 所有商品的列表
+     */
     public List<Commodity> getAllCommodities()
     {
-    	
+    	List<Commodity> commodities = new ArrayList<Commodity>();
         try
         {
         	//Class.forName("com.mysql.jdbc.Driver");
@@ -165,8 +189,7 @@ public class DataBase
                 Statement statement = connection.createStatement();
                 
                 ResultSet resultSet = statement.executeQuery(sql);
-                List<Commodity> commodities = new ArrayList<Commodity>();
-				
+                
                 while(resultSet.next())
                 {
                 	Commodity commodity = new Commodity();
@@ -191,10 +214,16 @@ public class DataBase
         catch(SQLException e)
         {
             e.printStackTrace();
-            return null;
+            return commodities;
         }
     }
     
+    /**
+     * 根据id查找单个商品
+     *@author 何俊霖
+     * @param id
+     * @return 商品对象
+     */
     public Commodity getOneCommodity(String id)
     {
     	
@@ -235,6 +264,12 @@ public class DataBase
         }
     }
     
+    /**
+     * 根据id查找订单
+     *@author 何俊霖
+     * @param id
+     * @return 订单对象
+     */
     public Order getOneOrder(String id)
     {
     	
@@ -278,6 +313,41 @@ public class DataBase
         {
             e.printStackTrace();
             return null;
+        }
+    }
+    
+    /**
+     * 根据用户id查找其所有订单
+     *@author 何俊霖
+     * @param u_id 用户id
+     * @return 该用户所有订单的列表
+     */
+    public List<Order> getOrdersFromUser(String u_id)
+    {
+    	List<Order> orders = new ArrayList<>();
+        try
+        {
+        	//Class.forName("com.mysql.jdbc.Driver");
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "select id from `order` where u_id = ?";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, u_id);
+                ResultSet resultSet = pstmt.executeQuery();
+                
+                while(resultSet.next())
+                {
+                	String o_id = resultSet.getString(1);
+                	Order order = getOneOrder(o_id);
+                	orders.add(order);
+                }
+                return orders;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return orders;
         }
     }
 }
