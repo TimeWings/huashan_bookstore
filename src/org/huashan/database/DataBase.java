@@ -350,4 +350,47 @@ public class DataBase
             return orders;
         }
     }
+
+    public List<Commodity> getUserCart(String user)
+    {
+    	List<Commodity> commodities = new ArrayList<Commodity>();
+    	try
+    	{
+    		//Class.forName("com.mysql.jdbc.Driver");
+    		try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+		    {
+		    	String sql = "select * from commodity natural join cart where user_id = "+user+" and commodity.id=com_id";
+	            Statement statement = connection.createStatement();
+	            
+	            ResultSet resultSet = statement.executeQuery(sql);
+	            
+	            while(resultSet.next())
+	            {
+	            	Commodity commodity = new Commodity();
+	            	commodity.id = resultSet.getInt(1);
+	            	commodity.name = resultSet.getString(2);
+	            	commodity.author = resultSet.getString(3);
+	            	commodity.description = resultSet.getString(4);
+	            	commodity.ISBN = resultSet.getString(5);
+	            	commodity.price = resultSet.getDouble(6);
+	            	commodity.publisher = resultSet.getString(7);
+	            	commodity.editor = resultSet.getString(8);
+	            	commodity.stock = resultSet.getInt(9);
+	            	commodity.destine = resultSet.getInt(10);
+	            	commodity.sales = resultSet.getInt(11);
+	            	commodity.type = resultSet.getString(12);
+	            	commodity.count=resultSet.getInt(13);
+	            	commodities.add(commodity);
+	            }
+	            
+	            return commodities;
+	         }
+	    }
+	    catch(SQLException e)
+	    {
+	        e.printStackTrace();
+	        return commodities;
+	    }
+	}
+
 }
