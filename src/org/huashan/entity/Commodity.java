@@ -14,6 +14,7 @@ public class Commodity
 	public int id;
 	public String name;
 	public String author;
+	public String title;
 	public String description;
 	public double price;
 	public String ISBN;

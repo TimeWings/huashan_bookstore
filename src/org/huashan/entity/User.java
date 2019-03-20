@@ -3,14 +3,16 @@
  */
 package org.huashan.entity;
 
+import org.huashan.encrypt.Encrypt;
+
 /**
  * @author 何俊霖
  *
  */
 public class User
 {
-	public String username;
-	public String password;
+	private String username;
+	private String password;
 	public boolean is_admin = false;
 	public String address;
 	public String phone;
@@ -22,5 +24,20 @@ public class User
 	{
 		this.username = username;
 		this.password = password;
+	}
+
+	public String getUsername()
+	{
+		return username;
+	}
+
+	public String getPassword()
+	{
+		return password;
+	}
+
+	public void setPassword(String password)
+	{
+		this.password = Encrypt.getResult(password);
 	}
 }
