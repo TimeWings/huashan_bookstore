@@ -350,8 +350,13 @@ public class DataBase
             return orders;
         }
     }
-
-    public List<Commodity> getUserCart(String user)
+    /**
+     * 根据用户id查找其购物车
+     *@author 邓家豪
+     * @param u_id 用户id
+     * @return 该用户所有购物车的列表
+     */
+    public List<Commodity> getUserCart(String u_id)
     {
     	List<Commodity> commodities = new ArrayList<Commodity>();
     	try
@@ -359,7 +364,7 @@ public class DataBase
     		//Class.forName("com.mysql.jdbc.Driver");
     		try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
 		    {
-		    	String sql = "select * from commodity natural join cart where user_id = "+user+" and commodity.id=com_id";
+		    	String sql = "select * from commodity natural join cart where user_id = "+u_id+" and commodity.id=com_id";
 	            Statement statement = connection.createStatement();
 	            
 	            ResultSet resultSet = statement.executeQuery(sql);
@@ -392,5 +397,51 @@ public class DataBase
 	        return commodities;
 	    }
 	}
-
+    /**
+     * 查找符合标题的商品
+     *@author 邓家豪
+     * @param title 查询标题
+     * @return 符合标题的商品
+     */
+    public List<Commodity> getCommoditiesByTitle(String title)
+    {
+    	List<Commodity> commodities = new ArrayList<Commodity>();
+        try
+        {
+        	//Class.forName("com.mysql.jdbc.Driver");
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "select * from commodity where title like '%"+title+"%'";
+                Statement statement = connection.createStatement();
+                
+                ResultSet resultSet = statement.executeQuery(sql);
+                
+                while(resultSet.next())
+                {
+                	Commodity commodity = new Commodity();
+                	commodity.id = resultSet.getInt(1);
+                	commodity.name = resultSet.getString(2);
+                	commodity.author = resultSet.getString(3);
+                	commodity.description = resultSet.getString(4);
+                	commodity.ISBN = resultSet.getString(5);
+                	commodity.price = resultSet.getDouble(6);
+                	commodity.publisher = resultSet.getString(7);
+                	commodity.editor = resultSet.getString(8);
+                	commodity.stock = resultSet.getInt(9);
+                	commodity.destine = resultSet.getInt(10);
+                	commodity.sales = resultSet.getInt(11);
+                	commodity.type = resultSet.getString(12);
+                	commodities.add(commodity);
+                }
+                
+                return commodities;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return commodities;
+        }
+    }
+    
 }
