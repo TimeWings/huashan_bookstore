@@ -33,27 +33,10 @@ public class DataBase
     public static void main(String[] args)
     {
     	DataBase dataBase = new DataBase();
-    	//dataBase.register("aaa", "123456");
-    	//dataBase.login("aaa", "123456");
-//        List<Commodity> commodities = dataBase.getAllCommodities();
-//        for (Commodity commodity : commodities)
-//		{
-//			System.out.println(commodity.id+" "+commodity.name);
-//		}
-    	//Commodity commodity = dataBase.getOneCommodity("1");
-    	//System.out.println(commodity.id+" "+commodity.name);
-    	//Order order = dataBase.getOneOrder("1");
-    	//System.out.println(order.id + " "+order.status+" "+order.commodities.get(0).count);
-    	//List<Order> orders = dataBase.getOrdersFromUser("hhhh");
-//    	for(int i=0;i<orders.size();i++)
-//    	{
-//    		System.out.println(orders.get(i).id+" "+orders.get(i).status);
-//    	}
-    	User user = dataBase.getOneUser("aaa");
-    	System.out.println(user.getUsername()+" "+user.getPassword()+" "+user.phone);
-    	user.phone = "110";
-    	//dataBase.updateOneUser(user);
-    	dataBase.changePassword("aaa", "1234567", "123456");
+    	Commodity commodity = dataBase.getOneCommodity("1");
+    	commodity.sales++;
+    	dataBase.insertOneCommodity(commodity);
+    	//System.out.println(commodity.description);
     }
     
     static 
@@ -90,10 +73,11 @@ public class DataBase
     
     /**
      * 执行update或insert,delete语句
-     *@author 何俊霖
+     * @author 何俊霖
      * @param sql
+     * @return 受影响的行数
      */
-    public void update(String sql)
+    public int update(String sql)
     {
     	 try
          {
@@ -103,18 +87,19 @@ public class DataBase
                  PreparedStatement pstmt = connection.prepareStatement(sql);
                  int count = pstmt.executeUpdate();
                  System.out.println("成功更新"+count+"行");
+                 return count;
               }
          }
          catch(SQLException e)
          {
              e.printStackTrace();
-             return;
+             return 0;
          }
     }
     
     /**
      * 用户注册
-     *@author 何俊霖
+     * @author 何俊霖
      * @param username 用户名
      * @param password 原始未加密密码
      * @return 注册是否成功
@@ -160,7 +145,7 @@ public class DataBase
     
     /**
      * 用户登录
-     *@author 何俊霖
+     * @author 何俊霖
      * @param username 用户名
      * @param password 密码
      * @return 登录是否成功
@@ -199,7 +184,7 @@ public class DataBase
     
     /**
      * 根据用户名查找单个用户信息
-     *@author 何俊霖
+     * @author 何俊霖
      * @param username 用户名
      * @return 用户对象，如果用户不存在则返回null
      */
@@ -237,10 +222,11 @@ public class DataBase
     
     /**
      * 更新一个用户的个人信息（除了用户名和密码）
-     *@author 何俊霖
+     * @author 何俊霖
      * @param user
+     * @return 受影响的行数
      */
-    public void updateOneUser(User user)
+    public int updateOneUser(User user)
     {
         try
         {
@@ -254,12 +240,13 @@ public class DataBase
                 pstmt.setString(3, user.getUsername());
                 int count = pstmt.executeUpdate();
                 System.out.println("成功更新"+count+"行");
+                return count;
              }
         }
         catch(SQLException e)
         {
             e.printStackTrace();
-            return;
+            return 0;
         }
     }
     
@@ -333,12 +320,11 @@ public class DataBase
                 	commodity.ISBN = resultSet.getString(5);
                 	commodity.price = resultSet.getDouble(6);
                 	commodity.publisher = resultSet.getString(7);
-                	commodity.editor = resultSet.getString(8);
-                	commodity.stock = resultSet.getInt(9);
-                	commodity.destine = resultSet.getInt(10);
-                	commodity.sales = resultSet.getInt(11);
-                	commodity.type = resultSet.getString(12);
-                	commodity.title = resultSet.getString(13);
+                	commodity.stock = resultSet.getInt(8);
+                	commodity.destine = resultSet.getInt(9);
+                	commodity.sales = resultSet.getInt(10);
+                	commodity.type = resultSet.getString(11);
+                	commodity.title = resultSet.getString(12);
                 	commodities.add(commodity);
                 }
                 
@@ -381,12 +367,11 @@ public class DataBase
                 	commodity.ISBN = resultSet.getString(5);
                 	commodity.price = resultSet.getDouble(6);
                 	commodity.publisher = resultSet.getString(7);
-                	commodity.editor = resultSet.getString(8);
-                	commodity.stock = resultSet.getInt(9);
-                	commodity.destine = resultSet.getInt(10);
-                	commodity.sales = resultSet.getInt(11);
-                	commodity.type = resultSet.getString(12);
-                	commodity.title = resultSet.getString(13);
+                	commodity.stock = resultSet.getInt(8);
+                	commodity.destine = resultSet.getInt(9);
+                	commodity.sales = resultSet.getInt(10);
+                	commodity.type = resultSet.getString(11);
+                	commodity.title = resultSet.getString(12);
                 }
                 
                 return commodity;
@@ -404,8 +389,9 @@ public class DataBase
      * 更新单个商品信息
      * @author 何俊霖
      * @param commodity
+     * @return 受影响的行数
      */
-    public void updateOneCommodity(Commodity commodity)
+    public int updateOneCommodity(Commodity commodity)
     {
     	
         try
@@ -432,12 +418,80 @@ public class DataBase
                 pstmt.setInt(12, commodity.id);
                 int count = pstmt.executeUpdate();
                 System.out.println("成功更新"+count+"行");
+                return count;
              }
         }
         catch(SQLException e)
         {
             e.printStackTrace();
-            return;
+            return 0;
+        }
+    }
+    
+    /**
+     * 插入一个商品
+     * @author 何俊霖
+     * @param commodity
+     * @return 受影响的行数
+     */
+    public int insertOneCommodity(Commodity commodity)
+    {
+        try
+        {
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "insert into commodity(name,author,description,ISBN,"
+    	    			+ "price,publisher,stock,destine,sales,type,title)"
+    	    			+ "values(? ,?, ?, ?, "
+    	    			+ "?, ?, ?, ?,?,?,?) ";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, commodity.name);
+                pstmt.setString(2, commodity.author);
+                pstmt.setString(3, commodity.description);
+                pstmt.setString(4, commodity.ISBN);
+                pstmt.setDouble(5, commodity.price);
+                pstmt.setString(6, commodity.publisher);
+                pstmt.setInt(7, commodity.stock);
+                pstmt.setInt(8, commodity.destine);
+                pstmt.setInt(9, commodity.sales);
+                pstmt.setString(10, commodity.type);
+                pstmt.setString(11, commodity.title);
+                int count = pstmt.executeUpdate();
+                System.out.println("成功插入"+count+"行");
+                return count;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    /**
+     * 根据id删除一个商品
+     * @author 何俊霖
+     * @param id
+     * @return 受影响的行数
+     */
+    public int deleteOneCommodity(String id)
+    {
+        try
+        {
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "delete from commodity where id = ?";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, id);
+                int count = pstmt.executeUpdate();
+                System.out.println("成功删除"+count+"行");
+                return count;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return 0;
         }
     }
     
@@ -527,4 +581,96 @@ public class DataBase
             return orders;
         }
     }
+    /**
+     * 根据用户id查找其购物车
+     *@author 邓家豪
+     * @param u_id 用户id
+     * @return 该用户所有购物车的列表
+     */
+    public List<Commodity> getUserCart(String u_id)
+    {
+    	List<Commodity> commodities = new ArrayList<Commodity>();
+    	try
+    	{
+    		//Class.forName("com.mysql.jdbc.Driver");
+    		try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+		    {
+		    	String sql = "select * from commodity natural join cart where user_id = "+u_id+" and commodity.id=com_id";
+	            Statement statement = connection.createStatement();
+	            
+	            ResultSet resultSet = statement.executeQuery(sql);
+	            
+	            while(resultSet.next())
+	            {
+	            	Commodity commodity = new Commodity();
+	            	commodity.id = resultSet.getInt(1);
+	            	commodity.name = resultSet.getString(2);
+	            	commodity.author = resultSet.getString(3);
+	            	commodity.description = resultSet.getString(4);
+	            	commodity.ISBN = resultSet.getString(5);
+	            	commodity.price = resultSet.getDouble(6);
+	            	commodity.publisher = resultSet.getString(7);
+	            	commodity.stock = resultSet.getInt(8);
+	            	commodity.destine = resultSet.getInt(9);
+	            	commodity.sales = resultSet.getInt(10);
+	            	commodity.type = resultSet.getString(11);
+	            	commodity.count=resultSet.getInt(12);
+	            	commodities.add(commodity);
+	            }
+	            
+	            return commodities;
+	         }
+	    }
+	    catch(SQLException e)
+	    {
+	        e.printStackTrace();
+	        return commodities;
+	    }
+	}
+    /**
+     * 查找符合标题的商品
+     *@author 邓家豪
+     * @param title 查询标题
+     * @return 符合标题的商品
+     */
+    public List<Commodity> getCommoditiesByTitle(String title)
+    {
+    	List<Commodity> commodities = new ArrayList<Commodity>();
+        try
+        {
+        	//Class.forName("com.mysql.jdbc.Driver");
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "select * from commodity where title like '%"+title+"%'";
+                Statement statement = connection.createStatement();
+                
+                ResultSet resultSet = statement.executeQuery(sql);
+                
+                while(resultSet.next())
+                {
+                	Commodity commodity = new Commodity();
+                	commodity.id = resultSet.getInt(1);
+                	commodity.name = resultSet.getString(2);
+                	commodity.author = resultSet.getString(3);
+                	commodity.description = resultSet.getString(4);
+                	commodity.ISBN = resultSet.getString(5);
+                	commodity.price = resultSet.getDouble(6);
+                	commodity.publisher = resultSet.getString(7);
+                	commodity.stock = resultSet.getInt(8);
+                	commodity.destine = resultSet.getInt(9);
+                	commodity.sales = resultSet.getInt(10);
+                	commodity.type = resultSet.getString(11);
+                	commodities.add(commodity);
+                }
+                
+                return commodities;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return commodities;
+        }
+    }
+    
 }

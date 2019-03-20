@@ -19,7 +19,7 @@ public class Commodity
 	public double price;
 	public String ISBN;
 	public String publisher;
-	public String editor;
+	//public String editor;
 	public int stock;
 	public int destine;
 	public int sales;
