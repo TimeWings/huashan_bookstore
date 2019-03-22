@@ -37,15 +37,17 @@ public class DataBase
     public static void main(String[] args)
     {
     	DataBase dataBase = new DataBase();
-    	Order order = dataBase.getOneOrder("201903222137421001722022");
-    	System.out.println("订单id:"+order.id+" 状态:"+order.status.toString()+"  u_id:"+order.u_id);
-    	for(int i=0;i<order.commodities.size();i++)
-    	{
-    		System.out.println("商品id:"+order.commodities.get(i).id+" "+order.commodities.get(i).name+" 数量:"+order.commodities.get(i).count);
-    	}
-    	order.commodities.get(0).count = 4;
-    	//dataBase.updateOneOrder(order);
-    	dataBase.insertOneOrder(order);
+//    	Order order = dataBase.getOneOrder("201903222137421001722022");
+//    	System.out.println("订单id:"+order.id+" 状态:"+order.status.toString()+"  u_id:"+order.u_id);
+//    	for(int i=0;i<order.commodities.size();i++)
+//    	{
+//    		System.out.println("商品id:"+order.commodities.get(i).id+" "+order.commodities.get(i).name+" 数量:"+order.commodities.get(i).count);
+//    	}
+//    	order.commodities.get(0).count = 4;
+//    	//dataBase.updateOneOrder(order);
+//    	dataBase.insertOneOrder(order);
+    	String name = dataBase.getAllCommoditiesByType("玄幻").get(3).name;
+    	System.out.println(name);
     }
     
     static 
@@ -113,7 +115,7 @@ public class DataBase
      * @param password 原始未加密密码
      * @return 注册是否成功
      */
-    public boolean register(String username,String password)
+    public boolean register(String username,String name, String password)
     {
     	
         try
@@ -134,11 +136,12 @@ public class DataBase
     	    		}
     	    	}
     	    	
-    	    	sql = "insert into user(id,password) values(?,?)";
+    	    	sql = "insert into user(id,password,name) values(?,?,?)";
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, username);
                 String password_encrypt = Encrypt.getResult(password);
                 pstmt.setString(2, password_encrypt);
+                pstmt.setString(3, name);
                 int result = pstmt.executeUpdate();
                 System.out.println("成功插入"+result+"行");
                 return true;
@@ -318,6 +321,99 @@ public class DataBase
                 Statement statement = connection.createStatement();
                 
                 ResultSet resultSet = statement.executeQuery(sql);
+                
+                while(resultSet.next())
+                {
+                	Commodity commodity = new Commodity();
+                	commodity.id = resultSet.getInt(1);
+                	commodity.name = resultSet.getString(2);
+                	commodity.author = resultSet.getString(3);
+                	commodity.description = resultSet.getString(4);
+                	commodity.ISBN = resultSet.getString(5);
+                	commodity.price = resultSet.getDouble(6);
+                	commodity.publisher = resultSet.getString(7);
+                	commodity.stock = resultSet.getInt(8);
+                	commodity.destine = resultSet.getInt(9);
+                	commodity.sales = resultSet.getInt(10);
+                	commodity.type = resultSet.getString(11);
+                	commodity.title = resultSet.getString(12);
+                	commodities.add(commodity);
+                }
+                
+                return commodities;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return commodities;
+        }
+    }
+    
+    /**
+     * 查找所有商品，并根据销量排序（降序）
+     * @author 何俊霖
+     * @return 所有商品的列表,根据销量排序
+     */
+    public List<Commodity> getAllCommoditiesOrderBySales()
+    {
+    	List<Commodity> commodities = new ArrayList<Commodity>();
+        try
+        {
+        	//Class.forName("com.mysql.jdbc.Driver");
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "select * from commodity order by sales DESC";
+                Statement statement = connection.createStatement();
+                
+                ResultSet resultSet = statement.executeQuery(sql);
+                
+                while(resultSet.next())
+                {
+                	Commodity commodity = new Commodity();
+                	commodity.id = resultSet.getInt(1);
+                	commodity.name = resultSet.getString(2);
+                	commodity.author = resultSet.getString(3);
+                	commodity.description = resultSet.getString(4);
+                	commodity.ISBN = resultSet.getString(5);
+                	commodity.price = resultSet.getDouble(6);
+                	commodity.publisher = resultSet.getString(7);
+                	commodity.stock = resultSet.getInt(8);
+                	commodity.destine = resultSet.getInt(9);
+                	commodity.sales = resultSet.getInt(10);
+                	commodity.type = resultSet.getString(11);
+                	commodity.title = resultSet.getString(12);
+                	commodities.add(commodity);
+                }
+                
+                return commodities;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return commodities;
+        }
+    }
+    
+    /**
+     * 根据类型查找所有商品
+     * @author 何俊霖
+     * @param type
+     * @return
+     */
+    public List<Commodity> getAllCommoditiesByType(String type)
+    {
+    	List<Commodity> commodities = new ArrayList<Commodity>();
+        try
+        {
+        	//Class.forName("com.mysql.jdbc.Driver");
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "select * from commodity where type = ?";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, type);
+                ResultSet resultSet = pstmt.executeQuery();
                 
                 while(resultSet.next())
                 {
