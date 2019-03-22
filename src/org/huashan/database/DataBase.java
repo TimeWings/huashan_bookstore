@@ -111,7 +111,8 @@ public class DataBase
     /**
      * 用户注册
      * @author 何俊霖
-     * @param username 用户名
+     * @param username 用户名（唯一）
+     * @param name 昵称
      * @param password 原始未加密密码
      * @return 注册是否成功
      */
@@ -220,6 +221,7 @@ public class DataBase
                 	user.is_admin = resultSet.getBoolean(3);
                 	user.address = resultSet.getString(4);
                 	user.phone = resultSet.getString(5);
+                	user.name = resultSet.getString(6);
                 	return user;
                 }
                 return null;
@@ -245,11 +247,13 @@ public class DataBase
         	//Class.forName("com.mysql.jdbc.Driver");
     	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
     	    {
-    	    	String sql = "update user set address = ?,phone = ? where id = ?";
+    	    	String sql = "update user set address = ?,phone = ?,name = ? where id = ?";
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, user.address);
                 pstmt.setString(2, user.phone);
-                pstmt.setString(3, user.getUsername());
+                pstmt.setString(3, user.name);
+                pstmt.setString(4, user.getUsername());
+                
                 int count = pstmt.executeUpdate();
                 System.out.println("成功更新"+count+"行");
                 return count;
