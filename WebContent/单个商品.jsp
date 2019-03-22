@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +26,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg  navigation">
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="index.jsp">
 						<img src="images/logo.png" alt=""  width="200" height="50">
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +36,7 @@
 					
 						<ul class="navbar-nav ml-auto mt-10">
 							<a  href="主页.html" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
-							</div>	
+							
 						</ul>
 					</div>
 				</nav>
@@ -65,11 +63,7 @@
 						</ul>
 					</div>
 					<div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel">
-						<ol class="carousel-indicators">
-							<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-							<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-							<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-						</ol>
+						
 						<div class="carousel-inner">
 							<div class="carousel-item active">
 								<img class="d-block w-100" src="images/products/products-1.jpg" alt="First slide">
@@ -93,126 +87,19 @@
 					<div class="content">
 						<ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Product Details</a>
+								<a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">商品细节</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Specifications</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Reviews</a>
-							</li>
+							
 						</ul>
 						<div class="tab-content" id="pills-tabContent">
 							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-								<h3 class="tab-title">Product Description</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia laudantium beatae quod perspiciatis, neque dolores eos rerum, ipsa iste cum culpa numquam amet provident eveniet pariatur, sunt repellendus quas voluptate dolor cumque autem molestias. Ab quod quaerat molestias culpa eius, perferendis facere vitae commodi maxime qui numquam ex voluptatem voluptate, fuga sequi, quasi! Accusantium eligendi vitae unde iure officia amet molestiae velit assumenda, quidem beatae explicabo dolore laboriosam mollitia quod eos, eaque voluptas enim fuga laborum, error provident labore nesciunt ad. Libero reiciendis necessitatibus voluptates ab excepturi rem non, nostrum aut aperiam? Itaque, aut. Quas nulla perferendis neque eveniet ullam?</p>
+								<h3 class="tab-title">商品描述</h3>
+								<p>唐门外门弟子唐三，因偷学内门绝学为唐门所不容，跳崖明志时却发现没有死，反而以另外一个身份来到了另一个世界，一个属于武魂的世界，名叫斗罗大陆。这里没有魔法，没有斗气，没有武术，却有神奇的武魂。这里的每个人，在自己六岁的时候，都会在武魂殿中令武魂觉醒。武魂有动物，有植物，有器物，武魂可以辅助人们的日常生活。而其中一些特别出色的武魂却可以用来修炼并进行战斗，这个职业，是斗罗大陆上最为强大也是最荣耀的职业“魂师”。
+小小的唐三在圣魂村开始了他的魂师修炼之路，并萌生了振兴唐门的梦想。当唐门暗器来到斗罗大陆，当唐三武魂觉醒，他能否在这片武魂的世界再铸唐门的辉煌？</p>
 
 						
 </div>
-							<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-								<h3 class="tab-title">Product Specifications</h3>
-								<table class="table table-bordered product-table">
-								  <tbody>
-								    <tr>
-								      <td>Seller Price</td>
-								      <td>$450</td>
-								    </tr>
-								    <tr>
-								      <td>Added</td>
-								      <td>26th December</td>
-								    </tr>
-								    <tr>
-								      <td>State</td>
-								      <td>Dhaka</td>
-								    </tr>
-								    <tr>
-								      <td>Brand</td>
-								      <td>Apple</td>
-								    </tr>
-								    <tr>
-								      <td>Condition</td>
-								      <td>Used</td>
-								    </tr>
-								    <tr>
-								      <td>Model</td>
-								      <td>2017</td>
-								    </tr>
-								    <tr>
-								      <td>State</td>
-								      <td>Dhaka</td>
-								    </tr>
-								    <tr>
-								      <td>Battery Life</td>
-								      <td>23</td>
-								    </tr>
-								  </tbody>
-								</table>
-							</div>
-							<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-								<h3 class="tab-title">Product Review</h3>
-								<div class="product-review">
-							  		<div class="media">
-							  			<!-- Avater -->
-							  			<img src="images/user/user-thumb.jpg" alt="avater">
-							  			<div class="media-body">
-							  				<!-- Ratings -->
-							  				<div class="ratings">
-							  					<ul class="list-inline">
-							  						<li class="list-inline-item">
-							  							<i class="fa fa-star"></i>
-							  						</li>
-							  						<li class="list-inline-item">
-							  							<i class="fa fa-star"></i>
-							  						</li>
-							  						<li class="list-inline-item">
-							  							<i class="fa fa-star"></i>
-							  						</li>
-							  						<li class="list-inline-item">
-							  							<i class="fa fa-star"></i>
-							  						</li>
-							  						<li class="list-inline-item">
-							  							<i class="fa fa-star"></i>
-							  						</li>
-							  					</ul>
-							  				</div>
-							  				<div class="name">
-							  					<h5>Jessica Brown</h5>
-							  				</div>
-							  				<div class="date">
-							  					<p>Mar 20, 2018</p>
-							  				</div>
-							  				<div class="review-comment">
-							  					<p>
-							  						Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremqe laudant tota rem ape riamipsa eaque.
-							  					</p>
-							  				</div>
-							  			</div>
-							  		</div>
-							  		<div class="review-submission">
-							  			<h3 class="tab-title">Submit your review</h3>
-						  				<!-- Rate -->
-						  				<div class="rate">
-						  					<div class="starrr"></div>
-						  				</div>
-						  				<div class="review-submit">
-						  					<form action="#" class="row">
-						  						<div class="col-lg-6">
-						  							<input type="text" name="name" id="name" class="form-control" placeholder="Name">
-						  						</div>
-						  						<div class="col-lg-6">
-						  							<input type="email" name="email" id="email" class="form-control" placeholder="Email">
-						  						</div>
-						  						<div class="col-12">
-						  							<textarea name="review" id="review" rows="10" class="form-control" placeholder="Message"></textarea>
-						  						</div>
-						  						<div class="col-12">
-						  							<button type="submit" class="btn btn-main">Sumbit</button>
-						  						</div>
-						  					</form>
-						  				</div>
-							  		</div>
-							  	</div>
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -225,40 +112,23 @@
 					</div>
 					<!-- User Profile widget -->
 					<div class="widget user">
-<h4><a href="">Jonathon Andrew</a></h4>
-						<p class="member-time">Member Since Jun 27, 2017</p>
-						<a href="">See all ads</a>
-						<ul class="list-inline mt-20">
-							<li class="list-inline-item"><a href="" class="btn btn-contact">Contact</a></li>
-							<li class="list-inline-item"><a href="" class="btn btn-offer">Make an offer</a></li>
-						</ul>
-					</div>
-					<!-- Map Widget -->
-					<!-- Rate Widget -->
-					<div class="widget rate">
-						<!-- Heading -->
-						<h5 class="widget-header text-center">What would you rate
+                       <h4><a href="">书本参数:</a></h4>
 						<br>
-						this product</h5>
-						<!-- Rate -->
-						<div class="starrr"></div>
+						<p class="member-time">书名：</p>
+						<hr><br>
+						<p class="member-time">作者：</p>
+						<hr><br>
+						<p class="member-time">类型：</p>
+						<hr><br>
+						<p class="member-time">ISBN：</p>
+						<hr><br>
+						<p class="member-time">出版社：</p>
+						
+						
 					</div>
-					<!-- Safety tips widget -->
-					<div class="widget disclaimer">
-						<h5 class="widget-header">Safety Tips</h5>
-						<ul>
-							<li>Meet seller at a public place</li>
-							<li>Check the item before you buy</li>
-							<li>Pay only after collecting the item</li>
-							<li>Pay only after collecting the item</li>
-						</ul>
-					</div>
-					<!-- Coupon Widget -->
+				
 					<div class="widget coupon text-center">
-						<!-- Coupon description -->
-						<p>是否购买？
-						</p>
-						<!-- Submii button -->
+						
 						<a href="" class="btn btn-transparent-white">加入购物车</a>
 					</div>
 					
@@ -269,10 +139,7 @@
 	</div>
 	<!-- Container End -->
 </section>
-<!--============================
-=            Footer            =
-=============================-->
-<!-- Footer Bottom -->
+
 <footer class="footer-bottom">
     <!-- Container Start -->
     <div class="container">

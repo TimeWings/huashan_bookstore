@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -72,7 +70,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg  navigation">
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="index.jsp">
 						<img src="images/logo.png" alt=""  width="200" height="50">
 					</a>
 					
@@ -80,12 +78,12 @@
 						
 						<ul class="navbar-nav ml-auto mt-10">
 							
-								<a  href="主页.html" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
+								<a  href="index.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
 							
 							
 							     &nbsp;
 					  
-								<a href="我的订单.html" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >我的订单</a>
+								<a href="我的订单.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >我的订单</a>
 							
 						</ul>
 					</div>
@@ -134,21 +132,14 @@
 								</td>
 								<td><span class="categories"><a>￥：</a><b id="price_1">26</b><c> 元</c></span></td>
 								<td class="action" data-title="Action">
-									<div class="">
+									
 										<ul class="list-inline justify-content-center">
-											
-											<li class="list-inline-item">
-												<a class="edit" href="">
-													<i class="fa fa-pencil"></i>
-												</a>		
-											</li>
 											<li class="list-inline-item">
 												<a class="delete" href="">
 													<i class="fa fa-trash"></i>
 												</a>
 											</li>
-										</ul>
-									</div>
+								        </ul>
 								</td>
 								<td class="counts text-center"><input class="checkbox" name="checkbox_1" type="checkbox" checked="value"></td>
 								
@@ -168,21 +159,13 @@
 								</td>
 								<td class="product-category"><a>￥：</a><b id="price_2">26</b><c> 元</c></td>
 								<td class="action" data-title="Action">
-									<div class="">
-										<ul class="list-inline justify-content-center">
-											
-											<li class="list-inline-item">
-												<a class="edit" href="">
-													<i class="fa fa-pencil"></i>
-												</a>		
-											</li>
+									<ul class="list-inline justify-content-center">
 											<li class="list-inline-item">
 												<a class="delete" href="">
 													<i class="fa fa-trash"></i>
 												</a>
 											</li>
-										</ul>
-									</div>
+								        </ul>
 								</td>
 								<td class="counts text-center"><input class="checkbox" name="checkbox_2" type="checkbox" checked="value"></td>
 								
@@ -202,21 +185,13 @@
 								</td>
 								<td class="product-category"><a>￥：</a><b id="price_3">26</b><c> 元</c></td>
 								<td class="action" data-title="Action">
-									<div class="">
-										<ul class="list-inline justify-content-center">
-											
-											<li class="list-inline-item">
-												<a class="edit" href="">
-													<i class="fa fa-pencil"></i>
-												</a>		
-											</li>
+									<ul class="list-inline justify-content-center">
 											<li class="list-inline-item">
 												<a class="delete" href="">
 													<i class="fa fa-trash"></i>
 												</a>
 											</li>
-										</ul>
-									</div>
+								        </ul>
 								</td>
 								<td class="counts text-center"><input class="checkbox" name="checkbox_3" type="checkbox" checked="value"></td>
 								
@@ -236,21 +211,13 @@
 								</td>
 								<td class="product-category"><a>￥：</a><b id="price_4">26</b><c> 元</c></td>
 								<td class="action" data-title="Action">
-									<div class="">
-										<ul class="list-inline justify-content-center">
-											
-											<li class="list-inline-item">
-												<a class="edit" href="">
-													<i class="fa fa-pencil"></i>
-												</a>		
-											</li>
+									<ul class="list-inline justify-content-center">
 											<li class="list-inline-item">
 												<a class="delete" href="">
 													<i class="fa fa-trash"></i>
 												</a>
 											</li>
-										</ul>
-									</div>
+								        </ul>
 								</td>
 							<td class="counts text-center"><input class="checkbox" name="checkbox_4" type="checkbox" checked="value"></td>
 								
@@ -270,21 +237,13 @@
 								</td>
 								<td class="product-category"><a>￥：</a><b id="price_5">26</b><c> 元</c></td>
 								<td class="action" data-title="Action">
-									<div class="">
-										<ul class="list-inline justify-content-center">
-											
-											<li class="list-inline-item">
-												<a class="edit" href="">
-													<i class="fa fa-pencil"></i>
-												</a>		
-											</li>
+									<ul class="list-inline justify-content-center">
 											<li class="list-inline-item">
 												<a class="delete" href="">
 													<i class="fa fa-trash"></i>
 												</a>
 											</li>
-										</ul>
-									</div>
+								        </ul>
 								</td>
 							<td class="counts text-center"><input class="checkbox" name="checkbox_5" type="checkbox" checked="value"></td>
 								

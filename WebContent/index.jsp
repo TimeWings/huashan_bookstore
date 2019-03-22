@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -13,15 +10,14 @@
   
   
   <!-- Bootstrap -->
-  <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
- <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+ <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
-<%String path= request.getContextPath();%>
-  <link href="<%=path %>/css/style.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 	
 	<!-- 导航   -->
-  <link href="<%=path %>/css/dh.css" rel="stylesheet">
+  <link href="css/dh.css" rel="stylesheet">
 
  
 <style>
@@ -39,7 +35,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg  navigation">
-					<a class="navbar-brand" href="主页.html">
+					<a class="navbar-brand" href="index.jsp">
 						<img src="images/logo.png" alt=""  width="200" height="50">
 					</a>
 				
@@ -48,7 +44,7 @@
    <div class="dropdown dg" > 	   
   <div  style="cursor:pointer" class="text-center" >教&nbsp;&nbsp;育</div>
   <div class="dropdown-content text-center">
-    <p><a href="单个分类.html">历史类速度速 </a></p>
+    <p><a href="单个分类.jsp">历史类速度速 </a></p>
 	  <p><a href="#">计算机类</a></p>
   </div>
 	  
@@ -94,16 +90,16 @@
 					<div class="topD">
 						<div class="topf text-center">
 							
-							<a  href="登录界面.html" target="_parent" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >登录</a>
+							<a  href="登录注册界面.jsp" target="_parent" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >登录</a>
 							</div>
 						
 						<div class="topg text-center" >
-							<a href="我的订单.html" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >订单</a>
+							<a href="我的订单.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >订单</a>
 							</div>
 						
 						<div class="toph text-center">
 							
-							<a href="购物车.html" style="background-color: burlywood; border: none;  color: white;  padding: 4px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 15px; border-radius: 15px;" >购物车<b>0</b></a>
+							<a href="购物车.jsp" style="background-color: burlywood; border: none;  color: white;  padding: 4px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 15px; border-radius: 15px;" >购物车<b>0</b></a>
 							
 							</div>
 						
@@ -162,26 +158,25 @@
 <!--===========================================
 =            Popular deals section            =
 ============================================-->
-
-<section class="popular-deals section bg-gray">
-	<div class="container">
+<section class="popular-deals section bg-gray " >
+	<div class="container" >
 		<div class="row">
 			<div class="col-md-12">
 				<div class="section-title">
 				  <h2>新书介绍</h2>
-				  <p>1111111</p>
+				 
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" style="opacity: 0.8">
 			<!-- offer 01 -->
 			<div class="col-sm-12 col-lg-4">
-				<!-- product card -->
+				
 <div class="product-item bg-light">
 	<div class="card">
 		<div class="thumb-content">
-			<!-- <div class="price">$200</div> -->
-			<a href="单个商品.html">
+			
+			<a href="单个商品.jsp">
 				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
 			</a>
 		</div>
@@ -194,7 +189,8 @@
 		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
 		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
 		  </ul>
-		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>			
+		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
+			<hr>
 		    <div class="product-ratings">
 		    	<ul class="list-inline">
 					<li class="list-inline-item selected"><a >评价：</a></li>
@@ -216,134 +212,204 @@
 
 			</div>
 		  <div class="col-sm-12 col-lg-4">
-			  <!-- product card -->
-			  <div class="product-item bg-light">
-			    <div class="card">
-			      <div class="thumb-content">
-			        <!-- <div class="price">$200</div> -->
-			        <a href=""> <img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap"> </a> </div>
-			      <div class="card-body">
-			        <h4 class="card-title"><a>11</a></h4>
-			        <ul class="list-inline product-meta">
-			          <li class="list-inline-item"> <a><em class="fa fa-folder-open-o"></em>Electronics</a></li>
-			          <li class="list-inline-item"> <a><em class="fa fa-calendar"></em>26th December</a></li>
-		            </ul>
-			        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
-			        <div class="product-ratings">
-			          <ul class="list-inline">
-			        
-		              </ul>
-		            </div>
-		          </div>
-		        </div>
-		      </div>
-		  </div>
-		  <div class="col-sm-12 col-lg-4">
-			  <!-- product card -->
-			  <div class="product-item bg-light">
-			    <div class="card">
-			      <div class="thumb-content">
-			        <!-- <div class="price">$200</div> -->
-			        <a href=""> <img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap"></a></div>
-			      <div class="card-body">
-			        <h4 class="card-title"><a>11</a></h4>
-			        <ul class="list-inline product-meta">
-			          <li class="list-inline-item"> <a><em class="fa fa-folder-open-o"></em>Electronics</a></li>
-			          <li class="list-inline-item"> <a><em class="fa fa-calendar"></em>26th December</a></li>
-		            </ul>
-			        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
-			        <div class="product-ratings">
-			          <ul class="list-inline">
-			           
-		              </ul>
-		            </div>
-		          </div>
-		        </div>
-		      </div>
-		  </div>
-			<div class="col-sm-12 col-lg-4">
-			  <!-- product card -->
-			  <div class="product-item bg-light">
-			    <div class="card">
-			      <div class="thumb-content">
-			        <!-- <div class="price">$200</div> -->
-			        <a href=""> <img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap"></a></div>
-			      <div class="card-body">
-			        <h4 class="card-title"><a>11</a></h4>
-			        <ul class="list-inline product-meta">
-			          <li class="list-inline-item"> <a><em class="fa fa-folder-open-o"></em>Electronics</a></li>
-			          <li class="list-inline-item"> <a><em class="fa fa-calendar"></em>26th December</a></li>
-		            </ul>
-			        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
-			        <div class="product-ratings">
-			          <ul class="list-inline">
-			           
-		              </ul>
-		            </div>
-		          </div>
-		        </div>
-		      </div>
-		  </div>
-			<div class="col-sm-12 col-lg-4">
-				<!-- product card -->
+				
 <div class="product-item bg-light">
 	<div class="card">
 		<div class="thumb-content">
-			<!-- <div class="price">$200</div> -->
-			<a href="">
-				<img class="card-img-top img-fluid" src="images/products/products-2.jpg" alt="Card image cap">
+			
+			<a href="单个商品.jsp">
+				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
 			</a>
 		</div>
+		
+		
 		<div class="card-body">
-		  <h4 class="card-title"><a>22</a></h4>
+			
+		  <h4 class="card-title"><a>斗罗大陆</a></h4>
 		  <ul class="list-inline product-meta">
-		    	<li class="list-inline-item">
-		    		<a href=""><i class="fa fa-folder-open-o"></i>Furnitures</a>
-		    	</li>
-		    	<li class="list-inline-item">
-		    		<a href=""><i class="fa fa-calendar"></i>26th December</a>
-		    	</li>
-		    </ul>
-		    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
+		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
+		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
+		  </ul>
+		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
+			<hr>
 		    <div class="product-ratings">
 		    	<ul class="list-inline">
-		    	
+					<li class="list-inline-item selected"><a >评价：</a></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
 		    	</ul>
 		    </div>
+			<p>￥：28.6元 </p>
 		</div>
+		
+		
 	</div>
 </div>
 
 
 
-			</div><div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div>
-			<div class="col-sm-12 col-lg-4">
-				<!-- product card -->
+			</div>
+		  <div class="col-sm-12 col-lg-4">
+				
 <div class="product-item bg-light">
 	<div class="card">
 		<div class="thumb-content">
-			<!-- <div class="price">$200</div> -->
-			<a href="">
-				<img class="card-img-top img-fluid" src="images/products/products-3.jpg" alt="Card image cap">
+			
+			<a href="单个商品.jsp">
+				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
 			</a>
 		</div>
+		
+		
 		<div class="card-body">
-		  <h4 class="card-title"><a>33</a></h4>
+			
+		  <h4 class="card-title"><a>斗罗大陆</a></h4>
 		  <ul class="list-inline product-meta">
-		    	<li class="list-inline-item">
-		    		<a href=""><i class="fa fa-folder-open-o"></i>Electronics</a>
-		    	</li>
-		    	<li class="list-inline-item">
-		    		<a href=""><i class="fa fa-calendar"></i>26th December</a>
-		    	</li>
-		    </ul>
-		    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
+		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
+		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
+		  </ul>
+		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
+			<hr>
 		    <div class="product-ratings">
 		    	<ul class="list-inline">
-		    		
+					<li class="list-inline-item selected"><a >评价：</a></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
 		    	</ul>
 		    </div>
+			<p>￥：28.6元 </p>
 		</div>
+		
+		
+	</div>
+</div>
+
+
+
+			</div>
+			<div class="col-sm-12 col-lg-4">
+				
+<div class="product-item bg-light">
+	<div class="card">
+		<div class="thumb-content">
+			
+			<a href="单个商品.jsp">
+				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+			</a>
+		</div>
+		
+		
+		<div class="card-body">
+			
+		  <h4 class="card-title"><a>斗罗大陆</a></h4>
+		  <ul class="list-inline product-meta">
+		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
+		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
+		  </ul>
+		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
+			<hr>
+		    <div class="product-ratings">
+		    	<ul class="list-inline">
+					<li class="list-inline-item selected"><a >评价：</a></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
+		    	</ul>
+		    </div>
+			<p>￥：28.6元 </p>
+		</div>
+		
+		
+	</div>
+</div>
+
+
+
+			</div>
+			<div class="col-sm-12 col-lg-4">
+				
+<div class="product-item bg-light">
+	<div class="card">
+		<div class="thumb-content">
+			
+			<a href="单个商品.jsp">
+				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+			</a>
+		</div>
+		
+		
+		<div class="card-body">
+			
+		  <h4 class="card-title"><a>斗罗大陆</a></h4>
+		  <ul class="list-inline product-meta">
+		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
+		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
+		  </ul>
+		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
+			<hr>
+		    <div class="product-ratings">
+		    	<ul class="list-inline">
+					<li class="list-inline-item selected"><a >评价：</a></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
+		    	</ul>
+		    </div>
+			<p>￥：28.6元 </p>
+		</div>
+		
+		
+	</div>
+</div>
+
+
+
+			</div>
+			<div class="col-sm-12 col-lg-4">
+				
+<div class="product-item bg-light">
+	<div class="card">
+		<div class="thumb-content">
+			
+			<a href="单个商品.jsp">
+				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+			</a>
+		</div>
+		
+		
+		<div class="card-body">
+			
+		  <h4 class="card-title"><a>斗罗大陆</a></h4>
+		  <ul class="list-inline product-meta">
+		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
+		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
+		  </ul>
+		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
+			<hr>
+		    <div class="product-ratings">
+		    	<ul class="list-inline">
+					<li class="list-inline-item selected"><a >评价：</a></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
+		    	</ul>
+		    </div>
+			<p>￥：28.6元 </p>
+		</div>
+		
+		
 	</div>
 </div>
 
@@ -355,166 +421,270 @@
 		</div>
 	</div>
 </section>
-<section class="popular-deals section bg-gray">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="section-title">
-          <h2>新书介绍</h2>
-          <p>1111111</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <!-- offer 01 -->
-      <div class="col-sm-12 col-lg-4">
-        <!-- product card -->
-        <div class="product-item bg-light">
-          <div class="card">
-            <div class="thumb-content">
-              <!-- <div class="price">$200</div> -->
-              <a href=""> <img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap"> </a> </div>
-            <div class="card-body">
-              <h4 class="card-title"><a>11</a></h4>
-              <ul class="list-inline product-meta">
-                <li class="list-inline-item"> <a><em class="fa fa-folder-open-o"></em>Electronics</a></li>
-                <li class="list-inline-item"> <a><em class="fa fa-calendar"></em>26th December</a></li>
-              </ul>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
-              <div class="product-ratings">
-                <ul class="list-inline">
-                 
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-lg-4">
-        <!-- product card -->
-        <div class="product-item bg-light">
-          <div class="card">
-            <div class="thumb-content">
-              <!-- <div class="price">$200</div> -->
-              <a href=""> <img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap"></a></div>
-            <div class="card-body">
-              <h4 class="card-title"><a>11</a></h4>
-              <ul class="list-inline product-meta">
-                <li class="list-inline-item"> <a><em class="fa fa-folder-open-o"></em>Electronics</a></li>
-                <li class="list-inline-item"> <a><em class="fa fa-calendar"></em>26th December</a></li>
-              </ul>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
-              <div class="product-ratings">
-                <ul class="list-inline">
-                 
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-lg-4">
-        <!-- product card -->
-        <div class="product-item bg-light">
-          <div class="card">
-            <div class="thumb-content">
-              <!-- <div class="price">$200</div> -->
-              <a href=""> <img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap"></a></div>
-            <div class="card-body">
-              <h4 class="card-title"><a>11</a></h4>
-              <ul class="list-inline product-meta">
-                <li class="list-inline-item"> <a><em class="fa fa-folder-open-o"></em>Electronics</a></li>
-                <li class="list-inline-item"> <a><em class="fa fa-calendar"></em>26th December</a></li>
-              </ul>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
-              <div class="product-ratings">
-                <ul class="list-inline">
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-lg-4">
-        <!-- product card -->
-        <div class="product-item bg-light">
-          <div class="card">
-            <div class="thumb-content">
-              <!-- <div class="price">$200</div> -->
-              <a href=""> <img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap"></a></div>
-            <div class="card-body">
-              <h4 class="card-title"><a>11</a></h4>
-              <ul class="list-inline product-meta">
-                <li class="list-inline-item"> <a><em class="fa fa-folder-open-o"></em>Electronics</a></li>
-                <li class="list-inline-item"> <a><em class="fa fa-calendar"></em>26th December</a></li>
-              </ul>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
-              <div class="product-ratings">
-                <ul class="list-inline">
-                 
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-lg-4">
-        <!-- product card -->
-        <div class="product-item bg-light">
-          <div class="card">
-            <div class="thumb-content">
-              <!-- <div class="price">$200</div> -->
-              <a href=""> <img class="card-img-top img-fluid" src="images/products/products-2.jpg" alt="Card image cap"> </a> </div>
-            <div class="card-body">
-              <h4 class="card-title"><a>22</a></h4>
-              <ul class="list-inline product-meta">
-                <li class="list-inline-item"> <a href=""><i class="fa fa-folder-open-o"></i>Furnitures</a> </li>
-                <li class="list-inline-item"> <a href=""><i class="fa fa-calendar"></i>26th December</a> </li>
-              </ul>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
-              <div class="product-ratings">
-                <ul class="list-inline">
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div>
-      <div class="col-sm-12 col-lg-4">
-        <!-- product card -->
-        <div class="product-item bg-light">
-          <div class="card">
-            <div class="thumb-content">
-              <!-- <div class="price">$200</div> -->
-              <a href=""> <img class="card-img-top img-fluid" src="images/products/products-3.jpg" alt="Card image cap"> </a> </div>
-            <div class="card-body">
-              <h4 class="card-title"><a>33</a></h4>
-              <ul class="list-inline product-meta">
-                <li class="list-inline-item"> <a href=""><i class="fa fa-folder-open-o"></i>Electronics</a> </li>
-                <li class="list-inline-item"> <a href=""><i class="fa fa-calendar"></i>26th December</a> </li>
-              </ul>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, aliquam!</p>
-              <div class="product-ratings">
-                <ul class="list-inline">
-                 
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<section class="popular-deals section bg-gray " >
+	<div class="container" >
+		<div class="row">
+			<div class="col-md-12">
+				<div class="section-title">
+				  <h2>热卖图书</h2>
+				 
+				</div>
+			</div>
+		</div>
+		<div class="row" style="opacity: 0.8">
+			<!-- offer 01 -->
+			<div class="col-sm-12 col-lg-4">
+				
+<div class="product-item bg-light">
+	<div class="card">
+		<div class="thumb-content">
+			
+			<a href="单个商品.jsp">
+				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+			</a>
+		</div>
+		
+		
+		<div class="card-body">
+			
+		  <h4 class="card-title"><a>斗罗大陆</a></h4>
+		  <ul class="list-inline product-meta">
+		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
+		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
+		  </ul>
+		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
+			<hr>
+		    <div class="product-ratings">
+		    	<ul class="list-inline">
+					<li class="list-inline-item selected"><a >评价：</a></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
+		    	</ul>
+		    </div>
+			<p>￥：28.6元 </p>
+		</div>
+		
+		
+	</div>
+</div>
+
+
+
+			</div>
+		  <div class="col-sm-12 col-lg-4">
+				
+<div class="product-item bg-light">
+	<div class="card">
+		<div class="thumb-content">
+			
+			<a href="单个商品.jsp">
+				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+			</a>
+		</div>
+		
+		
+		<div class="card-body">
+			
+		  <h4 class="card-title"><a>斗罗大陆</a></h4>
+		  <ul class="list-inline product-meta">
+		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
+		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
+		  </ul>
+		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
+			<hr>
+		    <div class="product-ratings">
+		    	<ul class="list-inline">
+					<li class="list-inline-item selected"><a >评价：</a></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
+		    	</ul>
+		    </div>
+			<p>￥：28.6元 </p>
+		</div>
+		
+		
+	</div>
+</div>
+
+
+
+			</div>
+		  <div class="col-sm-12 col-lg-4">
+				
+<div class="product-item bg-light">
+	<div class="card">
+		<div class="thumb-content">
+			
+			<a href="单个商品.jsp">
+				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+			</a>
+		</div>
+		
+		
+		<div class="card-body">
+			
+		  <h4 class="card-title"><a>斗罗大陆</a></h4>
+		  <ul class="list-inline product-meta">
+		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
+		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
+		  </ul>
+		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
+			<hr>
+		    <div class="product-ratings">
+		    	<ul class="list-inline">
+					<li class="list-inline-item selected"><a >评价：</a></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
+		    	</ul>
+		    </div>
+			<p>￥：28.6元 </p>
+		</div>
+		
+		
+	</div>
+</div>
+
+
+
+			</div>
+			<div class="col-sm-12 col-lg-4">
+				
+<div class="product-item bg-light">
+	<div class="card">
+		<div class="thumb-content">
+			
+			<a href="单个商品.html">
+				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+			</a>
+		</div>
+		
+		
+		<div class="card-body">
+			
+		  <h4 class="card-title"><a>斗罗大陆</a></h4>
+		  <ul class="list-inline product-meta">
+		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
+		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
+		  </ul>
+		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
+			<hr>
+		    <div class="product-ratings">
+		    	<ul class="list-inline">
+					<li class="list-inline-item selected"><a >评价：</a></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
+		    	</ul>
+		    </div>
+			<p>￥：28.6元 </p>
+		</div>
+		
+		
+	</div>
+</div>
+
+
+
+			</div>
+			<div class="col-sm-12 col-lg-4">
+				
+<div class="product-item bg-light">
+	<div class="card">
+		<div class="thumb-content">
+			
+			<a href="单个商品.html">
+				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+			</a>
+		</div>
+		
+		
+		<div class="card-body">
+			
+		  <h4 class="card-title"><a>斗罗大陆</a></h4>
+		  <ul class="list-inline product-meta">
+		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
+		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
+		  </ul>
+		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
+			<hr>
+		    <div class="product-ratings">
+		    	<ul class="list-inline">
+					<li class="list-inline-item selected"><a >评价：</a></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
+		    	</ul>
+		    </div>
+			<p>￥：28.6元 </p>
+		</div>
+		
+		
+	</div>
+</div>
+
+
+
+			</div>
+			<div class="col-sm-12 col-lg-4">
+				
+<div class="product-item bg-light">
+	<div class="card">
+		<div class="thumb-content">
+			
+			<a href="单个商品.html">
+				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+			</a>
+		</div>
+		
+		
+		<div class="card-body">
+			
+		  <h4 class="card-title"><a>斗罗大陆</a></h4>
+		  <ul class="list-inline product-meta">
+		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
+		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
+		  </ul>
+		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
+			<hr>
+		    <div class="product-ratings">
+		    	<ul class="list-inline">
+					<li class="list-inline-item selected"><a >评价：</a></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
+		    	</ul>
+		    </div>
+			<p>￥：28.6元 </p>
+		</div>
+		
+		
+	</div>
+</div>
+
+
+
+			</div>
+			
+			
+		</div>
+	</div>
 </section>
 
-
-
-<!--==========================================
-=            All Category Section            =
-===========================================-->
 
 <section class=" section">
 	<!-- Container Start -->
@@ -523,8 +693,7 @@
 			<div class="col-12">
 				<!-- Section title -->
 				<div class="section-title">
-				  <h2>热卖图书</h2>
-				  <p>1111</p>
+				  <h2>热门分类</h2>			  
 				</div>
 				<div class="row">
 					<!-- Category list -->
@@ -657,12 +826,9 @@
 </section>
 
 
+</div>
 
 
-<!--============================
-=            Footer            =
-=============================-->
-<!-- Footer Bottom -->
 <footer class="footer-bottom">
     <!-- Container Start -->
     <div class="container">

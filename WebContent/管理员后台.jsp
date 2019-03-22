@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!doctype html>
 <html class="no-js">
 <head>
@@ -29,8 +27,8 @@
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 20px 80px 12px 16px;
-    z-index: 1;
+    padding: 20px 20px 12px 0px;
+    z-index: 100;
 }
 .dropdown:hover .dropdown-content {
     display: block;
@@ -61,19 +59,12 @@
   </div>
 </header>
 
-<div class="am-cf admin-main">
+<div class="am-cf admin-main" style="background: url(images//background/glyback.jpg);background-size:contain;">
   <!-- sidebar start -->
-  <div class="admin-sidebar">
+  <div class="admin-sidebar" style="opacity: 0.95">
     <ul class="am-list admin-sidebar-list">
-      <li><a href="主页.html"><span class="am-icon-home"></span> 首页</a></li>
+      <li><a href="index.jsp"><span class="am-icon-home"></span> 首页</a></li>
       <li><a href="#" id="shangjia"><span class="am-icon-pencil-square-o"></span> 上架</a></li>
-		<div id="shangjia_div" style="display:none">
-	    <li>编号 :  <input ></li>
-		<li>书名 :  <input ></li>
-		<li>价格 :  <input ></li>
-		<li>图片 :  <input ></li>
-		<li class="am-text-center"><button>提交</button></li>
-		</div>
       <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
     </ul>
 
@@ -90,13 +81,29 @@
         <p>时光静好，与君语；细水流年，与君同。—— Amaze</p>
       </div>
     </div>
+	  
+	  <div class="am-panel am-panel-default admin-sidebar-panel">
+      <div class="am-panel-bd">
+        <p><span class="am-icon-bell"></span> 管理员</p>
+        <p>  · 郭榕</p>
+		  <p> · 梁卓越</p>
+      </div>
+    </div>
+	  
+	  <div class="am-panel am-panel-default admin-sidebar-panel">
+      <div class="am-panel-bd">
+        <p><span class="am-icon-adn"></span> 管理员</p>
+        <p>· 邓家豪</p>
+		  <p>· 何俊霖</p>
+      </div>
+    </div>
 
    
   </div>
   <!-- sidebar end -->
 
   <!-- content start -->
-  <div class="admin-content">
+  <div class="admin-content" style="display:block;opacity: 0.95" >
 
     <div class="am-cf am-padding">
       <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">管理员视图</strong> / <small>一些常用模块</small></div>
@@ -115,64 +122,90 @@
         <table class="am-table am-table-bd am-table-striped admin-content-table">
           <thead>
           <tr>
-            <th>订单号</th><th>商品编号</th><th>下单时间</th><th>订单商品数</th><th>管理</th>
+              <th>订单号</th>
+			  <th>商品编号</th>
+			  <th>下单时间</th>
+			  <th>订单状态</th>
+			  <th>管理</th>
           </tr>
           </thead>
           <tbody>
-          <tr><td>625006324</td><td>9608-0600</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">3</span></td>
-            <td>
+			
+          <tr>
+			  <td>625006324</td>
+			  <td>9608-0600</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">未付款</span></td>
+			  
+              <td>
               <div class="dropdown">
                 <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
                 <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 查看物流</a></li>
-					 <br>
-                  <li style="list-style-type:none"><a href="#">2. 删除订单</a></li>
+                  <li style="list-style-type:none"><a href="#"> 发货</a></li>
+					 <hr>
+                  <li style="list-style-type:none"><a href="#"> 确收</a></li>
                 </ul>
               </div>
-            </td>
+              </td>	  
           </tr>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
+			  
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆  </td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">未发货</span></td>
+			  
+              <td>
               <div class="dropdown">
                 <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
                 <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
+                  <li style="list-style-type:none"><a href="#"> 发货</a></li>
 					<br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
+                  <li style="list-style-type:none"><a href="#"> 确收</a></li>
                 </ul>
               </div>
-            </td>
-          </tr>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
+             </td>
+			  </tr>
+			  
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">已发货</span></td>
+			  
+              <td>
               <div class="dropdown">
                 <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
+               <ul class="dropdown-content">
+                  <li style="list-style-type:none"><a href="#"> 发货</a></li>
 					<br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
+                  <li style="list-style-type:none"><a href="#"> 确收</a></li>
                 </ul>
               </div>
-            </td>
-          </tr>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
+             </td>
+           </tr>
+			  
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td>
+			  <td><span class="am-badge am-badge-success">已收货</span></td>
+              <td>
               <div class="dropdown">
                 <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
+               <ul class="dropdown-content">
+                  <li style="list-style-type:none"><a href="#"> 发货</a></li>
 					<br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
+                  <li style="list-style-type:none"><a href="#"> 确收</a></li>
                 </ul>
               </div>
             </td>
           </tr>
 			  
           <tr>
-            <td> <input> </td>  <td> <input> </td>
-			  
-            <td><a href="#"> <input> </a></td>
-			  
+            <td> <input> </td> 
+			<td> <input> </td>  
+            <td><a href="#"> <input> </a></td>  
             <td><input></td>
             <td>       
                 <button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle>查询</button>
@@ -191,57 +224,44 @@
         <table class="am-table am-table-bd am-table-striped admin-content-table">
           <thead>
           <tr>
-            <th>订单号</th><th>交易用户名</th><th>成交日期</th><th>商品数量</th><th>管理</th>
+            <th>订单号</th>
+			<th>交易用户名</th>
+			<th>成交日期</th>
+			<th>商品数量</th>
           </tr>
           </thead>
           <tbody>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
-					 <br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
-                </ul>
-              </div>
-            </td>
+          <tr>
+			  
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">20</span></td>
+            
           </tr>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
-                </ul>
-              </div>
-            </td>
+			  
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">20</span></td>
+            
           </tr>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
-                </ul>
-              </div>
-            </td>
+			  
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">20</span></td>
+           
           </tr>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
-                </ul>
-              </div>
-            </td>
+			  
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">20</span></td>
+            
           </tr>
 			  
           <tr>
@@ -268,57 +288,40 @@
         <table class="am-table am-table-bd am-table-striped admin-content-table">
           <thead>
           <tr>
-            <th>用户ID</th><th>最近成交时</th><th>注册日期</th><th>交易的订单数</th><th>管理</th>
+            <th>用户ID</th>
+			  <th>最近成交时</th>
+			  <th>注册日期</th>
+			  <th>交易的订单数</th>
           </tr>
           </thead>
           <tbody>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
-					 <br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
-                </ul>
-              </div>
-            </td>
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">20</span></td>
+            
           </tr>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
-                </ul>
-              </div>
-            </td>
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">20</span></td>
+            
           </tr>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
-                </ul>
-              </div>
-            </td>
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">20</span></td>
+           
           </tr>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
-                </ul>
-              </div>
-            </td>
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">20</span></td>
+           
           </tr>
 			  
           <tr>
@@ -343,54 +346,77 @@
         <table class="am-table am-table-bd am-table-striped admin-content-table">
           <thead>
           <tr>
-            <th>ISBN</th><th>书名</th><th>上架日期</th><th>剩余库存</th><th>管理</th>
+            <th>ISBN</th>
+			  <th>书名</th>
+			  <th>上架日期</th>
+			  <th>剩余库存</th>
+			  <th>管理</th>
           </tr>
           </thead>
           <tbody>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">20</span></td>
+             <td>
               <div class="dropdown">
                 <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
                 <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
+                  <li style="list-style-type:none"><a href="#"> 增加库存</a></li>
 					 <br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
+                  <li style="list-style-type:none"><a href="#"> 下架商品</a></li>
                 </ul>
               </div>
-            </td>
+             </td>
           </tr>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
+			  
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">20</span></td>
+             <td>
+              <div class="dropdown">
+                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
+                <ul class="dropdown-content">
+                  <li style="list-style-type:none"><a href="#"> 增加库存</a></li>
+					<br>
+                  <li style="list-style-type:none"><a href="#"> 下架商品</a></li>
+                </ul>
+              </div>
+             </td>
+          </tr>
+			  
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">20</span></td>
             <td>
               <div class="dropdown">
                 <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
                 <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
+                  <li style="list-style-type:none"><a href="#"> 增加库存</a></li>
 					<br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
+                  <li style="list-style-type:none"><a href="#"> 下架商品</a></li>
                 </ul>
               </div>
             </td>
           </tr>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
+			  
+          <tr>
+			  <td>9608-0600</td>
+			  <td>斗罗大陆</td>
+			  <td><a href="#">2018.12.10</a></td> 
+			  <td><span class="am-badge am-badge-success">20</span></td>
             <td>
               <div class="dropdown">
                 <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
                 <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
+                  <li style="list-style-type:none"><a href="#"> 增加库存</a></li>
 					<br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <tr><td>9608-0600</td><td>斗罗大陆</td><td><a href="#">2018.12.10</a></td> <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#">1. 增加库存</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#">2. 下架商品</a></li>
+                  <li style="list-style-type:none"><a href="#"> 下架商品</a></li>
                 </ul>
               </div>
             </td>
@@ -412,18 +438,32 @@
     </div>
 
     
+	  <!-- 上架商品 -->
+	 <div id="shangjia_div" style="display:none">
+	    <div class="am-text-center"><b style="cursor:pointer">编号 :  <input ></b> <b style="cursor:pointer">库存 :  <input ></b></div>
+		 <hr>
+		 <div class="am-text-center"><b style="cursor:pointer">书名 :  <input ></b> <b style="cursor:pointer">作者 :  <input ></b></div>
+		 <hr>
+		  <div class="am-text-center"><b style="cursor:pointer">价格 :  <input ></b> <b style="cursor:pointer">图片 :  <input ></b></div>
+		 <hr>
+		 <hr>
+		 <div class="am-text-center">简介（签名） : <textarea type="text"   ></textarea>  </div>
+		<div class="am-text-center"><button>提交</button></div>
+		</div> 
   </div>
   <!-- content end -->
 
+
+	
 </div>
 
-<footer class="footer-bottom" style="background-color:dimgrey">
-    <!-- Container Start -->
+<!--<footer class="footer-bottom" style="background-color:dimgrey">
+    
     <div class="container">
       <div class="row">
 		  
         <div class="col-sm-6 col-12">
-          <!-- Copyright -->
+        
           <div class="copyright">
             <p>制作团队： 郭榕 邓家豪 何俊霖 梁卓越</p>
           </div>
@@ -444,7 +484,8 @@
       </div>
     </div>
 
-</footer>
+</footer> 
+	-->
 
 
 <script type="text/javascript">
@@ -464,71 +505,80 @@ window.onload=function(){
 	var sj=document.getElementById("shangjia");
 	var sj_div = document.getElementById("shangjia_div");
 	
+	
 	sj.onclick=function(){
 		
 		if(sj_div.style.display=="none"){
-			sj_div.style.display="block";
 			
+			sj_div.style.display="block";
+			odiv1.style.display="none";
+			odiv2.style.display="none";
+		    odiv3.style.display="none";
+		    odiv4.style.display="none";
 		}
 		else
 			sj_div.style.display="none";
+		    gly_div.style.display="block";
 	}
+	
+	//订单总数
   obt1.onclick=function(){
     if(odiv1.style.display=="none"){
       odiv1.style.display="block";
-      
-	  odiv2.style.display="none";
+        sj_div.style.display="none";
+	    odiv2.style.display="none";
 		odiv3.style.display="none";
 		odiv4.style.display="none";
 		     
     }
     else{
       odiv1.style.display="none";
+
     }
   }
    //成交订单
   obt2.onclick=function(){
     if(odiv2.style.display=="none"){
-      odiv2.style.display="block";
-     
-	  odiv1.style.display="none";
+        odiv2.style.display="block";
+        sj_div.style.display="none";
+	    odiv1.style.display="none";
 		odiv3.style.display="none";
 		odiv4.style.display="none";
 		
     }
     else{
       odiv2.style.display="none";
-     
+
     }
   }
   //用户数量
   obt3.onclick=function(){
     if(odiv3.style.display=="none"){
       odiv3.style.display="block";
-      
-	  odiv2.style.display="none";
+        sj_div.style.display="none";
+	    odiv2.style.display="none";
 		odiv1.style.display="none";
 		odiv4.style.display="none";
 		
     }
     else{
       odiv3.style.display="none";
-    
+
     }
   }
   //库存总量
   obt4.onclick=function(){
     if(odiv4.style.display=="none"){
       odiv4.style.display="block";
-     
-	  odiv2.style.display="none";
+        sj_div.style.display="none";
+	    odiv2.style.display="none";
 		odiv3.style.display="none";
 		odiv1.style.display="none";
 		
     }
     else{
       odiv4.style.display="none";
-      
+
     }
   }
 }

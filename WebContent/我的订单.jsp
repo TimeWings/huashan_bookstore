@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +16,32 @@
   <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 
+	
+	<style type="text/css">
+	
+		.a{ 
+		width: 205px; 
+			position: relative;
+	} 
+	
+	.c{ 
+		width: 300px;
+		height: 150px;
+		background-color: skyblue;
+		display: none; 
+        z-index: -1;
+	   } 
+	
+	.a:hover
+	{ 
+		cursor: pointer; 
+	} 
+	.a:hover .c
+	{ 
+		display: block; 
+	} 
+	
+	</style>
 
 </head>
 
@@ -28,7 +52,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg  navigation">
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="index.jsp">
 						<img src="images/logo.png" alt=""  width="200" height="50">
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,17 +61,17 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						
 						<ul class="navbar-nav ml-auto mt-10">
-							<a  href="主页.html" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
-							</div>
+							<a  href="index.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
+						
 							
 							     &nbsp;
 					  
-								<a href="购物车.html" style="background-color: burlywood; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >购物车</a>
+								<a href="购物车.jsp" style="background-color: burlywood; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >购物车</a>
 						</ul>
-					</div>
-				</nav>
-			</div>
-		</div>
+						</div>
+					</nav>
+					</div>	
+		</div>	
 	</div>
 </section>
 <!--==================================
@@ -58,7 +82,7 @@
 	<div class="container">
 		<!-- Row Start -->
 		<div class="row">
-			<div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0">
+			<div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0" style="display: block" id="uuuuu">
 				<div class="sidebar">
 					<!-- User Widget -->
 					<div class="widget user-dashboard-profile">
@@ -67,38 +91,86 @@
 							<img src="images/user/user-thumb.jpg" alt="" class="rounded-circle">
 						</div>
 						<!-- User Name -->
-						<h5 class="text-center">名字</h5>
-						<p>个人信息</p>
-						<p>简介....</p>
+						<h5 class="text-center" id = "user_name">唐家三少</h5>
+					
 					</div>
 				</div>
 				
 				<div class="widget user">
-<h4><a href="">Jonathon Andrew</a></h4>
-						<p class="member-time">Member Since Jun 27, 2017</p>
-						<a href="">See all ads</a>
-						<ul class="list-inline mt-20">
-							<li class="list-inline-item"><a href="" class="btn btn-contact">Contact</a></li>
-							<li class="list-inline-item"><a href="" class="btn btn-offer">Make an offer</a></li>
-						</ul>
+                        <h4>详细信息</h4>
+					    <hr><br>
+						<p class="member-time">I  D ：<a   id ="user_id"> yhhbbgr</a></p>
+					    <hr><br>
+						<p class="member-time">地址 ：<a id = "user_address"> 北京 </a></p>
+					    <hr><br>
+					    <p class="member-time">生日 ：<a id = "user_birthary" >1990-10-10</a></p>
+					    <hr><br>
 					</div>
 				
 				<div class="widget disclaimer">
-						<h5 class="widget-header">Safety Tips</h5>
-						<ul>
-							<li>Meet seller at a public place</li>
-							<li>Check the item before you buy</li>
-							<li>Pay only after collecting the item</li>
-							<li>Pay only after collecting the item</li>
-						</ul>
+						<h4>其他信息</h4>
+						<hr><br>
+						<p class="member-time" >成交订单数 ：<a id = "user_orders"> 20  </a></p>
+					    <hr><br>
+						<p class="member-time" >购物车总数 ：<a id = "user_products"> 10 </a></p>
+					    <hr><br> 
+						<p class="member-time" >兴趣爱好 ： <a id = "user_hobbies"> 打篮球 </a></p>
+					    <hr><br>
 					</div>
 				
 				<div class="widget coupon text-center">
 						
-						<p>请点击按钮提交更新的信息
+						<p>请点击按钮修改信息
 						</p>
 					
-						<a href="" class="btn btn-transparent-white">提交</a>
+						<button class="btn btn-transparent-white" id="btn_ud">修改信息</button>
+					</div>	
+			</div>
+			
+						<div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0" style="display: none" id="modify" >
+				<div class="sidebar">
+					<!-- User Widget -->
+					<div class="widget user-dashboard-profile">
+						<!-- User Image -->
+						<div class="profile-thumb">
+							<img src="images/user/user-thumb.jpg" alt="" class="rounded-circle">
+						</div>
+						
+						<h5 class="text-center">图片:<input  id="modify_image"></h5>
+						<!-- User Name -->
+						<h5 class="text-center">用户名:<input  type="text" id="modify_name"></h5>
+					
+					</div>
+				</div>
+				
+				<div class="widget user">
+                        <h4>详细信息</h4>
+					    <hr><br>
+						<p class="member-time">I  D ： <input type="text"  id="modify_id"></p>
+					    <hr><br>
+						<p class="member-time">地址 ：  <input type="text" id = "modify_address"></p>
+					    <hr><br>
+					    <p class="member-time">生日 ：  <input type="date" id = "modify_birthday"></p>
+					    <hr><br>
+					</div>
+				
+				<div class="widget disclaimer">
+						<h4>其他信息</h4>
+						<hr><br>
+						<p class="member-time">成交订单数 ：<input type="text" id = "modify_orders" ></p>
+					    <hr><br>
+						<p class="member-time">购物车总数 ：<input type="text" id = "modify_products"></p>
+					    <hr><br> 
+						<p class="member-time">兴趣爱好 ： <input type="text" id = "modify_hobbies"></p>
+					    <hr><br>
+					</div>
+				
+				<div class="widget coupon text-center">
+						
+						<p>请点击按钮确认修改
+						</p>
+					
+						<button class="btn btn-transparent-white" id="btn_mf">提交</button>
 					</div>
 					
 				
@@ -114,7 +186,8 @@
 								<th>图片</th>
 								<th>信息</th>
 								<th >价钱</th>
-								<th >选项</th>
+								<th >数量</th>
+								<th class="text-right">选项</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -129,21 +202,29 @@
 									<span class="status active"><strong>Status</strong>Active</span>
 									<span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
 								</td>
-								<td class="product-category"><span class="categories">Laptops</span></td>
+								<td class="product-category"><span class="categories">￥：52</span></td>
+								<td class="product-category"><span class="categories">2</span></td>
 								<td class="action" data-title="Action">
-									<div class="">
+									<div class="text-right">
 										<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
+											
+											<li class="list-inline-item a">
 												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
 													<i class="fa fa-eye"></i>
-												</a>		
-											</li>
-											
-											<li class="list-inline-item">
-												<a class="delete" href="">
-													<i class="fa fa-trash"></i>
 												</a>
+												
+												<div class="c"> 
+                                              <ul class="text-left">
+											  <li>订单编号：<a>6003254646</a></li>
+                                              <li>订单状态：<a>已付款</a></li>
+											  <li>快递单号：<a>3302564698</a></li> 
+											  <li>下单日期：<a style="width: 100px; font: 40px">2018-12-12</a></li> 
+												</ul> 
+										</div> 		
 											</li>
+										
+										
+												
 										</ul>
 									</div>
 								</td>
@@ -159,9 +240,10 @@
 									<span class="status active"><strong>Status</strong>Active</span>
 									<span class="location"><strong>Location</strong>USA</span>
 								</td>
-								<td class="product-category"><span class="categories">Laptops</span></td>
+									<td class="product-category"><span class="categories">￥：52</span></td>
+								<td class="product-category"><span class="categories">2</span></td>
 								<td class="action" data-title="Action">
-									<div class="">
+									<div class="text-right">
 										<ul class="list-inline justify-content-center">
 											<li class="list-inline-item">
 												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
@@ -169,11 +251,7 @@
 												</a>		
 											</li>
 											
-											<li class="list-inline-item">
-												<a class="delete" href="">
-													<i class="fa fa-trash"></i>
-												</a>
-											</li>
+											
 										</ul>
 									</div>
 								</td>
@@ -189,9 +267,10 @@
 									<span class="status active"><strong>Status</strong>Active</span>
 									<span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
 								</td>
-								<td class="product-category"><span class="categories">Laptops</span></td>
+									<td class="product-category"><span class="categories">￥：52</span></td>
+								<td class="product-category"><span class="categories">2</span></td>
 								<td class="action" data-title="Action">
-									<div class="">
+									<div class="text-right">
 										<ul class="list-inline justify-content-center">
 											<li class="list-inline-item">
 												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
@@ -199,11 +278,7 @@
 												</a>		
 											</li>
 											
-											<li class="list-inline-item">
-												<a class="delete" href="">
-													<i class="fa fa-trash"></i>
-												</a>
-											</li>
+											
 										</ul>
 									</div>
 								</td>
@@ -219,9 +294,10 @@
 									<span class="status active"><strong>Status</strong>Active</span>
 									<span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
 								</td>
-								<td class="product-category"><span class="categories">Laptops</span></td>
+									<td class="product-category"><span class="categories">￥：52</span></td>
+								<td class="product-category"><span class="categories">2</span></td>
 								<td class="action" data-title="Action">
-									<div class="">
+									<div class="text-right">
 										<ul class="list-inline justify-content-center">
 											<li class="list-inline-item">
 												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
@@ -229,11 +305,7 @@
 												</a>		
 											</li>
 											
-											<li class="list-inline-item">
-												<a class="delete" href="">
-													<i class="fa fa-trash"></i>
-												</a>
-											</li>
+											
 										</ul>
 									</div>
 								</td>
@@ -249,21 +321,17 @@
 									<span class="status active"><strong>Status</strong>Active</span>
 									<span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
 								</td>
-								<td class="product-category"><span class="categories">Laptops</span></td>
+									<td class="product-category"><span class="categories">￥：52</span></td>
+								<td class="product-category"><span class="categories">2</span></td>
 								<td class="action" data-title="Action">
-									<div class="">
+									<div class="text-right">
 										<ul class="list-inline justify-content-center">
 											<li class="list-inline-item">
 												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
 													<i class="fa fa-eye"></i>
 												</a>		
 											</li>
-											
-											<li class="list-inline-item">
-												<a class="delete" href="">
-													<i class="fa fa-trash"></i>
-												</a>
-											</li>
+
 										</ul>
 									</div>
 								</td>
@@ -276,6 +344,7 @@
 		</div>
 		<!-- Row End -->
 	</div>
+		
 	<!-- Container End -->
 </section>
 
@@ -306,6 +375,84 @@
 
 </footer>
 
+	<script type="text/javascript">
+	
+		//更新的信息界面
+	    var ud = document.getElementById("uuuuu");
+		//需要输入修改的信息界面
+		var mf = document.getElementById("modify");
+	
+		//修改信息的按钮和确认修改的按钮;
+		var btn1 = document.getElementById("btn_ud");
+		var btn2 = document.getElementById("btn_mf");
+	
+	    //原始界面各参数的变量
+		var u_name =document.getElementById("user_name");
+		var u_id   =document.getElementById("user_id");
+		var u_address =document.getElementById("user_address");
+		var u_birthday =document.getElementById("user_birthary");
+		var u_orders  =document.getElementById("user_orders");
+		var u_products =document.getElementById("user_products");
+		var u_hobbies =document.getElementById("user_hobbies");
+	
+		//修改界面的各参数的变量
+		
+		var m_name =document.getElementById("modify_name");
+		var m_id   =document.getElementById("modify_id");
+		var m_address =document.getElementById("modify_address");
+		var m_birthday =document.getElementById("modify_birthday");
+		var m_orders  =document.getElementById("modify_orders");
+		var m_products =document.getElementById("modify_products");
+		var m_hobbies =document.getElementById("modify_hobbies");
+		
+		
+		
+		btn1.onclick=function(){
+		
+			m_name.value = u_name.innerHTML;
+			
+			m_id.value   = u_id.innerHTML;
+			
+			m_address.value =  u_address.innerHTML;
+			
+			m_birthday.value   = u_birthday.innerHTML;
+			
+			m_orders.value   = u_orders.innerHTML;
+			
+			m_products.value   = u_products.innerHTML;
+			
+			m_hobbies.value   = u_hobbies.innerHTML;
+			
+			mf.style.display="block";
+			ud.style.display="none";
+		}
+		
+		btn2.onclick=function(){
+			
+			
+			 u_name.innerHTML = m_name.value ;
+			
+			    u_id.innerHTML = m_id.value;
+			
+			  u_address.innerHTML = m_address.value ;
+			
+			  u_birthday.innerHTML   =  m_birthday.value;
+			
+			    u_orders.innerHTML = m_orders.value ;
+			
+			    u_products.innerHTML = m_products.value;
+			
+			    u_hobbies.innerHTML = m_hobbies.value;
+			
+			
+			
+			
+			ud.style.display="block";
+			mf.style.display="none";
+			
+			
+		}
+	</script>
 
 </body>
 
