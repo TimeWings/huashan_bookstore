@@ -4,8 +4,12 @@
 package org.huashan.database;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.huashan.encrypt.Encrypt;
 import org.huashan.entity.*;
@@ -33,10 +37,15 @@ public class DataBase
     public static void main(String[] args)
     {
     	DataBase dataBase = new DataBase();
-    	Commodity commodity = dataBase.getOneCommodity("1");
-    	commodity.sales++;
-    	dataBase.insertOneCommodity(commodity);
-    	//System.out.println(commodity.description);
+    	Order order = dataBase.getOneOrder("201903222137421001722022");
+    	System.out.println("订单id:"+order.id+" 状态:"+order.status.toString()+"  u_id:"+order.u_id);
+    	for(int i=0;i<order.commodities.size();i++)
+    	{
+    		System.out.println("商品id:"+order.commodities.get(i).id+" "+order.commodities.get(i).name+" 数量:"+order.commodities.get(i).count);
+    	}
+    	order.commodities.get(0).count = 4;
+    	//dataBase.updateOneOrder(order);
+    	dataBase.insertOneOrder(order);
     }
     
     static 
@@ -252,7 +261,7 @@ public class DataBase
     
     /**
      * 修改密码
-     *@author 何俊霖
+     * @author 何俊霖
      * @param username 用户名
      * @param oldPassword 旧密码
      * @param newPassword 新密码
@@ -518,7 +527,7 @@ public class DataBase
                 while(resultSet.next())
                 {
                 	order.id = resultSet.getString(1);
-                	order.status = resultSet.getString(2);
+                	order.status = Order.Status.valueOf(resultSet.getString(2));
                 	order.buy_date = resultSet.getDate(3);
                 	order.ship_date = resultSet.getDate(4);
                 	order.receipt_date = resultSet.getDate(5);
@@ -549,7 +558,7 @@ public class DataBase
     
     /**
      * 根据用户id查找其所有订单
-     *@author 何俊霖
+     * @author 何俊霖
      * @param u_id 用户id
      * @return 该用户所有订单的列表
      */
@@ -581,6 +590,120 @@ public class DataBase
             return orders;
         }
     }
+    
+    
+    /**
+     * 更新单个订单信息 <br/>
+     * 该order对象的commodities列表中只允许修改count（数量）属性，不允许修改其他属性，也不允许add或remove<br/>
+     * 此函数影响order表和orderlist表
+     * @author 何俊霖
+     * @param order
+     * @return 受影响的行数
+     */
+    public int updateOneOrder(Order order)
+    {
+        try
+        {
+        	int count = 0;
+        	int count2 = 0;
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "update `order` set status = ?, buy_date = ?, ship_date = ?,"
+    	    			+ "receipt_date = ?, u_id = ?,u_address = ?, u_phone = ? "
+    	    			+ "where id = ?";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, order.status.toString());
+                pstmt.setDate(2, order.buy_date);
+                pstmt.setDate(3, order.ship_date);
+                pstmt.setDate(4, order.receipt_date);
+                pstmt.setString(5, order.u_id);
+                pstmt.setString(6, order.u_address);
+                pstmt.setString(7, order.u_Phone);
+                pstmt.setString(8, order.id);
+                
+                count = pstmt.executeUpdate();
+                System.out.println("成功更新order表"+count+"行");
+                
+                count2 = 0;
+                for(int i=0;i<order.commodities.size();i++)
+                {
+                	sql = "update `orderlist` set count = ? where o_id = ? and com_id = ?";
+                	pstmt = connection.prepareStatement(sql);
+                	
+                	pstmt.setInt(1, order.commodities.get(i).count);
+                	pstmt.setString(2, order.id);
+                	pstmt.setInt(3, order.commodities.get(i).id);
+                	count2 += pstmt.executeUpdate();
+                }
+                System.out.println("成功更新orderlist表"+count2+"行");
+             }
+    	    return count + count2;
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    
+    /**
+     * 插入一个订单，其中订单id为自动生成
+     * @author 何俊霖
+     * @param order
+     * @return
+     */
+    public int insertOneOrder(Order order)
+    {
+        try
+        {
+        	Date date = new Date();
+        	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        	int hashCode = Math.abs(UUID.randomUUID().toString().hashCode());
+        	order.id = sdf.format(date)+hashCode;
+        	System.out.println("订单id:"+order.id);
+        	int count = 0;
+        	int count2 = 0;
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "insert `order`(id, status, buy_date, ship_date,"
+    	    			+ "receipt_date , u_id ,u_address, u_phone) values(?,?,?,?,?,?,?,?)";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                pstmt.setString(1, order.id);
+                pstmt.setString(2, order.status.toString());
+                pstmt.setDate(3, order.buy_date);
+                pstmt.setDate(4, order.ship_date);
+                pstmt.setDate(5, order.receipt_date);
+                pstmt.setString(6, order.u_id);
+                pstmt.setString(7, order.u_address);
+                pstmt.setString(8, order.u_Phone);
+                
+                count = pstmt.executeUpdate();
+                System.out.println("成功插入order表"+count+"行");
+                
+                count2 = 0;
+                for(int i=0;i<order.commodities.size();i++)
+                {
+                	sql = "insert `orderlist` values(?,?,?)";
+                	pstmt = connection.prepareStatement(sql);
+                	
+                	
+                	pstmt.setString(1, order.id);
+                	pstmt.setInt(2, order.commodities.get(i).id);
+                	pstmt.setInt(3, order.commodities.get(i).count);
+                	count2 += pstmt.executeUpdate();
+                }
+                System.out.println("成功插入orderlist表"+count2+"行");
+             }
+    	    return count + count2;
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
     /**
      * 根据用户id查找其购物车
      *@author 邓家豪
