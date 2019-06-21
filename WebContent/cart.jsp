@@ -1,10 +1,9 @@
-﻿<!DOCTYPE html>
+﻿<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-
-  <!-- SITE TITTLE -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>购物车</title>
   
@@ -19,48 +18,20 @@
 		  width: 100%;
 		  height: 100%;
 	  }
+	  .bbbtn{
+		  background-color: lightskyblue; 
+		  border: none;  
+		  color: white;  
+		  padding: 15px 32px; 
+		  text-align: center; 
+		  text-decoration: none; 
+		  display: inline-block;  
+		  font-size: 16px;
+		  border-radius: 15px;
+	  }
 	  	  </style>
 	
-		<script type="text/javascript">
-			
 		
-			function show(state1,state2,state3){
-				
-				var count = document.getElementById(state3);
-				
-				var x = parseInt(count.innerHTML);
-				
-				var pri = document.getElementById(state2);
-				
-				if(x>0)
-				var p = parseFloat(pri.innerHTML)/x;
-				
-				
-				if(state1=="sub"){
-					if(x<=0){
-						count.innerHTML="0";
-						pri.innerHTML="0";
-					}else{
-						x--;
-						count.innerHTML = x;
-						p=p*x;
-						pri.innerHTML=p.toString();
-					}
-				}else if(state1=="sum"){
-					if(x==0)
-						{
-						  count.innerHTML="1";
-							pri.innerHTML="26";
-						}
-					else{
-					x++;
-					count.innerHTML=x;
-					p=p*x;
-					pri.innerHTML=p.toString();
-					}
-				}	
-			}
-		</script>
 </head>
 
 <body class="body-wrapper">
@@ -70,7 +41,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg  navigation">
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="index.jsp">
 						<img src="images/logo.png" alt=""  width="200" height="50">
 					</a>
 					
@@ -78,12 +49,12 @@
 						
 						<ul class="navbar-nav ml-auto mt-10">
 							
-								<a  href="主页.html" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
+								<a  href="index.jsp" class="bbbtn"  >返回</a>
 							
 							
 							     &nbsp;
 					  
-								<a href="我的订单.html" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >我的订单</a>
+								<a href="我的订单.jsp" class="bbbtn" >我的订单</a>
 							
 						</ul>
 					</div>
@@ -141,7 +112,7 @@
 											</li>
 								        </ul>
 								</td>
-								<td class="counts text-center"><input class="checkbox" name="checkbox_1" type="checkbox" checked="value"></td>
+								<td class="counts text-center"><button class="bbbtn" id="checkbox1" onClick="check('checkbox1' ,'price_1')"  >选中</button></td>
 								
 							</tr>
 							<tr>
@@ -167,7 +138,7 @@
 											</li>
 								        </ul>
 								</td>
-								<td class="counts text-center"><input class="checkbox" name="checkbox_2" type="checkbox" checked="value"></td>
+								<td class="counts text-center"><button class="bbbtn" id="checkbox2" onClick="check('checkbox2' ,'price_2')"  >选中</button></td>
 								
 							</tr>
 							<tr>
@@ -193,7 +164,7 @@
 											</li>
 								        </ul>
 								</td>
-								<td class="counts text-center"><input class="checkbox" name="checkbox_3" type="checkbox" checked="value"></td>
+								<td class="counts text-center"><button class="bbbtn" id="checkbox3" onClick="check('checkbox3' ,'price_3')"  >选中</button></td>
 								
 							</tr>
 							<tr>
@@ -219,7 +190,7 @@
 											</li>
 								        </ul>
 								</td>
-							<td class="counts text-center"><input class="checkbox" name="checkbox_4" type="checkbox" checked="value"></td>
+							<td class="counts text-center"><button class="bbbtn" id="checkbox4" onClick="check('checkbox4' ,'price_4')"  >选中</button></td>
 								
 							</tr>
 							<tr>
@@ -245,7 +216,7 @@
 											</li>
 								        </ul>
 								</td>
-							<td class="counts text-center"><input class="checkbox" name="checkbox_5" type="checkbox" checked="value"></td>
+							<td class="counts text-center"><button class="bbbtn" id="checkbox5" onClick="check('checkbox5' ,'price_5')"  >选中</button></td>
 								
 							</tr>
 						</tbody>
@@ -261,7 +232,8 @@
 	<div class="topD">
 						<div class="topf text-center">
 							
-							<p style="font-size:20px"><a>合计:<b>162</b>元</a></p>
+							<p style="font-size:20px"><a>合计:<b id="allprice" >130</b>元</a></p>
+							<p id = "ppp"> 0  </p>
 							</div>
 						<hr>
 						<div class="topg text-center" >
@@ -272,10 +244,7 @@
 						
 					</div>
 </section>
-<!--============================
-=            Footer            =
-=============================-->
-<!-- Footer Bottom -->
+
 <footer class="footer-bottom">
     <!-- Container Start -->
     <div class="container">
@@ -302,7 +271,93 @@
     </div>
 
 </footer>
-
+<script type="text/javascript">
+			
+		
+	  function check(state1,state2){
+		  
+		var checkbox = document.getElementById(state1);
+		
+		var price = document.getElementById(state2);
+		
+		var allpri  = document.getElementById("allprice");
+			
+		var sumpri = parseFloat(allpri.innerHTML);
+		  
+			
+		var p = parseFloat(price.innerHTML);
+		
+		if(!checkbox.innerHTML=="取消")
+		{
+			
+			//点击选中，加钱；
+			sumpri += p;
+			allpri.innerHTML=sumpri.toString();
+			checkbox.innerHTML="选中";
+		}
+		else
+		{
+			//取消选中，减钱；
+			sumpri -= p;
+			allpri.innerHTML=sumpri.toString();
+			checkbox.innerHTML="取消";
+		}
+		
+	}
+			function show(state1,state2,state3){
+				
+				var count = document.getElementById(state3);
+				
+				var x = parseInt(count.innerHTML);
+				
+				var pri = document.getElementById(state2);
+				
+				var allpri  = document.getElementById("allprice");
+				
+				var sumpri = parseFloat(allpri.innerHTML);
+				
+				var p  = document.getElementById("ppp");
+				
+				p.innerHTML = sumpri.toString();
+				
+			
+				if(x>0)
+				var p = parseFloat(pri.innerHTML)/x;
+				
+				
+				if(state1=="sub"){
+					if(x<=0){
+						count.innerHTML="0";
+						pri.innerHTML="0";
+					}else{
+						sumpri -= p;
+						x--;
+						count.innerHTML = x;
+						p=p*x;
+						pri.innerHTML=p.toString();						
+						allpri.innerHTML=sumpri.toString();
+					}
+				}
+				
+				else if(state1=="sum"){
+					if(x==0)
+						{
+						  count.innerHTML="1";
+						  pri.innerHTML="26";					 
+						  sumpri= sumpri+parseFloat(pri.innerHTML);
+						 allpri.innerHTML=sumpri.toString();
+						}
+					else{
+					sumpri= sumpri+p;
+					x++;
+					count.innerHTML=x;
+					p=p*x;
+					pri.innerHTML=p.toString();					
+						allpri.innerHTML=sumpri.toString();
+					}
+				}	
+			}
+		</script>
  
 </body>
 

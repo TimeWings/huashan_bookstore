@@ -1,8 +1,9 @@
-<!doctype html>
-<html class="no-js">
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
   <title>管理员后台</title>
 	
   <meta name="keywords" content="index">
@@ -13,7 +14,7 @@
   <link rel="stylesheet" href="css/amazeui.min.css"/>
   <link rel="stylesheet" href="css/admin.css">
   <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"> 
-	
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>    
 	<style type="text/css">
 		
 		.dropdown {
@@ -43,6 +44,51 @@
 	z-index: 1;
 }
 
+		
+		
+		
+		/*以下为图片传输CSS*/
+			
+    .float{    
+        float:left;    
+        width : 200px;    
+        height: 200px;    
+        overflow: hidden;    
+        border: 1px solid #CCCCCC;    
+        border-radius: 10px;    
+        padding: 5px;    
+        margin: 5px;    
+    }    
+    img{    
+        position: relative;    
+    }    
+    .result{    
+        width: 200px;    
+       height: 200px;    
+        text-align: center;    
+        box-sizing: border-box;    
+    }   
+    #file_input{  
+        display: none;  
+    }  
+    .delete{  
+        width: 200px;  
+        height:200px;  
+        position: absolute;  
+        text-align: center;  
+        line-height: 200px;  
+        z-index: 10;  
+        font-size: 30px;  
+        background-color: rgba(255,255,255,0.8);  
+        color: #777;  
+        opacity: 0;  
+        transition-duration: 0.7s;  
+        -webkit-transition-duration: 0.7s;   
+    } 
+    .delete:hover{  
+        cursor: pointer;  
+        opacity: 1;  
+    }  
 		</style>
 </head>
 <body>
@@ -63,7 +109,7 @@
   <!-- sidebar start -->
   <div class="admin-sidebar" style="opacity: 0.95">
     <ul class="am-list admin-sidebar-list">
-      <li><a href="主页.html"><span class="am-icon-home"></span> 首页</a></li>
+      <li><a href="index.jsp"><span class="am-icon-home"></span> 首页</a></li>
       <li><a href="#" id="shangjia"><span class="am-icon-pencil-square-o"></span> 上架</a></li>
       <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
     </ul>
@@ -444,7 +490,18 @@
 		 <hr>
 		 <div class="am-text-center"><b style="cursor:pointer">书名 :  <input ></b> <b style="cursor:pointer">作者 :  <input ></b></div>
 		 <hr>
-		  <div class="am-text-center"><b style="cursor:pointer">价格 :  <input ></b> <b style="cursor:pointer">图片 :  <input ></b></div>
+		  <div class="am-text-center"><a style="cursor:pointer">价格 :  <input ></a> 
+			  
+			  <div style="cursor:pointer">图片 : 
+			  
+			  <button id="select">选择图片</button>  
+                <button id="add">增加图片</button>  
+                <input type="file" id="file_input" multiple/> <!--用input标签并选择type=file，记得带上multiple，不然就只能单选图片了-->    
+                <button id="submit">提交</button>
+			  
+			</div>
+		 
+		 </div>
 		 <hr>
 		 <hr>
 		 <div class="am-text-center">简介（签名） : <textarea type="text"   ></textarea>  </div>
@@ -581,8 +638,145 @@ window.onload=function(){
 
     }
   }
+
+
+
+
+//以下是图片上传的script    
+
+    
+    var input = document.getElementById("file_input");    
+    var result;    
+    var dataArr = []; // 储存所选图片的结果(文件名和base64数据)  
+    var fd;  //FormData方式发送请求    
+    var oSelect = document.getElementById("select");  
+    var oAdd = document.getElementById("add");  
+    var oSubmit = document.getElementById("submit");  
+    var oInput = document.getElementById("file_input");  
+
+  
+
+    if(typeof FileReader==='undefined'){    
+
+        alert("抱歉，你的浏览器不支持 FileReader");    
+
+        input.setAttribute('disabled','disabled');    
+
+    }else{    
+
+        input.addEventListener('change',readFile,false);    
+
+    }　　　　　//handler    
+
+    
+    function readFile(){   
+
+        fd = new FormData();    
+
+        var iLen = this.files.length;  
+
+        for(var i=0;i<iLen;i++){  
+
+            if (!input['value'].match(/.jpg|.gif|.png|.jpeg|.bmp/i)){　　//判断上传文件格式    
+
+                return alert("上传的图片格式不正确，请重新选择");    
+
+            }  
+
+            var reader = new FileReader();  
+
+            fd.append(i,this.files[i]);  
+
+            reader.readAsDataURL(this.files[i]);  //转成base64    
+
+            reader.fileName = this.files[i].name;  
+
+  
+
+            reader.onload = function(e){   
+                var imgMsg = {    
+                    name : this.fileName,//获取文件名    
+                    base64 : this.result   //reader.readAsDataURL方法执行完后，base64数据储存在reader.result里   				
+				}
+				
+                dataArr.push(imgMsg);    
+                result = '<div class="delete">delete</div><div class="result"><img class="subPic" src="'+this.result+'" alt="'+this.fileName+'"/></div>';   
+                var div = document.createElement('div');  
+                div.innerHTML = result;    
+                div['className'] = 'float';  
+                document.getElementsByTagName('body')[0].appendChild(div);  　　//插入dom树    
+                var img = div.getElementsByTagName('img')[0];  
+                img.onload = function(){    
+                    var nowHeight = ReSizePic(this); //设置图片大小    
+                    this.parentNode.style.display = 'block';    
+                    var oParent = this.parentNode;    
+                    if(nowHeight){    
+                        oParent.style.paddingTop = (oParent.offsetHeight - nowHeight)/2 + 'px';    
+                    }    
+                }   
+                div.onclick = function(){  
+                    $(this).remove();                  // 在页面中删除该图片元素  
+                }  
+            }    
+        }    
+    }    
+  
+    oSelect.onclick=function(){   
+        oInput.value = "";   // 先将oInput值清空，否则选择图片与上次相同时change事件不会触发  
+        //清空已选图片  
+        $('.float').remove();        
+        oInput.click();   
+    }   
+
+
+
+    oAdd.onclick=function(){  
+        oInput.value = "";   // 先将oInput值清空，否则选择图片与上次相同时change事件不会触发  
+        oInput.click();   
+    }   
+
+
+
+    oSubmit.onclick=function(){    
+        if(!dataArr.length){    
+            return alert('请先选择文件');    
+		}    
+    }    
 }
-</script>
+    
+
+/*    
+
+ 用ajax发送fd参数时要告诉jQuery不要去处理发送的数据，    
+
+ 不要去设置Content-Type请求头才可以发送成功，否则会报“Illegal invocation”的错误，    
+
+ 也就是非法调用，所以要加上“processData: false,contentType: false,”    
+
+ * */    
+   
+             
+function ReSizePic(ThisPic) {    
+    var RePicWidth = 200; //这里修改为您想显示的宽度值    
+    var TrueWidth = ThisPic.width; //图片实际宽度    
+    var TrueHeight = ThisPic.height; //图片实际高度    
+        
+    if(TrueWidth>TrueHeight){    
+        //宽大于高    
+        var reWidth = RePicWidth;    
+        ThisPic.width = reWidth;    
+        //垂直居中    
+        var nowHeight = TrueHeight * (reWidth/TrueWidth);    
+        return nowHeight;  //将图片修改后的高度返回，供垂直居中用    
+    }else{    
+        //宽小于高    
+        var reHeight = RePicWidth;    
+        ThisPic.height = reHeight;    
+    }    
+}    
+	
+</script> 
+
 
 
 </body>

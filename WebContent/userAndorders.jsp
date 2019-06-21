@@ -1,10 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-  <!-- SITE TITTLE -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>我的订单</title>
   
@@ -52,7 +51,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<nav class="navbar navbar-expand-lg  navigation">
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="index.jsp">
 						<img src="images/logo.png" alt=""  width="200" height="50">
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,12 +60,12 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						
 						<ul class="navbar-nav ml-auto mt-10">
-							<a  href="主页.html" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
+							<a  href="index.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
 						
 							
 							     &nbsp;
 					  
-								<a href="购物车.html" style="background-color: burlywood; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >购物车</a>
+								<a href="购物车.jsp" style="background-color: burlywood; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >购物车</a>
 						</ul>
 						</div>
 					</nav>
@@ -197,10 +196,16 @@
 									<img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
 								<td class="product-details">
 									<h3 class="title">Macbook Pro 15inch</h3>
-									<span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
-									<span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
-									<span class="status active"><strong>Status</strong>Active</span>
-									<span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
+									<span class="location">
+										<strong>Userid:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
+									<span class="location">
+										<strong>date:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
+									<span class="status active"><strong>Status:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active</span>
+									<span class="location">
+										<strong>Location:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
 								</td>
 								<td class="product-category"><span class="categories">￥：52</span></td>
 								<td class="product-category"><span class="categories">2</span></td>
@@ -209,7 +214,7 @@
 										<ul class="list-inline justify-content-center">
 											
 											<li class="list-inline-item a">
-												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
+												<a data-toggle="tooltip" data-placement="top" title="订单详情" class="view" href="">
 													<i class="fa fa-eye"></i>
 												</a>
 												
@@ -234,24 +239,41 @@
 								<td class="product-thumb">
 									<img width="80px" height="auto" src="images/products/products-2.jpg" alt="image description"></td>
 								<td class="product-details">
-									<h3 class="title">Study Table Combo</h3>
-									<span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
-									<span><strong>Posted on: </strong><time>Feb 12, 2017</time> </span>
-									<span class="status active"><strong>Status</strong>Active</span>
-									<span class="location"><strong>Location</strong>USA</span>
+									<h3 class="title">Macbook Pro 15inch</h3>
+									<span class="location">
+										<strong>Userid:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
+									<span class="location">
+										<strong>date:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
+									<span class="status active"><strong>Status:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active</span>
+									<span class="location">
+										<strong>Location:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
 								</td>
 									<td class="product-category"><span class="categories">￥：52</span></td>
 								<td class="product-category"><span class="categories">2</span></td>
-								<td class="action" data-title="Action">
+							<td class="action" data-title="Action">
 									<div class="text-right">
 										<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
+											
+											<li class="list-inline-item a">
+												<a data-toggle="tooltip" data-placement="top" title="订单详情" class="view" href="">
 													<i class="fa fa-eye"></i>
-												</a>		
+												</a>
+												
+												<div class="c"> 
+                                              <ul class="text-left">
+											  <li>订单编号：<a>6003254646</a></li>
+                                              <li>订单状态：<a>已付款</a></li>
+											  <li>快递单号：<a>3302564698</a></li> 
+											  <li>下单日期：<a style="width: 100px; font: 40px">2018-12-12</a></li> 
+												</ul> 
+										</div> 		
 											</li>
-											
-											
+										
+										
+												
 										</ul>
 									</div>
 								</td>
@@ -262,23 +284,40 @@
 									<img width="80px" height="auto" src="images/products/products-3.jpg" alt="image description"></td>
 								<td class="product-details">
 									<h3 class="title">Macbook Pro 15inch</h3>
-									<span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
-									<span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
-									<span class="status active"><strong>Status</strong>Active</span>
-									<span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
+									<span class="location">
+										<strong>Userid:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
+									<span class="location">
+										<strong>date:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
+									<span class="status active"><strong>Status:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active</span>
+									<span class="location">
+										<strong>Location:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
 								</td>
 									<td class="product-category"><span class="categories">￥：52</span></td>
 								<td class="product-category"><span class="categories">2</span></td>
 								<td class="action" data-title="Action">
 									<div class="text-right">
 										<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
+											
+											<li class="list-inline-item a">
+												<a data-toggle="tooltip" data-placement="top" title="订单详情" class="view" href="">
 													<i class="fa fa-eye"></i>
-												</a>		
+												</a>
+												
+												<div class="c"> 
+                                              <ul class="text-left">
+											  <li>订单编号：<a>6003254646</a></li>
+                                              <li>订单状态：<a>已付款</a></li>
+											  <li>快递单号：<a>3302564698</a></li> 
+											  <li>下单日期：<a style="width: 100px; font: 40px">2018-12-12</a></li> 
+												</ul> 
+										</div> 		
 											</li>
-											
-											
+										
+										
+												
 										</ul>
 									</div>
 								</td>
@@ -289,23 +328,40 @@
 									<img width="80px" height="auto" src="images/products/products-4.jpg" alt="image description"></td>
 								<td class="product-details">
 									<h3 class="title">Macbook Pro 15inch</h3>
-									<span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
-									<span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
-									<span class="status active"><strong>Status</strong>Active</span>
-									<span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
+									<span class="location">
+										<strong>Userid:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
+									<span class="location">
+										<strong>date:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
+									<span class="status active"><strong>Status:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active</span>
+									<span class="location">
+										<strong>Location:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
 								</td>
 									<td class="product-category"><span class="categories">￥：52</span></td>
 								<td class="product-category"><span class="categories">2</span></td>
 								<td class="action" data-title="Action">
 									<div class="text-right">
 										<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
+											
+											<li class="list-inline-item a">
+												<a data-toggle="tooltip" data-placement="top" title="订单详情" class="view" href="">
 													<i class="fa fa-eye"></i>
-												</a>		
+												</a>
+												
+												<div class="c"> 
+                                              <ul class="text-left">
+											  <li>订单编号：<a>6003254646</a></li>
+                                              <li>订单状态：<a>已付款</a></li>
+											  <li>快递单号：<a>3302564698</a></li> 
+											  <li>下单日期：<a style="width: 100px; font: 40px">2018-12-12</a></li> 
+												</ul> 
+										</div> 		
 											</li>
-											
-											
+										
+										
+												
 										</ul>
 									</div>
 								</td>
@@ -316,22 +372,40 @@
 									<img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
 								<td class="product-details">
 									<h3 class="title">Macbook Pro 15inch</h3>
-									<span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
-									<span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
-									<span class="status active"><strong>Status</strong>Active</span>
-									<span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
+									<span class="location">
+										<strong>Userid:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
+									<span class="location">
+										<strong>date:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
+									<span class="status active"><strong>Status:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active</span>
+									<span class="location">
+										<strong>Location:</strong>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dhaka,Bangladesh</span>
 								</td>
 									<td class="product-category"><span class="categories">￥：52</span></td>
 								<td class="product-category"><span class="categories">2</span></td>
 								<td class="action" data-title="Action">
 									<div class="text-right">
 										<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
+											
+											<li class="list-inline-item a">
+												<a data-toggle="tooltip" data-placement="top" title="订单详情" class="view" href="">
 													<i class="fa fa-eye"></i>
-												</a>		
+												</a>
+												
+												<div class="c"> 
+                                              <ul class="text-left">
+											  <li>订单编号：<a>6003254646</a></li>
+                                              <li>订单状态：<a>已付款</a></li>
+											  <li>快递单号：<a>3302564698</a></li> 
+											  <li>下单日期：<a style="width: 100px; font: 40px">2018-12-12</a></li> 
+												</ul> 
+										</div> 		
 											</li>
-
+										
+										
+												
 										</ul>
 									</div>
 								</td>
