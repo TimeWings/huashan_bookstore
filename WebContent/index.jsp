@@ -61,7 +61,7 @@
 								<div style="cursor: pointer" class="text-center">教&nbsp;&nbsp;育</div>
 								<div class="dropdown-content text-center">
 									<p>
-										<a href="单个分类.jsp">历史类速度速 </a>
+										<a href="单个分类.jsp">历史类 </a>
 									</p>
 									<p>
 										<a href="#">计算机类</a>
@@ -138,14 +138,13 @@
 							</div>
 
 							<div class="topg text-center">
-								<a href="MyOrder.jsp" style="background-color: lightskyblue; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">订单</a>
+								<a href="userAndorders.jsp" style="background-color: lightskyblue; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">订单</a>
 							</div>
 
 							<div class="toph text-center">
 
-								<a href="ShoppingCart.jsp" style="background-color: burlywood; border: none; color: white; padding: 4px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 15px; border-radius: 15px;">
+								<a href="cart.jsp" style="background-color: burlywood; border: none; color: white; padding: 4px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 15px; border-radius: 15px;">
 									购物车
-									<b>0</b>
 								</a>
 
 							</div>
