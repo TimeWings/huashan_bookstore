@@ -141,7 +141,7 @@ public class DataBase
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, username);
                 String password_encrypt = Encrypt.getResult(password);
-                pstmt.setString(2, password_encrypt);
+                pstmt.setString(2, password);
                 pstmt.setString(3, name);
                 int result = pstmt.executeUpdate();
                 System.out.println("成功插入"+result+"行");
