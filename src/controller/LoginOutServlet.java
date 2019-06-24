@@ -34,7 +34,9 @@ public class LoginOutServlet extends HttpServlet
 	{
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		doPost(request, response);
+		//request.getSession().invalidate();//注销：销毁session
+		request.getSession().removeAttribute("user");
+		response.sendRedirect("index.jsp");
 	}
 
 	/**
@@ -43,8 +45,7 @@ public class LoginOutServlet extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		request.getSession().invalidate();//注销：销毁session
-		response.sendRedirect("index3.jsp");
+		
 	}
 
 }

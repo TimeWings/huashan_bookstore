@@ -54,13 +54,15 @@ public class AdminLoginServlet extends HttpServlet
 		String password = request.getParameter("admin_password");
 		User user = database.login(username, password);
 		if (user != null)
+
+
 		{
 			request.getSession().setAttribute("user", user);//如果登录成功就把username对象放到session对象中
-			request.getRequestDispatcher("index3.jsp").forward(request, response);
+			response.sendRedirect("index.jsp");
 		}
 		else
 		{
-			request.getRequestDispatcher("loginAndregister.jsp").forward(request, response);
+			response.sendRedirect("loginAndregister.jsp");
 		}
 	}
 

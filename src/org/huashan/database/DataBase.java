@@ -185,9 +185,9 @@ public class DataBase
                 	{
                 		System.out.println("用户"+username+"登录成功");
                 		User user=new User(username, password);
-                		user.address=resultSet.getString(3);
-                		user.phone=resultSet.getString(4);
-                		user.name=resultSet.getString(5);
+                		user.address=resultSet.getString(4);
+                		user.phone=resultSet.getString(5);
+                		user.name=resultSet.getString(6);
                 		return user;
                 	
                 	}
