@@ -44,7 +44,7 @@
    <div class="dropdown dg" > 	   
   <div  style="cursor:pointer" class="text-center" >教&nbsp;&nbsp;育</div>
   <div class="dropdown-content text-center">
-    <p><a href="单个分类.jsp">历史类速度速 </a></p>
+    <p><a href="单个分类.jsp">历史类 </a></p>
 	  <p><a href="#">计算机类</a></p>
   </div>
 	  
@@ -90,16 +90,16 @@
 					<div class="topD">
 						<div class="topf text-center">
 							
-							<a  href="登录注册界面.jsp" target="_parent" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >登录</a>
+							<a  href="loginAndregister.jsp" target="_parent" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >登录</a>
 							</div>
 						
 						<div class="topg text-center" >
-							<a href="我的订单.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >订单</a>
+							<a href="userAndorders.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >订单</a>
 							</div>
 						
 						<div class="toph text-center">
 							
-							<a href="购物车.jsp" style="background-color: burlywood; border: none;  color: white;  padding: 4px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 15px; border-radius: 15px;" >购物车<b>0</b></a>
+							<a href="cart.jsp" style="background-color: burlywood; border: none;  color: white;  padding: 4px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 15px; border-radius: 15px;" >购物车<b>0</b></a>
 							
 							</div>
 						
@@ -176,7 +176,7 @@
 	<div class="card">
 		<div class="thumb-content">
 			
-			<a href="单个商品.jsp">
+			<a href="onebook.jsp">
 				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
 			</a>
 		</div>
@@ -217,7 +217,7 @@
 	<div class="card">
 		<div class="thumb-content">
 			
-			<a href="单个商品.jsp">
+			<a href="onebook.jsp">
 				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
 			</a>
 		</div>
@@ -258,7 +258,7 @@
 	<div class="card">
 		<div class="thumb-content">
 			
-			<a href="单个商品.jsp">
+			<a href="onebook.jsp">
 				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
 			</a>
 		</div>
@@ -299,7 +299,7 @@
 	<div class="card">
 		<div class="thumb-content">
 			
-			<a href="单个商品.jsp">
+			<a href="onebook.jsp">
 				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
 			</a>
 		</div>
@@ -340,7 +340,7 @@
 	<div class="card">
 		<div class="thumb-content">
 			
-			<a href="单个商品.jsp">
+			<a href="onebook.jsp">
 				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
 			</a>
 		</div>
@@ -381,7 +381,7 @@
 	<div class="card">
 		<div class="thumb-content">
 			
-			<a href="单个商品.jsp">
+			<a href="onebook.jsp">
 				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
 			</a>
 		</div>
@@ -439,212 +439,7 @@
 	<div class="card">
 		<div class="thumb-content">
 			
-			<a href="单个商品.jsp">
-				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
-			</a>
-		</div>
-		
-		
-		<div class="card-body">
-			
-		  <h4 class="card-title"><a>斗罗大陆</a></h4>
-		  <ul class="list-inline product-meta">
-		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
-		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
-		  </ul>
-		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
-			<hr>
-		    <div class="product-ratings">
-		    	<ul class="list-inline">
-					<li class="list-inline-item selected"><a >评价：</a></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
-		    	</ul>
-		    </div>
-			<p>￥：28.6元 </p>
-		</div>
-		
-		
-	</div>
-</div>
-
-
-
-			</div>
-		  <div class="col-sm-12 col-lg-4">
-				
-<div class="product-item bg-light">
-	<div class="card">
-		<div class="thumb-content">
-			
-			<a href="单个商品.jsp">
-				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
-			</a>
-		</div>
-		
-		
-		<div class="card-body">
-			
-		  <h4 class="card-title"><a>斗罗大陆</a></h4>
-		  <ul class="list-inline product-meta">
-		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
-		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
-		  </ul>
-		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
-			<hr>
-		    <div class="product-ratings">
-		    	<ul class="list-inline">
-					<li class="list-inline-item selected"><a >评价：</a></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
-		    	</ul>
-		    </div>
-			<p>￥：28.6元 </p>
-		</div>
-		
-		
-	</div>
-</div>
-
-
-
-			</div>
-		  <div class="col-sm-12 col-lg-4">
-				
-<div class="product-item bg-light">
-	<div class="card">
-		<div class="thumb-content">
-			
-			<a href="单个商品.jsp">
-				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
-			</a>
-		</div>
-		
-		
-		<div class="card-body">
-			
-		  <h4 class="card-title"><a>斗罗大陆</a></h4>
-		  <ul class="list-inline product-meta">
-		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
-		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
-		  </ul>
-		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
-			<hr>
-		    <div class="product-ratings">
-		    	<ul class="list-inline">
-					<li class="list-inline-item selected"><a >评价：</a></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
-		    	</ul>
-		    </div>
-			<p>￥：28.6元 </p>
-		</div>
-		
-		
-	</div>
-</div>
-
-
-
-			</div>
-			<div class="col-sm-12 col-lg-4">
-				
-<div class="product-item bg-light">
-	<div class="card">
-		<div class="thumb-content">
-			
-			<a href="单个商品.html">
-				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
-			</a>
-		</div>
-		
-		
-		<div class="card-body">
-			
-		  <h4 class="card-title"><a>斗罗大陆</a></h4>
-		  <ul class="list-inline product-meta">
-		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
-		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
-		  </ul>
-		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
-			<hr>
-		    <div class="product-ratings">
-		    	<ul class="list-inline">
-					<li class="list-inline-item selected"><a >评价：</a></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
-		    	</ul>
-		    </div>
-			<p>￥：28.6元 </p>
-		</div>
-		
-		
-	</div>
-</div>
-
-
-
-			</div>
-			<div class="col-sm-12 col-lg-4">
-				
-<div class="product-item bg-light">
-	<div class="card">
-		<div class="thumb-content">
-			
-			<a href="单个商品.html">
-				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
-			</a>
-		</div>
-		
-		
-		<div class="card-body">
-			
-		  <h4 class="card-title"><a>斗罗大陆</a></h4>
-		  <ul class="list-inline product-meta">
-		    <li class="list-inline-item"> <a><em class="fa fa-id-card "></em> ISBN-9603</a> </li>
-		    <li class="list-inline-item"> <a><em class="fa fa-calendar"></em> 2019.12.1</a> </li>
-		  </ul>
-		    <p class="card-text">说明： 打怪升级修炼小说！！！</p>
-			<hr>
-		    <div class="product-ratings">
-		    	<ul class="list-inline">
-					<li class="list-inline-item selected"><a >评价：</a></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
-		    	</ul>
-		    </div>
-			<p>￥：28.6元 </p>
-		</div>
-		
-		
-	</div>
-</div>
-
-
-
-			</div>
-			<div class="col-sm-12 col-lg-4">
-				
-<div class="product-item bg-light">
-	<div class="card">
-		<div class="thumb-content">
-			
-			<a href="单个商品.html">
+			<a href="onebook.jsp">
 				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
 			</a>
 		</div>
@@ -825,8 +620,6 @@
 	<!-- Container End -->
 </section>
 
-
-</div>
 
 
 <footer class="footer-bottom">

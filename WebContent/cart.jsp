@@ -54,7 +54,7 @@
 							
 							     &nbsp;
 					  
-								<a href="我的订单.jsp" class="bbbtn" >我的订单</a>
+								<a href="userAndorders.jsp" class="bbbtn" >我的订单</a>
 							
 						</ul>
 					</div>

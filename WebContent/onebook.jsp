@@ -34,7 +34,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					
 						<ul class="navbar-nav ml-auto mt-10">
-							<a  href="主页.html" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
+							<a  href="index.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
 							
 						</ul>
 					</div>

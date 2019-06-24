@@ -65,7 +65,7 @@
 							
 							     &nbsp;
 					  
-								<a href="购物车.jsp" style="background-color: burlywood; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >购物车</a>
+								<a href="cart.jsp" style="background-color: burlywood; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >购物车</a>
 						</ul>
 						</div>
 					</nav>
