@@ -1,5 +1,7 @@
+<%@page import="org.huashan.entity.Commodity"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8"
+    import="org.huashan.database.*, org.huashan.entity.*" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,15 +52,17 @@
 	
 	<div class="container">
 		<div class="row">
-			
+			<%String id = request.getParameter("id"); 
+			DataBase dataBase = DataBase.getInstance(); 
+			Commodity commodity = dataBase.getOneCommodity(id);%>
 			<div class="col-md-8">
 				<div class="product-details">
-					<h1 class="product-title">斗罗大陆</h1>
+					<h1 class="product-title"><%=commodity.title %></h1>
 					<div class="product-meta">
 						<ul class="list-inline">
-							<li class="list-inline-item"><i class="fa fa-user-o"></i> 作者 <a href="">唐家三少</a></li>
-							<li class="list-inline-item"><i class="fa fa-folder-open-o"></i> 类型 <a href="">玄幻小说</a></li>
-							<li class="list-inline-item"><i class="fa fa-location-arrow"></i> 出版社 <a href="">湖南图书出版社</a></li>
+							<li class="list-inline-item"><i class="fa fa-user-o"></i> 作者 <a href=""><%=commodity.author %></a></li>
+							<li class="list-inline-item"><i class="fa fa-folder-open-o"></i> 类型 <a href=""><%=commodity.type %></a></li>
+							<li class="list-inline-item"><i class="fa fa-location-arrow"></i> 出版社 <a href=""><%=commodity.publisher %></a></li>
 						</ul>
 					</div>
 					<div id="carouselExampleIndicators" class="product-slider carousel slide" data-ride="carousel">
@@ -93,8 +97,7 @@
 						<div class="tab-content" id="pills-tabContent">
 							<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 								<h3 class="tab-title">商品描述</h3>
-								<p>唐门外门弟子唐三，因偷学内门绝学为唐门所不容，跳崖明志时却发现没有死，反而以另外一个身份来到了另一个世界，一个属于武魂的世界，名叫斗罗大陆。这里没有魔法，没有斗气，没有武术，却有神奇的武魂。这里的每个人，在自己六岁的时候，都会在武魂殿中令武魂觉醒。武魂有动物，有植物，有器物，武魂可以辅助人们的日常生活。而其中一些特别出色的武魂却可以用来修炼并进行战斗，这个职业，是斗罗大陆上最为强大也是最荣耀的职业“魂师”。
-小小的唐三在圣魂村开始了他的魂师修炼之路，并萌生了振兴唐门的梦想。当唐门暗器来到斗罗大陆，当唐三武魂觉醒，他能否在这片武魂的世界再铸唐门的辉煌？</p>
+								<p><%=commodity.description %></p>
 
 						
 </div>
@@ -106,22 +109,22 @@
 			<div class="col-md-4">
 				<div class="sidebar">
 					<div class="widget price text-center">
-						<h4>Price</h4>
-						<p>$230</p>
+						<h4>价格</h4>
+						<p>¥<%=commodity.price %></p>
 					</div>
 					<!-- User Profile widget -->
 					<div class="widget user">
-                       <h4><a href="">书本参数:</a></h4>
+                       <h4><a href="">书本信息:</a></h4>
 						<br>
-						<p class="member-time">书名：</p>
+						<p class="member-time">书名：<%=commodity.name %></p>
 						<hr><br>
-						<p class="member-time">作者：</p>
+						<p class="member-time">作者：<%=commodity.author %></p>
 						<hr><br>
-						<p class="member-time">类型：</p>
+						<p class="member-time">类型：<%=commodity.type %></p>
 						<hr><br>
-						<p class="member-time">ISBN：</p>
+						<p class="member-time">ISBN：<%=commodity.ISBN %></p>
 						<hr><br>
-						<p class="member-time">出版社：</p>
+						<p class="member-time">出版社：<%=commodity.publisher %></p>
 						
 						
 					</div>

@@ -19,7 +19,7 @@
 			<div class="lowin-box lowin-login">
 				<div class="lowin-box-inner">
 				
-					<form>
+					<form action="UserLogin.do" method="post" accept-charset="UTF-8">
 					  <p>用户登录    <a id="btn_admin" class="forgot-link" style="cursor: pointer">我是管理员</a></p>
 					  <div class="lowin-group">
 					    <label>用户账号</label>
@@ -51,7 +51,7 @@
 			<div class="lowin-box lowin-login">
 				<div class="lowin-box-inner">
 				
-					<form>
+					<form action="AdminLogin.do" method="post" accept-charset="UTF-8">
 					  <p>管理员登录 <a id="btn_user" class="forgot-link" style="cursor: pointer">返回</a></p>
 					  <div class="lowin-group">
 					    <label>管理员账号</label>
@@ -71,7 +71,7 @@
 		</div>
 	</div>
 	
-<div id="resgist" class="lowin lowin-blue"  style="display: none">	
+<div id="register" class="lowin lowin-blue"  style="display: none">	
 		<div class="lowin-brand">
 			<img src="images/kodinger.jpg" alt="logo">
 		</div>
@@ -79,19 +79,19 @@
 			<div class="lowin-box lowin-register">
 				<div class="lowin-box-inner">
 				
-					<form>						
+					<form action="Register.do" method="post" accept-charset="UTF-8">						
 						<p>请填写注册信息</p>
 						<div class="lowin-group">
 							<label>姓名</label>
-							<input type="text" name="real_name" autocomplete="name" class="lowin-input"  placeholder="张三">
+							<input type="text" name="new_name" autocomplete="name" class="lowin-input"  placeholder="张三">
 						</div>
 						<div class="lowin-group">
 							<label>用户名</label>
-							<input type="text"  name="account" class="lowin-input" placeholder="user001">
+							<input type="text"  name="new_account" class="lowin-input" placeholder="user001">
 						</div>
 						<div class="lowin-group">
 							<label>密码</label>
-							<input type="password" name="password" autocomplete="current-password" class="lowin-input" placeholder="•••••••••••">
+							<input type="password" name="new_password" autocomplete="current-password" class="lowin-input" placeholder="•••••••••••">
 						</div>
 						<div class="text-foot">
 							已有账号？ <a id="btn_rg" style="cursor: pointer" class="register-link">返回</a>
@@ -110,7 +110,7 @@
 
 		//登录div的变量与注册div变量;
 	var lg = document.getElementById("userlogin");
-	var rg = document.getElementById("resgist");
+	var rg = document.getElementById("register");
 	var ag = document.getElementById("adminlogin");
 		//注册按钮,返回按钮;
 	var rg_btn = document.getElementById("btn_rg");
