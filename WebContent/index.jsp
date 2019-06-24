@@ -55,7 +55,7 @@
 			List<Commodity> data2 = database.getAllCommoditiesOrderBySales();
 			session.setAttribute("data", data);
 			session.setAttribute("data2", data2);
-			request.getRequestDispatcher("index3.jsp").forward(request, response);
+			//request.getRequestDispatcher("index.jsp").forward(request, response);
 	%>
 </c:if>
 <body class="body-wrapper">
