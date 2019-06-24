@@ -48,13 +48,7 @@ public class DataBase
 //    	dataBase.insertOneOrder(order);
 //    	String name = dataBase.getAllCommoditiesByType("玄幻").get(3).name;
 //    	System.out.println(name);
-    	List<Commodity> commodities=new ArrayList<Commodity>();
-    	Commodity commodity=new Commodity();
-    	commodity.id=3;
-    	commodity.count=4;
-    	commodities.add(commodity);
-    	dataBase.updateUserCart(commodities,"aaa");
-    	
+  	
 		
 
     }
@@ -895,9 +889,38 @@ public class DataBase
     	
     }
     /**
+     * 购买商品后在购物车删除相应的商品
+     * @author 邓家豪
+     * @param commodities 购买的商品列表
+     * @param u_id 用户id
+     * @return 返回删除的商品行数
+     */
+    public int deleteUserCart(List<Commodity> commodities,String u_id)
+    {
+    	//Class.forName("com.mysql.jdbc.Driver");
+    			try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    		    {		
+    				
+    		    		for(int i=0;i<commodities.size();i++)
+    		    		{
+    					String sql = "delete from `cart`  where user_id=? and com_id=?";
+    			    	PreparedStatement pstmt = connection.prepareStatement(sql);
+    			    	pstmt.setString(1, u_id);
+    			    	pstmt.setInt(2, commodities.get(i).id);
+     			    	int count = pstmt.executeUpdate();
+    	                System.out.println("成功删除cart表"+count+"行");}
+    							return commodities.size();
+    	         }
+    			catch (Exception e) {
+    				// TODO: handle exception
+    				System.out.println("删除Cart表时出错");
+    				return 0;
+    			}
+    }
+    /**
      * 更新购物车
      * @author 邓家豪
-     * @param commodity 购物车商品列表
+     * @param commodities 购物车商品列表
      * @param u_id 用户id
      * @return 修改的商品数量
      */
