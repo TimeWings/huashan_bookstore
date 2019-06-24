@@ -1,9 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-
-  <!-- SITE TITTLE -->
-  <meta charset="utf-8">
+<meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>我的订单</title>
@@ -61,12 +60,12 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						
 						<ul class="navbar-nav ml-auto mt-10">
-							<a  href="index.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
+							<a  href="HomePage.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
 						
 							
 							     &nbsp;
 					  
-								<a href="购物车.jsp" style="background-color: burlywood; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >购物车</a>
+								<a href="ShoppingCart.jsp" style="background-color: burlywood; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >购物车</a>
 						</ul>
 						</div>
 					</nav>
