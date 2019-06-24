@@ -172,7 +172,7 @@
 
 							<div class="toph text-center">
 
-								<a href="ShoppingCart.jsp" class="topcrat">
+								<a href="cart.jsp" class="topcrat">
 									购物车
 								</a>
 
