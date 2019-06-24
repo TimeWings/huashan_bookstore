@@ -166,7 +166,7 @@ public class DataBase
      * @param password 密码
      * @return 登录是否成功
      */
-    public boolean login(String username,String password)
+    public User login(String username,String password)
     {
     	
         try
@@ -184,11 +184,18 @@ public class DataBase
                 	if(username.equals(resultSet.getString(1)) && password.equals(resultSet.getString(2)) )
                 	{
                 		System.out.println("用户"+username+"登录成功");
-                		return true;
+                		User user=new User(username, password);
+                		sql="select address,phone,name from user where id="+username;
+                		ResultSet resultSet2=statement.executeQuery(sql);
+                		user.address=resultSet2.getString(1);
+                		user.phone=resultSet2.getString(2);
+                		user.name=resultSet2.getString(3);
+                		return user;
+                	
                 	}
                 }
                 System.out.println("用户名不存在或密码错误");
-                return false;
+                return null;
              }
         }
         catch(SQLException e)
