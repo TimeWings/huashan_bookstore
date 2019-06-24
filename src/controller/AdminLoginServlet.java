@@ -52,9 +52,11 @@ public class AdminLoginServlet extends HttpServlet
 		PrintWriter out = response.getWriter();	
 		String username = request.getParameter("admin_account");
 		String password = request.getParameter("admin_password");
-		if (database.login(username, password) != null)
+		User user = database.login(username, password);
+		if (user != null)
+
+
 		{
-			User user = new User(username,password);
 			request.getSession().setAttribute("user", user);//如果登录成功就把username对象放到session对象中
 			response.sendRedirect("index.jsp");
 		}
