@@ -174,7 +174,6 @@
 
 								<a href="ShoppingCart.jsp" class="topcrat">
 									购物车
-									<b>0</b>
 								</a>
 
 							</div>

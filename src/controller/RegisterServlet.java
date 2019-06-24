@@ -57,7 +57,7 @@ public class RegisterServlet extends HttpServlet
 		{
 			User user = new User(new_username,new_password);
 			request.getSession().setAttribute("user", user);//如果登录成功就把username对象放到session对象中
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.getRequestDispatcher("index3.jsp").forward(request, response);
 			//out.print("<script>alert('成功!');window.location.href='Index1.jsp'</script>");
 		}
 		else

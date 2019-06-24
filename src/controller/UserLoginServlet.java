@@ -56,7 +56,7 @@ public class UserLoginServlet extends HttpServlet
 		{
 			User user = new User(username,password);
 			request.getSession().setAttribute("user", user);//如果登录成功就把username对象放到session对象中
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			request.getRequestDispatcher("index3.jsp").forward(request, response);
 		}
 		else
 		{
