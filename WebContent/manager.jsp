@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!doctype html>
 <html class="no-js">
 <head>
@@ -43,8 +45,6 @@
 	z-index: 1;
 }
 
-	#uploadImg{ font-size:12px; overflow:hidden; position:absolute}
-#file{ position:absolute; z-index:100; margin-left:-180px; font-size:60px;opacity:0; filter:alpha(opacity=0); margin-top:-5px;}	
 		
 		
 		/*以下为图片传输CSS*/
@@ -496,7 +496,7 @@
 		      <br>
 			  <div align="center">
 			  
-			  <input class= type="file" id="file" style="display:block " onchange="filechange(event)"/>
+			  <input type="file"  style="display:block " onchange="filechange(event)"/>
 				  <br>
               <img src="" width="200px" height="200px" id="img-change" style="text-align: center">				  
 			
@@ -504,10 +504,10 @@
 		 
 		 <hr>
 		 <br>
-		 <div class="am-text-center">简介（签名） : <textarea type="text"   ></textarea>  </div>
+		 <div class="am-text-center">详细信息 : <textarea cols="60"  rows="8" ></textarea>  </div>
 	     <br>
 		 <br>
-		<div class="am-text-center"><button style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;">提交</button></div>
+		<div class="am-text-center"><button style="background-color: skyblue; border: none;  padding: 14px 30px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 10px;">提交</button></div>
 		</div> 
   </div>
   <!-- content end -->
