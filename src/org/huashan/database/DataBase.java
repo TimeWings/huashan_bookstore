@@ -46,8 +46,11 @@ public class DataBase
 //    	order.commodities.get(0).count = 4;
 //    	//dataBase.updateOneOrder(order);
 //    	dataBase.insertOneOrder(order);
-    	String name = dataBase.getAllCommoditiesByType("玄幻").get(3).name;
-    	System.out.println(name);
+//    	String name = dataBase.getAllCommoditiesByType("玄幻").get(3).name;
+//    	System.out.println(name);
+  	
+		
+
     }
     
     static 
@@ -163,7 +166,7 @@ public class DataBase
      * @param password 密码
      * @return 登录是否成功
      */
-    public boolean login(String username,String password)
+    public User login(String username,String password)
     {
     	
         try
@@ -181,11 +184,18 @@ public class DataBase
                 	if(username.equals(resultSet.getString(1)) && password.equals(resultSet.getString(2)) )
                 	{
                 		System.out.println("用户"+username+"登录成功");
-                		return true;
+                		User user=new User(username, password);
+                		sql="select address,phone,name from user where id="+username;
+                		ResultSet resultSet2=statement.executeQuery(sql);
+                		user.address=resultSet2.getString(1);
+                		user.phone=resultSet2.getString(2);
+                		user.name=resultSet2.getString(3);
+                		return user;
+                	
                 	}
                 }
                 System.out.println("用户名不存在或密码错误");
-                return false;
+                return null;
              }
         }
         catch(SQLException e)
@@ -850,6 +860,148 @@ public class DataBase
 	        return commodities;
 	    }
 	}
+    /**
+     * 查询购物车商品数量
+     *@author 邓家豪
+     * @param u_id 用户id
+     * @param c_id 商品id
+     * @return 用户购物车对应商品的数量
+     */
+    public int getCartCommodity(String u_id,int c_id)
+    {
+    	try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+	    {
+    		int count=0;
+	    	String sql = "select count from `cart` where user_id=? and com_id=?";
+	    	PreparedStatement pstmt = connection.prepareStatement(sql);
+	    	pstmt.setString(1, u_id);
+	    	pstmt.setInt(2, c_id);
+	    	//count = pstmt.executeUpdate();
+	    	ResultSet resultSet=pstmt.executeQuery();
+            if(resultSet.next())
+            {
+	    	count=resultSet.getInt(1);
+            }
+            System.out.println("查询cart表对应商品数量"+count+"本");
+            
+            return count;
+         }
+    
+    catch(SQLException e)
+    {
+        e.printStackTrace();
+        System.out.println("已存在");
+        return 0;
+    }
+    	
+    }
+    /**
+     * 购买商品后在购物车删除相应的商品
+     * @author 邓家豪
+     * @param commodities 购买的商品列表
+     * @param u_id 用户id
+     * @return 返回删除的商品行数
+     */
+    public int deleteUserCart(List<Commodity> commodities,String u_id)
+    {
+    	//Class.forName("com.mysql.jdbc.Driver");
+    			try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    		    {		
+    				
+    		    		for(int i=0;i<commodities.size();i++)
+    		    		{
+    					String sql = "delete from `cart`  where user_id=? and com_id=?";
+    			    	PreparedStatement pstmt = connection.prepareStatement(sql);
+    			    	pstmt.setString(1, u_id);
+    			    	pstmt.setInt(2, commodities.get(i).id);
+     			    	int count = pstmt.executeUpdate();
+    	                System.out.println("成功删除cart表"+count+"行");}
+    							return commodities.size();
+    	         }
+    			catch (Exception e) {
+    				// TODO: handle exception
+    				System.out.println("删除Cart表时出错");
+    				return 0;
+    			}
+    }
+    /**
+     * 更新购物车
+     * @author 邓家豪
+     * @param commodities 购物车商品列表
+     * @param u_id 用户id
+     * @return 修改的商品数量
+     */
+    public int updateUserCart(List<Commodity> commodities,String u_id)
+    {
+    	
+		//Class.forName("com.mysql.jdbc.Driver");
+		try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+	    {		
+			
+	    		for(int i=0;i<commodities.size();i++)
+	    		{
+				String sql = "update  `cart` set count=? where user_id=? and com_id=?";
+		    	PreparedStatement pstmt = connection.prepareStatement(sql);
+		    	pstmt.setString(2, u_id);
+		    	pstmt.setInt(3, commodities.get(i).id);
+		    	pstmt.setInt(1, commodities.get(i).count);
+		    	int count = pstmt.executeUpdate();
+                System.out.println("成功更新cart表"+count+"行");}
+						return commodities.size();
+         }
+		catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("更新Cart表时出错");
+			return 0;
+		}
+    }
+    	
+    /**
+     * 添加商品至购物车
+     *@author 邓家豪
+     * @param u_id 用户id
+     * @param c_id 商品id
+     * @param count 商品数量
+     * @return 增加的购物车商品数量
+     */
+    public int addUserCart(String u_id,int c_id,int count)
+    {
+        	try
+    	{
+    		//Class.forName("com.mysql.jdbc.Driver");
+    		try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+		    {
+    			if(getCartCommodity(u_id, c_id)==0)
+		    	{
+    				String sql = "insert  `cart` values(?,?,?)";
+		    	PreparedStatement pstmt = connection.prepareStatement(sql);
+		    	pstmt.setString(1, u_id);
+		    	pstmt.setInt(2, c_id);
+		    	pstmt.setInt(3, count);
+		    	count = pstmt.executeUpdate();
+                System.out.println("成功插入cart表"+count+"行");
+	            }
+    			else
+    			{
+    				count+=getCartCommodity(u_id, c_id);
+    				String sql = "update  `cart` set count=? where user_id=? and com_id=?";
+    		    	PreparedStatement pstmt = connection.prepareStatement(sql);
+    		    	pstmt.setString(2, u_id);
+    		    	pstmt.setInt(3, c_id);
+    		    	pstmt.setInt(1, count);
+    		    	count = pstmt.executeUpdate();
+                    System.out.println("成功更新cart表"+count+"行");
+    			}
+    			return count;
+	         }
+	    }
+	    catch(SQLException e)
+	    {
+	        e.printStackTrace();
+	        System.out.println("已存在");
+	        return 0;
+	    }
+	} 
     /**
      * 查找符合标题的商品
      *@author 邓家豪
