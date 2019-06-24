@@ -174,7 +174,7 @@ public class DataBase
         	//Class.forName("com.mysql.jdbc.Driver");
     	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
     	    {
-    	    	String sql = "select id,password from user";
+    	    	String sql = "select * from user";
                 Statement statement = connection.createStatement();
                 
                 ResultSet resultSet = statement.executeQuery(sql);
@@ -185,11 +185,9 @@ public class DataBase
                 	{
                 		System.out.println("用户"+username+"登录成功");
                 		User user=new User(username, password);
-                		sql="select address,phone,name from user where id="+username;
-                		ResultSet resultSet2=statement.executeQuery(sql);
-                		user.address=resultSet2.getString(1);
-                		user.phone=resultSet2.getString(2);
-                		user.name=resultSet2.getString(3);
+                		user.address=resultSet.getString(4);
+                		user.phone=resultSet.getString(5);
+                		user.name=resultSet.getString(6);
                 		return user;
                 	
                 	}
@@ -201,7 +199,7 @@ public class DataBase
         catch(SQLException e)
         {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
     

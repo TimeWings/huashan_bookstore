@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ page import="org.huashan.database.DataBase"%>
+<%@ page import="org.huashan.entity.Commodity"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +63,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						
 						<ul class="navbar-nav ml-auto mt-10">
-							<a  href="HomePage.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
+							<a  href="index3.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
 						
 							
 							     &nbsp;
@@ -90,7 +93,7 @@
 							<img src="images/user/user-thumb.jpg" alt="" class="rounded-circle">
 						</div>
 						<!-- User Name -->
-						<h5 class="text-center" id = "user_name">唐家三少</h5>
+						<h5 class="text-center" id = "user_name">${user.username}</h5>
 					
 					</div>
 				</div>
@@ -98,11 +101,13 @@
 				<div class="widget user">
                         <h4>详细信息</h4>
 					    <hr><br>
-						<p class="member-time">I  D ：<a   id ="user_id"> yhhbbgr</a></p>
+						<p class="member-time">账号 ：<a   id ="user_id"> yhhbbgr</a></p>
 					    <hr><br>
 						<p class="member-time">地址 ：<a id = "user_address"> 北京 </a></p>
 					    <hr><br>
 					    <p class="member-time">生日 ：<a id = "user_birthary" >1990-10-10</a></p>
+					    <hr><br>
+					    <p class="member-time" >兴趣爱好 ： <a id = "user_hobbies"> 打篮球 </a></p>
 					    <hr><br>
 					</div>
 				
@@ -113,8 +118,6 @@
 					    <hr><br>
 						<p class="member-time" >购物车总数 ：<a id = "user_products"> 10 </a></p>
 					    <hr><br> 
-						<p class="member-time" >兴趣爱好 ： <a id = "user_hobbies"> 打篮球 </a></p>
-					    <hr><br>
 					</div>
 				
 				<div class="widget coupon text-center">
@@ -145,23 +148,23 @@
 				<div class="widget user">
                         <h4>详细信息</h4>
 					    <hr><br>
-						<p class="member-time">I  D ： <input type="text"  id="modify_id"></p>
+						<p class="member-time">I  D ： <input type="text" disabled="disabled" id="modify_id"></p>
 					    <hr><br>
 						<p class="member-time">地址 ：  <input type="text" id = "modify_address"></p>
 					    <hr><br>
 					    <p class="member-time">生日 ：  <input type="date" id = "modify_birthday"></p>
+					    <hr><br>
+					    <p class="member-time">兴趣爱好 ： <input type="text" id = "modify_hobbies"></p>
 					    <hr><br>
 					</div>
 				
 				<div class="widget disclaimer">
 						<h4>其他信息</h4>
 						<hr><br>
-						<p class="member-time">成交订单数 ：<input type="text" id = "modify_orders" ></p>
+						<p class="member-time">成交订单数 ：<input type="text" disabled="disabled" id = "modify_orders" ></p>
 					    <hr><br>
-						<p class="member-time">购物车总数 ：<input type="text" id = "modify_products"></p>
+						<p class="member-time">购物车总数 ：<input type="text" disabled="disabled" id = "modify_products"></p>
 					    <hr><br> 
-						<p class="member-time">兴趣爱好 ： <input type="text" id = "modify_hobbies"></p>
-					    <hr><br>
 					</div>
 				
 				<div class="widget coupon text-center">

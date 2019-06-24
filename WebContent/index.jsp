@@ -55,7 +55,7 @@
 			List<Commodity> data2 = database.getAllCommoditiesOrderBySales();
 			session.setAttribute("data", data);
 			session.setAttribute("data2", data2);
-			request.getRequestDispatcher("index3.jsp").forward(request, response);
+			//request.getRequestDispatcher("index.jsp").forward(request, response);
 	%>
 </c:if>
 <body class="body-wrapper">
@@ -75,7 +75,7 @@
 								<div style="cursor: pointer" class="text-center">教&nbsp;&nbsp;育</div>
 								<div class="dropdown-content text-center">
 									<p>
-										<a href="单个分类.jsp">计算机类 </a>
+										<a href="单个分类.jsp">历史类 </a>
 									</p>
 									<p>
 										<a href="#">数学类</a>
@@ -167,14 +167,14 @@
 							</div>
 
 							<div class="topg text-center">
-								<a href="MyOrder.jsp" class="toporder">订单</a>
+								<a href="userAndorders.jsp" style="background-color: lightskyblue; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">订单</a>
 							</div>
 
 							<div class="toph text-center">
 
-								<a href="ShoppingCart.jsp" class="topcrat">
+
+								<a href="cart.jsp" style="background-color: burlywood; border: none; color: white; padding: 4px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 15px; border-radius: 15px;">
 									购物车
-									<b>0</b>
 								</a>
 
 							</div>
