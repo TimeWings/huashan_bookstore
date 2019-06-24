@@ -178,7 +178,7 @@ public class DataBase
                 while(resultSet.next())
                 {
                 	String password_encrypt = Encrypt.getResult(password);
-                	if(username.equals(resultSet.getString(1)) && password_encrypt.equals(resultSet.getString(2)) )
+                	if(username.equals(resultSet.getString(1)) && password.equals(resultSet.getString(2)) )
                 	{
                 		System.out.println("用户"+username+"登录成功");
                 		return true;
