@@ -31,6 +31,20 @@
 	float: inherit;
 	padding: 5px 0;
 }
+	
+	
+	.topdenglu{
+		background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;
+		
+	}
+	
+	.toporder{
+		background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;
+	}
+	
+	.topcrat{
+		background-color: burlywood; border: none;  color: white;  padding: 4px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 15px; border-radius: 15px;
+	}
 </style>
 
 </head>
@@ -61,23 +75,29 @@
 								<div style="cursor: pointer" class="text-center">教&nbsp;&nbsp;育</div>
 								<div class="dropdown-content text-center">
 									<p>
-										<a href="单个分类.jsp">历史类速度速 </a>
+										<a href="单个分类.jsp">计算机类 </a>
 									</p>
 									<p>
-										<a href="#">计算机类</a>
+										<a href="#">数学类</a>
+									</p>
+									<p>
+										<a href="#">英语类</a>
 									</p>
 								</div>
 
 							</div>
 
 							<div class="dropdown dg">
-								<div style="cursor: pointer" class="text-center">小&nbsp;&nbsp;说</div>
+								<div style="cursor: pointer" class="text-center">文&nbsp;&nbsp;化</div>
 								<div class="dropdown-content text-center">
 									<p>
-										<a href="#">科 幻</a>
+										<a href="#">哲学类</a>
 									</p>
 									<p>
-										<a href="#">悬 疑</a>
+										<a href="#">历史类</a>
+									</p>
+									<p>
+										<a href="#">宗教类</a>
 									</p>
 								</div>
 
@@ -87,36 +107,45 @@
 								<div style="cursor: pointer" class="text-center">日常生活</div>
 								<div class="dropdown-content text-center">
 									<p>
-										<a href="#">Hello World!</a>
+										<a href="#">旅游类</a>
 									</p>
 									<p>
-										<a href="#">Hello World!</a>
-									</p>
-								</div>
-
-							</div>
-
-							<div class="dropdown dg">
-								<div style="cursor: pointer" class="text-center">人物传记</div>
-								<div class="dropdown-content text-center">
-									<p>
-										<a href="#">20世纪80年代</a>
+										<a href="#">美食类</a>
 									</p>
 									<p>
-										<a href="#">20世纪60年代</a>
+										<a href="#">运动类</a>
 									</p>
 								</div>
 
 							</div>
 
 							<div class="dropdown dg">
-								<div style="cursor: pointer" class="text-center">饮食文化</div>
+								<div style="cursor: pointer" class="text-center">文&nbsp;&nbsp;艺</div>
 								<div class="dropdown-content text-center">
 									<p>
-										<a href="#">20世纪80年代</a>
+										<a href="#">传记类</a>
 									</p>
 									<p>
-										<a href="#">20世纪60年代</a>
+										<a href="#">小说类</a>
+									</p>
+									<p>
+										<a href="#">青春文学</a>
+									</p>
+								</div>
+
+							</div>
+
+							<div class="dropdown dg">
+								<div style="cursor: pointer" class="text-center">科&nbsp;&nbsp;学</div>
+								<div class="dropdown-content text-center">
+									<p>
+										<a href="#">航空航天</a>
+									</p>
+									<p>
+										<a href="#">自然科学</a>
+									</p>
+									<p>
+										<a href="#">海底世界</a>
 									</p>
 								</div>
 
@@ -127,23 +156,23 @@
 							<div class="topf text-center">
 
 								<c:if test="${empty user }">
-									<a href="loginAndregister.jsp" target="_parent" style="background-color: lightskyblue; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">
+									<a href="loginAndregister.jsp" target="_parent" class="topdenglu">
 										<%="登录"%>
 									</a>
 								</c:if>
 								<c:if test="${not empty user }">
   		欢迎你：${user.username } <a href="LoginOut.do">注销</a>
-								</c:if>
+								</c:if>	
 
 							</div>
 
 							<div class="topg text-center">
-								<a href="MyOrder.jsp" style="background-color: lightskyblue; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">订单</a>
+								<a href="MyOrder.jsp" class="toporder">订单</a>
 							</div>
 
 							<div class="toph text-center">
 
-								<a href="ShoppingCart.jsp" style="background-color: burlywood; border: none; color: white; padding: 4px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 15px; border-radius: 15px;">
+								<a href="ShoppingCart.jsp" class="topcrat">
 									购物车
 									<b>0</b>
 								</a>
@@ -169,9 +198,9 @@
 					<!-- Header Contetnt -->
 					<div class="content-block">
 						<h1>华山书店</h1>
-						<p>卖书</p>
+						<p>本店隆重开张......一律9.99折</p>
 						<div class="short-popular-category-list text-center">
-							<h2>卖</h2>
+							<h2>致力于超越咸鱼二手市场，英语四级读物5块钱一本！！！</h2>
 						</div>
 
 					</div>
@@ -400,31 +429,31 @@
 							<div class="category-block">
 								<div class="header">
 									<i class="fa fa-laptop icon-bg-1"></i>
-									<h4>电子类</h4>
+									<h4>计算机</h4>
 								</div>
 								<ul class="category-list">
 									<li>
 										<a href="category.html">
-											Laptops
-											<span>93</span>
+											第一本书
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
-											Iphone
-											<span>233</span>
+											第二本书
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Microsoft
-											<span>183</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Monitors
-											<span>343</span>
+											<span>销量</span>
 										</a>
 									</li>
 								</ul>
@@ -436,31 +465,31 @@
 							<div class="category-block">
 								<div class="header">
 									<i class="fa fa-apple icon-bg-2"></i>
-									<h4>水果类</h4>
+									<h4>自然科学</h4>
 								</div>
 								<ul class="category-list">
 									<li>
 										<a href="category.html">
 											Cafe
-											<span>393</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Fast food
-											<span>23</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Restaurants
-											<span>13</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Food Track
-											<span>43</span>
+											<span>销量</span>
 										</a>
 									</li>
 								</ul>
@@ -472,31 +501,31 @@
 							<div class="category-block">
 								<div class="header">
 									<i class="fa fa-home icon-bg-3"></i>
-									<h4>生活类</h4>
+									<h4>青春文学</h4>
 								</div>
 								<ul class="category-list">
 									<li>
 										<a href="category.html">
 											Farms
-											<span>93</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Gym
-											<span>23</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Hospitals
-											<span>83</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Parolurs
-											<span>33</span>
+											<span>销量</span>
 										</a>
 									</li>
 								</ul>
@@ -508,31 +537,31 @@
 							<div class="category-block">
 								<div class="header">
 									<i class="fa fa-shopping-basket icon-bg-4"></i>
-									<h4>购物类</h4>
+									<h4>美&nbsp;&nbsp;食</h4>
 								</div>
 								<ul class="category-list">
 									<li>
 										<a href="category.html">
 											Mens Wears
-											<span>53</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Accessories
-											<span>212</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Kids Wears
-											<span>133</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											It & Software
-											<span>143</span>
+											<span>销量</span>
 										</a>
 									</li>
 								</ul>
@@ -544,31 +573,31 @@
 							<div class="category-block">
 								<div class="header">
 									<i class="fa fa-briefcase icon-bg-5"></i>
-									<h4>事业类</h4>
+									<h4>历&nbsp;&nbsp;史</h4>
 								</div>
 								<ul class="category-list">
 									<li>
 										<a href="category.html">
 											It Jobs
-											<span>93</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Cleaning & Washing
-											<span>233</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Management
-											<span>183</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Voluntary Works
-											<span>343</span>
+											<span>销量</span>
 										</a>
 									</li>
 								</ul>
@@ -580,31 +609,31 @@
 							<div class="category-block">
 								<div class="header">
 									<i class="fa fa-car icon-bg-6"></i>
-									<h4>车辆类</h4>
+									<h4>航空航天</h4>
 								</div>
 								<ul class="category-list">
 									<li>
 										<a href="category.html">
 											Bus
-											<span>193</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Cars
-											<span>23</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Motobike
-											<span>33</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Rent a car
-											<span>73</span>
+											<span>销量</span>
 										</a>
 									</li>
 								</ul>
@@ -616,31 +645,31 @@
 							<div class="category-block">
 								<div class="header">
 									<i class="fa fa-paw icon-bg-7"></i>
-									<h4>宠物类</h4>
+									<h4>运&nbsp;&nbsp;动</h4>
 								</div>
 								<ul class="category-list">
 									<li>
 										<a href="category.html">
 											Cats
-											<span>65</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Dogs
-											<span>23</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Birds
-											<span>113</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Others
-											<span>43</span>
+											<span>销量</span>
 										</a>
 									</li>
 								</ul>
@@ -652,31 +681,31 @@
 							<div class="category-block">
 								<div class="header">
 									<i class="fa fa-laptop icon-bg-8"></i>
-									<h4>文学类</h4>
+									<h4>数&nbsp;&nbsp;学</h4>
 								</div>
 								<ul class="category-list">
 									<li>
 										<a href="category.html">
 											Cleaning
-											<span>93</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Car Washing
-											<span>233</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Clothing
-											<span>183</span>
+											<span>销量</span>
 										</a>
 									</li>
 									<li>
 										<a href="category.html">
 											Business
-											<span>343</span>
+											<span>销量</span>
 										</a>
 									</li>
 								</ul>
@@ -730,7 +759,7 @@
 		</div>
 
 	</footer>
-
+<!--
 	<script type="text/javascript">
 		var l_c = document.getElementById("login_cancel");
 		var user = session.getAttribute("user");
@@ -743,7 +772,7 @@
 			l_c.innerHTML = "注销";
 		}
 	</script>
-
+-->
 
 </body>
 
