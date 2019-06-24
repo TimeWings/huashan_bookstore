@@ -287,7 +287,7 @@
 			
 		var p = parseFloat(price.innerHTML);
 		
-		if(!checkbox.innerHTML=="取消")
+		if(checkbox.innerHTML=="取消")
 		{
 			
 			//点击选中，加钱；
