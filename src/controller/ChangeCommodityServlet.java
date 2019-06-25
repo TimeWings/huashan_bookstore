@@ -13,7 +13,7 @@ import org.huashan.entity.Commodity;
 /**
  * Servlet implementation class AddCommodityServlet
  */
-@WebServlet("/AddCommodityServlet")
+@WebServlet("/ChangeCommodityServlet")
 public class ChangeCommodityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

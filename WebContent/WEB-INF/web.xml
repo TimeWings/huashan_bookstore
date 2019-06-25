@@ -57,4 +57,12 @@
     <servlet-name>DeleteCommodity</servlet-name>
     <url-pattern>/DeleteCommodity.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>AddCommodity</servlet-name>
+    <servlet-class>controller.AddCommodityServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddCommodity</servlet-name>
+    <url-pattern>/AddCommodity.do</url-pattern>
+  </servlet-mapping>
 </web-app>

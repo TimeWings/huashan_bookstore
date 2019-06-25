@@ -14,7 +14,7 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="renderer" content="webkit">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/amazeui.min.css" />
 <link rel="stylesheet" href="css/admin.css">
 <link rel="stylesheet"
@@ -415,7 +415,8 @@ img {
 												class="am-icon-caret-down"></span>
 										</button>
 										<ul class="dropdown-content">
-											<li style="list-style-type: none"><a href="ChangeCommodity.do?id=<%= c.id %>"> 增加库存</a></li>
+											<li style="list-style-type: none"><a href="onebook.jsp?id=<%= c.id %>"> 查看商品</a></li>
+											<li style="list-style-type: none"><a href="ChangeCommodity.do?id=<%= c.id %>"> 修改商品</a></li>
 											<li style="list-style-type: none"><a href="DeleteCommodity.do?id=<%= c.id %>"> 下架商品</a></li>
 										</ul>
 									</div>
@@ -445,44 +446,57 @@ img {
 
 			<!-- 上架商品 -->
 			<div id="shangjia_div" style="display: none">
+			<form method="post" action="AddCommodity.do" enctype="multipart/form-data">
 				<div class="am-text-center">
-					<b style="cursor: pointer">编号 : <input /></b> <b
-						style="cursor: pointer">库存 : <input /></b>
+					<b style="cursor: pointer">ISBN : <input name="ISBN"/></b> 
+					<b style="cursor: pointer">库存 : <input name="stock"/></b>
 				</div>
 				<hr>
 				<div class="am-text-center">
-					<b style="cursor: pointer">书名 : <input /></b> <b
-						style="cursor: pointer">作者 : <input /></b>
+					<b style="cursor: pointer">书名 : <input name="name"/></b> <b
+						style="cursor: pointer">作者 : <input name="author"/></b>
 				</div>
 				<hr>
 				<div class="am-text-center">
-					<b style="cursor: pointer">价格 : <input /></b> <b
-						style="cursor: pointer">出版社 : <input /></b>
+					<b style="cursor: pointer">价格 : <input name="price"/></b> <b
+						style="cursor: pointer">出版社 : <input name="publisher"/></b>
 				</div>
 
-				<br> <br>
-				<div align="center">
-
-					<input type="file" style="display: block"
-						onchange="filechange(event)" /> <br> <img src=""
-						width="200px" height="200px" id="img-change"
-						style="text-align: center">
-
-				</div>
+				<br>
+				
 
 				<hr>
 				<br>
 				<div class="am-text-center">
-					详细信息 :
-					<textarea cols="60" rows="8"></textarea>
+					<b>商品标题 :
+					<textarea cols="60" rows="1" name="title"></textarea>
+					</b>
 				</div>
-				<br> <br>
+				<hr>
 				<div class="am-text-center">
-					<button
-						style="background-color: skyblue; border: none; padding: 14px 30px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 10px;">提交</button>
+				<b>
+					详细信息 :
+					<textarea cols="60" rows="8" name="description"></textarea>
+				</b>
 				</div>
+				
+				<div align="center">
+					<b>商品图片：</b>
+					<input type="file" style="display: block" name="uploadFile"
+						onchange="filechange(event)" /> 
+						<img src="" width="600px" height="600px" id="img-change"
+						style="text-align: center">
+
+				</div>
+				<div class="am-text-center">
+				<input type="submit" value="提交" class="btn btn-success"/>
+				<input type="reset" value="重置" class="btn btn-default"/>
+				</div>
+			</form>
 			</div>
+			
 		</div>
+		
 		<!-- content end -->
 
 
