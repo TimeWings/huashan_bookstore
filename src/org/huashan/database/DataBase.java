@@ -244,6 +244,43 @@ public class DataBase
     }
     
     /**
+     * 查找所有用户信息
+     * @author 何俊霖
+     * @return 用户列表
+     */
+    public List<User> getAllUser()
+    {
+        try
+        {
+        	List<User> users= new ArrayList<>();
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "select * from user";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                ResultSet resultSet = pstmt.executeQuery();
+                while(resultSet.next())
+                {	
+                	User user = new User(
+                			resultSet.getString(1),
+                			resultSet.getString(2)
+                			);
+                	user.is_admin = resultSet.getBoolean(3);
+                	user.address = resultSet.getString(4);
+                	user.phone = resultSet.getString(5);
+                	user.name = resultSet.getString(6);
+                	users.add(user);
+                }
+                return users;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    /**
      * 更新一个用户的个人信息（除了用户名和密码）
      * @author 何俊霖
      * @param user
@@ -862,7 +899,7 @@ public class DataBase
     		//Class.forName("com.mysql.jdbc.Driver");
     		try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
 		    {
-		    	String sql = "select * from commodity natural join cart where user_id = "+u_id+" and commodity.id=com_id";
+		    	String sql = "select * from commodity natural join cart where user_id = "+"'"+u_id+"'"+" and commodity.id=com_id";
 	            Statement statement = connection.createStatement();
 	            
 	            ResultSet resultSet = statement.executeQuery(sql);
@@ -881,7 +918,8 @@ public class DataBase
 	            	commodity.destine = resultSet.getInt(9);
 	            	commodity.sales = resultSet.getInt(10);
 	            	commodity.type = resultSet.getString(11);
-	            	commodity.count=resultSet.getInt(12);
+	            	commodity.title = resultSet.getString(12);
+	            	commodity.count=resultSet.getInt(14);
 	            	commodities.add(commodity);
 	            }
 	            

@@ -58,7 +58,7 @@ public class AdminLoginServlet extends HttpServlet
 
 		{
 			request.getSession().setAttribute("user", user);//如果登录成功就把username对象放到session对象中
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("manager.jsp");
 		}
 		else
 		{

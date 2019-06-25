@@ -111,8 +111,11 @@ img {
 	</header>
 <%
 			Object userObj = session.getAttribute("user");
+			DataBase dataBase = DataBase.getInstance();
 			List<Order> orders = new ArrayList<Order>();
 			List<Order> successOrders = new ArrayList<Order>();
+			List<User> users = new ArrayList<User>();
+			List<Commodity> commodities = new ArrayList<Commodity>();
 			if (userObj == null) 
 			{
 				response.sendRedirect("loginAndregister.jsp");
@@ -122,13 +125,15 @@ img {
 				User user = (User) userObj;
 				if (user.is_admin == false)
 					response.sendRedirect("loginAndregister.jsp");
-				DataBase dataBase = DataBase.getInstance();
+				
 				orders = dataBase.getAllOrders();
 				for(int i=0;i<orders.size();i++)
 				{
 					if(orders.get(i).status == Status.交易完成)
 						successOrders.add(orders.get(i));
 				}
+				users = dataBase.getAllUser();
+				commodities = dataBase.getAllCommodities();
 			}
 %>
 	<div class="am-cf admin-main"
@@ -152,9 +157,9 @@ img {
 					double price = 0;
 					for(int i=0;i<successOrders.size();i++)
 					{
-						List<Commodity> commodities = orders.get(i).commodities;
-						for(int j = 0;j<commodities.size();j++)
-							price += commodities.get(j).price * commodities.get(j).count;
+						List<Commodity> commodities3 = orders.get(i).commodities;
+						for(int j = 0;j<commodities3.size();j++)
+							price += commodities3.get(j).price * commodities3.get(j).count;
 						
 					}
 					out.print(Math.floor(price));
@@ -212,9 +217,9 @@ img {
 				<li id="bt2"><a href="#" class="am-text-warning"><span
 						class="am-icon-btn am-icon-briefcase"></span><br />成交订单<br /><%= successOrders.size() %></a></li>
 				<li id="bt3"><a href="#" class="am-text-danger"><span
-						class="am-icon-btn am-icon-recycle"></span><br />用户数量<br />80082</a></li>
+						class="am-icon-btn am-icon-recycle"></span><br />用户数量<br /><%= users.size() %></a></li>
 				<li id="bt4"><a href="#" class="am-text-secondary"><span
-						class="am-icon-btn am-icon-user-md"></span><br />库存总量<br />3000</a></li>
+						class="am-icon-btn am-icon-user-md"></span><br />商品列表<br /><%= commodities.size() %></a></li>
 			</ul>
 
 			<!--订单总数-->
@@ -225,7 +230,7 @@ img {
 						<thead>
 							<tr>
 								<th>订单号</th>
-								<th>商品数量</th>
+								<th>收货地址</th>
 								<th>下单时间</th>
 								<th>订单状态</th>
 								<th>管理</th>
@@ -239,7 +244,7 @@ img {
 
 							<tr>
 								<td><%= o.id%></td>
-								<td><%= o.commodities.size() %></td>
+								<td><%= o.u_address %></td>
 								<td><%=o.buy_date%></td>
 								<td><span class="am-badge am-badge-success"><%= o.status%></span></td>
 
@@ -303,10 +308,10 @@ img {
 								<td><%= o.ship_date %></td>
 								<td><%= o.receipt_date %></td>
 								<td><span class="am-badge am-badge-success"><%
-								List<Commodity> commodities = o.commodities;
+								List<Commodity> commodities2 = o.commodities;
 								price = 0;
-								for(int j = 0;j<commodities.size();j++)
-									price += commodities.get(j).price * commodities.get(j).count;
+								for(int j = 0;j<commodities2.size();j++)
+									price += commodities2.get(j).price * commodities2.get(j).count;
 								out.print(Math.floor(price));
 								%></span></td>
 <%} %>
@@ -342,41 +347,24 @@ img {
 						<thead>
 							<tr>
 								<th>用户ID</th>
-								<th>最近成交时</th>
-								<th>注册日期</th>
+								<th>用户名</th>
+								<th>联系方式</th>
 								<th>交易的订单数</th>
 							</tr>
 						</thead>
 						<tbody>
+						<% for(int i=0;i<users.size();i++)
+							{
+								User u = users.get(i);
+								List<Order> ordersFromUser = dataBase.getOrdersFromUser(u.getUsername());  %>
 							<tr>
-								<td>9608-0600</td>
-								<td>斗罗大陆</td>
-								<td><a href="#">2018.12.10</a></td>
-								<td><span class="am-badge am-badge-success">20</span></td>
+								<td><%=u.getUsername() %></td>
+								<td><%=u.name%></td>
+								<td><%=u.phone %></td>
+								<td><span class="am-badge am-badge-success"><%=ordersFromUser.size() %></span></td>
 
 							</tr>
-							<tr>
-								<td>9608-0600</td>
-								<td>斗罗大陆</td>
-								<td><a href="#">2018.12.10</a></td>
-								<td><span class="am-badge am-badge-success">20</span></td>
-
-							</tr>
-							<tr>
-								<td>9608-0600</td>
-								<td>斗罗大陆</td>
-								<td><a href="#">2018.12.10</a></td>
-								<td><span class="am-badge am-badge-success">20</span></td>
-
-							</tr>
-							<tr>
-								<td>9608-0600</td>
-								<td>斗罗大陆</td>
-								<td><a href="#">2018.12.10</a></td>
-								<td><span class="am-badge am-badge-success">20</span></td>
-
-							</tr>
-
+<%} %>
 							<tr>
 								<td><input></td>
 								<td><input></td>
@@ -406,17 +394,20 @@ img {
 							<tr>
 								<th>ISBN</th>
 								<th>书名</th>
-								<th>上架日期</th>
+								<th>作者</th>
 								<th>剩余库存</th>
 								<th>管理</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>9608-0600</td>
-								<td>斗罗大陆</td>
-								<td><a href="#">2018.12.10</a></td>
-								<td><span class="am-badge am-badge-success">20</span></td>
+							<% for(int i=0;i<commodities.size();i++)
+								{
+								Commodity c = commodities.get(i); %>
+								<td><%= c.ISBN %></td>
+								<td><%= c.name%></td>
+								<td><%= c.author %></td>
+								<td><span class="am-badge am-badge-success"><%= c.stock %></span></td>
 								<td>
 									<div class="dropdown">
 										<button class="am-btn am-btn-default am-btn-xs  ">
@@ -424,73 +415,13 @@ img {
 												class="am-icon-caret-down"></span>
 										</button>
 										<ul class="dropdown-content">
-											<li style="list-style-type: none"><a href="#"> 增加库存</a></li>
-											<br>
-											<li style="list-style-type: none"><a href="#"> 下架商品</a></li>
+											<li style="list-style-type: none"><a href="ChangeCommodity.do?id=<%= c.id %>"> 增加库存</a></li>
+											<li style="list-style-type: none"><a href="DeleteCommodity.do?id=<%= c.id %>"> 下架商品</a></li>
 										</ul>
 									</div>
 								</td>
 							</tr>
-
-							<tr>
-								<td>9608-0600</td>
-								<td>斗罗大陆</td>
-								<td><a href="#">2018.12.10</a></td>
-								<td><span class="am-badge am-badge-success">20</span></td>
-								<td>
-									<div class="dropdown">
-										<button class="am-btn am-btn-default am-btn-xs  ">
-											<span class="am-icon-cog"></span> <span
-												class="am-icon-caret-down"></span>
-										</button>
-										<ul class="dropdown-content">
-											<li style="list-style-type: none"><a href="#"> 增加库存</a></li>
-											<br>
-											<li style="list-style-type: none"><a href="#"> 下架商品</a></li>
-										</ul>
-									</div>
-								</td>
-							</tr>
-
-							<tr>
-								<td>9608-0600</td>
-								<td>斗罗大陆</td>
-								<td><a href="#">2018.12.10</a></td>
-								<td><span class="am-badge am-badge-success">20</span></td>
-								<td>
-									<div class="dropdown">
-										<button class="am-btn am-btn-default am-btn-xs  ">
-											<span class="am-icon-cog"></span> <span
-												class="am-icon-caret-down"></span>
-										</button>
-										<ul class="dropdown-content">
-											<li style="list-style-type: none"><a href="#"> 增加库存</a></li>
-											<br>
-											<li style="list-style-type: none"><a href="#"> 下架商品</a></li>
-										</ul>
-									</div>
-								</td>
-							</tr>
-
-							<tr>
-								<td>9608-0600</td>
-								<td>斗罗大陆</td>
-								<td><a href="#">2018.12.10</a></td>
-								<td><span class="am-badge am-badge-success">20</span></td>
-								<td>
-									<div class="dropdown">
-										<button class="am-btn am-btn-default am-btn-xs  ">
-											<span class="am-icon-cog"></span> <span
-												class="am-icon-caret-down"></span>
-										</button>
-										<ul class="dropdown-content">
-											<li style="list-style-type: none"><a href="#"> 增加库存</a></li>
-											<br>
-											<li style="list-style-type: none"><a href="#"> 下架商品</a></li>
-										</ul>
-									</div>
-								</td>
-							</tr>
+<%} %>
 
 							<tr>
 								<td><input></td>
