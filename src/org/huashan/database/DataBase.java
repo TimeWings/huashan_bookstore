@@ -185,6 +185,7 @@ public class DataBase
                 	{
                 		System.out.println("用户"+username+"登录成功");
                 		User user=new User(username, password);
+                		user.is_admin=resultSet.getBoolean(3);
                 		user.address=resultSet.getString(4);
                 		user.phone=resultSet.getString(5);
                 		user.name=resultSet.getString(6);
@@ -661,6 +662,41 @@ public class DataBase
         {
             e.printStackTrace();
             return null;
+        }
+    }
+    
+    /**
+     * 查找所有订单
+     * @author 何俊霖
+     * @param id
+     * @return 订单列表
+     */
+    public List<Order> getAllOrders()
+    {
+    	List<Order> orders = new ArrayList<>();
+        try
+        {
+        	//Class.forName("com.mysql.jdbc.Driver");
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "select id from `order`";
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                //pstmt.setString(1, u_id);
+                ResultSet resultSet = pstmt.executeQuery();
+                
+                while(resultSet.next())
+                {
+                	String o_id = resultSet.getString(1);
+                	Order order = getOneOrder(o_id);
+                	orders.add(order);
+                }
+                return orders;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return orders;
         }
     }
     

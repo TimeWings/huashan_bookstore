@@ -1,522 +1,564 @@
+<%@page import="org.huashan.entity.Order.Status"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"
+	import="org.huashan.database.*, org.huashan.entity.*,java.util.List,java.util.ArrayList"%>
 <!doctype html>
 <html class="no-js">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>管理员后台</title>
-	
-  <meta name="keywords" content="index">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>管理员后台</title>
 
-  <link rel="stylesheet" href="css/amazeui.min.css"/>
-  <link rel="stylesheet" href="css/admin.css">
-  <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css"> 
-	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>    
-	<style type="text/css">
-		
-		.dropdown {
-	
-    position: relative;
-    display: inline-block;
+<meta name="keywords" content="index">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<link rel="stylesheet" href="css/amazeui.min.css" />
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet"
+	href="plugins/font-awesome/css/font-awesome.min.css">
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<style type="text/css">
+.dropdown {
+	position: relative;
+	display: inline-block;
 }
+
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 20px 20px 12px 0px;
-    z-index: 100;
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	padding: 20px 20px 12px 0px;
+	z-index: 100;
 }
+
 .dropdown:hover .dropdown-content {
-    display: block;
+	display: block;
 }
 
 .table-scroll {
-  height:500px;
-  overflow:auto;  
-  margin-top:20px;
+	height: 500px;
+	overflow: auto;
+	margin-top: 20px;
 	width: 90%;
-	margin-left:50px;
+	margin-left: 50px;
 	z-index: 1;
 }
 
-	#uploadImg{ font-size:12px; overflow:hidden; position:absolute}
-#file{ position:absolute; z-index:100; margin-left:-180px; font-size:60px;opacity:0; filter:alpha(opacity=0); margin-top:-5px;}	
-		
-		
-		/*以下为图片传输CSS*/
-			
-    .float{    
-        float:left;    
-        width : 200px;    
-        height: 200px;    
-        overflow: hidden;    
-        border: 1px solid #CCCCCC;    
-        border-radius: 10px;    
-        padding: 5px;    
-        margin: 5px;    
-    }    
-    img{    
-        position: relative;    
-    }    
-    .result{    
-        width: 200px;    
-       height: 200px;    
-        text-align: center;    
-        box-sizing: border-box;    
-    }   
-    #file_input{  
-        display: none;  
-    }  
-    .delete{  
-        width: 200px;  
-        height:200px;  
-        position: absolute;  
-        text-align: center;  
-        line-height: 200px;  
-        z-index: 10;  
-        font-size: 30px;  
-        background-color: rgba(255,255,255,0.8);  
-        color: #777;  
-        opacity: 0;  
-        transition-duration: 0.7s;  
-        -webkit-transition-duration: 0.7s;   
-    } 
-    .delete:hover{  
-        cursor: pointer;  
-        opacity: 1;  
-    }  
-		</style>
+/*以下为图片传输CSS*/
+.float {
+	float: left;
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+	border: 1px solid #CCCCCC;
+	border-radius: 10px;
+	padding: 5px;
+	margin: 5px;
+}
+
+img {
+	position: relative;
+}
+
+.result {
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+#file_input {
+	display: none;
+}
+
+.delete {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	text-align: center;
+	line-height: 200px;
+	z-index: 10;
+	font-size: 30px;
+	background-color: rgba(255, 255, 255, 0.8);
+	color: #777;
+	opacity: 0;
+	transition-duration: 0.7s;
+	-webkit-transition-duration: 0.7s;
+}
+
+.delete:hover {
+	cursor: pointer;
+	opacity: 1;
+}
+</style>
 </head>
 <body>
 
-<header class="am-topbar admin-header">
-  <div class="am-topbar-brand">
-    <strong>华山 书店</strong> <small>后台管理员界面</small>
-  </div>
-
-  
-
-  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
-	  
-  </div>
-</header>
-
-<div class="am-cf admin-main" style="background: url(images//background/glyback.jpg);background-size:contain;">
-  <!-- sidebar start -->
-  <div class="admin-sidebar" style="opacity: 0.95">
-    <ul class="am-list admin-sidebar-list">
-      <li><a href="index.jsp"><span class="am-icon-home"></span> 首页</a></li>
-      <li><a href="#" id="shangjia"><span class="am-icon-pencil-square-o"></span> 上架</a></li>
-      <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
-    </ul>
-
-	   <div class="am-panel am-panel-default admin-sidebar-panel">
-      <div class="am-panel-bd">
-        <p><span class="am-icon-tag"></span> 交易总额</p>
-        <p>300659元</p>
-      </div>
-    </div>
-	  
-    <div class="am-panel am-panel-default admin-sidebar-panel">
-      <div class="am-panel-bd">
-        <p><span class="am-icon-bookmark"></span> 公告</p>
-        <p>时光静好，与君语；细水流年，与君同。—— Amaze</p>
-      </div>
-    </div>
-	  
-	  <div class="am-panel am-panel-default admin-sidebar-panel">
-      <div class="am-panel-bd">
-        <p><span class="am-icon-bell"></span> 管理员</p>
-        <p>  · 郭榕</p>
-		  <p> · 梁卓越</p>
-      </div>
-    </div>
-	  
-	  <div class="am-panel am-panel-default admin-sidebar-panel">
-      <div class="am-panel-bd">
-        <p><span class="am-icon-adn"></span> 管理员</p>
-        <p>· 邓家豪</p>
-		  <p>· 何俊霖</p>
-      </div>
-    </div>
-
-   
-  </div>
-  <!-- sidebar end -->
-
-  <!-- content start -->
-  <div class="admin-content" style="display:block;opacity: 0.95" >
-
-    <div class="am-cf am-padding">
-      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">管理员视图</strong> / <small>一些常用模块</small></div>
-    </div>
-
-    <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
-      <li id="bt1"><a href="#" class="am-text-success"><span class="am-icon-btn am-icon-file-text"></span><br/>订单总数<br/>2300</a></li>
-      <li id="bt2"><a href="#" class="am-text-warning"><span class="am-icon-btn am-icon-briefcase"></span><br/>成交订单<br/>308</a></li>
-      <li id="bt3"><a href="#" class="am-text-danger"><span class="am-icon-btn am-icon-recycle"></span><br/>用户数量<br/>80082</a></li>
-      <li id="bt4"><a href="#" class="am-text-secondary"><span class="am-icon-btn am-icon-user-md"></span><br/>库存总量<br/>3000</a></li>
-    </ul>
-	  
-	  <!--订单总数-->
- <div  id="thediv1" style="display:none">  
-	  <div  class="table-scroll">
-        <table class="am-table am-table-bd am-table-striped admin-content-table">
-          <thead>
-          <tr>
-              <th>订单号</th>
-			  <th>商品编号</th>
-			  <th>下单时间</th>
-			  <th>订单状态</th>
-			  <th>管理</th>
-          </tr>
-          </thead>
-          <tbody>
-			
-          <tr>
-			  <td>625006324</td>
-			  <td>9608-0600</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">未付款</span></td>
-			  
-              <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#"> 发货</a></li>
-					 <hr>
-                  <li style="list-style-type:none"><a href="#"> 确收</a></li>
-                </ul>
-              </div>
-              </td>	  
-          </tr>
-			  
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆  </td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">未发货</span></td>
-			  
-              <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#"> 发货</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#"> 确收</a></li>
-                </ul>
-              </div>
-             </td>
-			  </tr>
-			  
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">已发货</span></td>
-			  
-              <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-               <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#"> 发货</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#"> 确收</a></li>
-                </ul>
-              </div>
-             </td>
-           </tr>
-			  
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td>
-			  <td><span class="am-badge am-badge-success">已收货</span></td>
-              <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-               <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#"> 发货</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#"> 确收</a></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-			  
-          <tr>
-            <td> <input> </td> 
-			<td> <input> </td>  
-            <td><a href="#"> <input> </a></td>  
-            <td><input></td>
-            <td>       
-                <button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle>查询</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div> 
-	  </div>
-	  
-	  
-	  <!--成交订单-->
-	  <div id= "thediv2" style="display:none">
-	  
-	   <div  class="table-scroll">
-        <table class="am-table am-table-bd am-table-striped admin-content-table">
-          <thead>
-          <tr>
-            <th>订单号</th>
-			<th>交易用户名</th>
-			<th>成交日期</th>
-			<th>商品数量</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-			  
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">20</span></td>
-            
-          </tr>
-			  
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">20</span></td>
-            
-          </tr>
-			  
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">20</span></td>
-           
-          </tr>
-			  
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">20</span></td>
-            
-          </tr>
-			  
-          <tr>
-            <td> <input> </td>  <td> <input> </td>
-			  
-            <td><a href="#"> <input> </a></td>
-			  
-            <td><input></td>
-            <td>       
-                <button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle>查询</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-		  
-	  </div>
-	  
-	  
-	  <!--用户数量-->
-	  <div  id= "thediv3" style="display:none">
-	  
-	   <div  class="table-scroll">
-        <table class="am-table am-table-bd am-table-striped admin-content-table">
-          <thead>
-          <tr>
-            <th>用户ID</th>
-			  <th>最近成交时</th>
-			  <th>注册日期</th>
-			  <th>交易的订单数</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">20</span></td>
-            
-          </tr>
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">20</span></td>
-            
-          </tr>
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">20</span></td>
-           
-          </tr>
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">20</span></td>
-           
-          </tr>
-			  
-          <tr>
-            <td> <input> </td>  <td> <input> </td>
-			  
-            <td><a href="#"> <input> </a></td>
-			  
-            <td><input></td>
-            <td>       
-                <button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle>查询</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-		  
-	  </div>
-	  
-	  <!--库存总量-->
-    <div  id= "thediv4" style="display:none">
-      <div  class="table-scroll">
-        <table class="am-table am-table-bd am-table-striped admin-content-table">
-          <thead>
-          <tr>
-            <th>ISBN</th>
-			  <th>书名</th>
-			  <th>上架日期</th>
-			  <th>剩余库存</th>
-			  <th>管理</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">20</span></td>
-             <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#"> 增加库存</a></li>
-					 <br>
-                  <li style="list-style-type:none"><a href="#"> 下架商品</a></li>
-                </ul>
-              </div>
-             </td>
-          </tr>
-			  
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">20</span></td>
-             <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#"> 增加库存</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#"> 下架商品</a></li>
-                </ul>
-              </div>
-             </td>
-          </tr>
-			  
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#"> 增加库存</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#"> 下架商品</a></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-			  
-          <tr>
-			  <td>9608-0600</td>
-			  <td>斗罗大陆</td>
-			  <td><a href="#">2018.12.10</a></td> 
-			  <td><span class="am-badge am-badge-success">20</span></td>
-            <td>
-              <div class="dropdown">
-                <button class="am-btn am-btn-default am-btn-xs  "><span class="am-icon-cog"></span> <span class="am-icon-caret-down"></span></button>
-                <ul class="dropdown-content">
-                  <li style="list-style-type:none"><a href="#"> 增加库存</a></li>
-					<br>
-                  <li style="list-style-type:none"><a href="#"> 下架商品</a></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-			  
-          <tr>
-            <td> <input> </td>  <td> <input> </td>
-			  
-            <td><a href="#"> <input> </a></td>
-			  
-            <td><input></td>
-            <td>       
-                <button class="am-btn am-btn-default am-btn-xs am-dropdown-toggle" data-am-dropdown-toggle>查询</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    
-	  <!-- 上架商品 -->
-	 <div id="shangjia_div" style="display:none">
-	    <div class="am-text-center"><b style="cursor:pointer">编号 :  <input /></b> <b style="cursor:pointer">库存 :  <input /></b></div>
-		 <hr>
-		 <div class="am-text-center"><b style="cursor:pointer">书名 :  <input /></b> <b style="cursor:pointer">作者 :  <input /></b></div>
-		 <hr>
-		  <div class="am-text-center"><b style="cursor:pointer">价格 :  <input /></b> <b style="cursor:pointer">出版社 :  <input /></b></div>
-			 
-			  <br>
-		      <br>
-			  <div align="center">
-			  
-			  <input class= type="file" id="file" style="display:block " onchange="filechange(event)"/>
-				  <br>
-              <img src="" width="200px" height="200px" id="img-change" style="text-align: center">				  
-			
-		 </div>
-		 
-		 <hr>
-		 <br>
-		 <div class="am-text-center">简介（签名） : <textarea type="text"   ></textarea>  </div>
-	     <br>
-		 <br>
-		<div class="am-text-center"><button style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;">提交</button></div>
-		</div> 
-  </div>
-  <!-- content end -->
+	<header class="am-topbar admin-header">
+		<div class="am-topbar-brand">
+			<strong>华山 书店</strong> <small>后台管理员界面</small>
+		</div>
 
 
-	
-</div>
+		<div class="am-collapse am-topbar-collapse" id="topbar-collapse">
 
-<!--<footer class="footer-bottom" style="background-color:dimgrey">
+		</div>
+	</header>
+<%
+			Object userObj = session.getAttribute("user");
+			List<Order> orders = new ArrayList<Order>();
+			List<Order> successOrders = new ArrayList<Order>();
+			if (userObj == null) 
+			{
+				response.sendRedirect("loginAndregister.jsp");
+			} 
+			else 
+			{
+				User user = (User) userObj;
+				if (user.is_admin == false)
+					response.sendRedirect("loginAndregister.jsp");
+				DataBase dataBase = DataBase.getInstance();
+				orders = dataBase.getAllOrders();
+				for(int i=0;i<orders.size();i++)
+				{
+					if(orders.get(i).status == Status.交易完成)
+						successOrders.add(orders.get(i));
+				}
+			}
+%>
+	<div class="am-cf admin-main"
+		style="background: url(images//background/glyback.jpg); background-size: contain;">
+		<!-- sidebar start -->
+		<div class="admin-sidebar" style="opacity: 0.95">
+			<ul class="am-list admin-sidebar-list">
+				<li><a href="index.jsp"><span class="am-icon-home"></span>
+						首页</a></li>
+				<li><a href="#" id="shangjia"><span
+						class="am-icon-pencil-square-o"></span> 上架</a></li>
+				<li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
+			</ul>
+
+			<div class="am-panel am-panel-default admin-sidebar-panel">
+				<div class="am-panel-bd">
+					<p>
+						<span class="am-icon-tag"></span> 交易总额
+					</p>
+					<p><%
+					double price = 0;
+					for(int i=0;i<successOrders.size();i++)
+					{
+						List<Commodity> commodities = orders.get(i).commodities;
+						for(int j = 0;j<commodities.size();j++)
+							price += commodities.get(j).price * commodities.get(j).count;
+						
+					}
+					out.print(Math.floor(price));
+								%>
+								</p>
+				</div>
+			</div>
+
+			<div class="am-panel am-panel-default admin-sidebar-panel">
+				<div class="am-panel-bd">
+					<p>
+						<span class="am-icon-bookmark"></span> 公告
+					</p>
+					<p>时光静好，与君语；细水流年，与君同。—— Amaze</p>
+				</div>
+			</div>
+
+			<div class="am-panel am-panel-default admin-sidebar-panel">
+				<div class="am-panel-bd">
+					<p>
+						<span class="am-icon-bell"></span> 管理员
+					</p>
+					<p>· 郭榕</p>
+					<p>· 梁卓越</p>
+				</div>
+			</div>
+
+			<div class="am-panel am-panel-default admin-sidebar-panel">
+				<div class="am-panel-bd">
+					<p>
+						<span class="am-icon-adn"></span> 管理员
+					</p>
+					<p>· 邓家豪</p>
+					<p>· 何俊霖</p>
+				</div>
+			</div>
+
+
+		</div>
+		<!-- sidebar end -->
+
+		<!-- content start -->
+		<div class="admin-content" style="display: block; opacity: 0.95">
+
+			<div class="am-cf am-padding">
+				<div class="am-fl am-cf">
+					<strong class="am-text-primary am-text-lg">管理员视图</strong> / <small>一些常用模块</small>
+				</div>
+			</div>
+
+			<ul
+				class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+				<li id="bt1"><a href="#" class="am-text-success"><span
+						class="am-icon-btn am-icon-file-text"></span><br />订单总数<br /><%= orders.size() %></a></li>
+				<li id="bt2"><a href="#" class="am-text-warning"><span
+						class="am-icon-btn am-icon-briefcase"></span><br />成交订单<br /><%= successOrders.size() %></a></li>
+				<li id="bt3"><a href="#" class="am-text-danger"><span
+						class="am-icon-btn am-icon-recycle"></span><br />用户数量<br />80082</a></li>
+				<li id="bt4"><a href="#" class="am-text-secondary"><span
+						class="am-icon-btn am-icon-user-md"></span><br />库存总量<br />3000</a></li>
+			</ul>
+
+			<!--订单总数-->
+			<div id="thediv1" style="display: none">
+				<div class="table-scroll">
+					<table
+						class="am-table am-table-bd am-table-striped admin-content-table">
+						<thead>
+							<tr>
+								<th>订单号</th>
+								<th>商品数量</th>
+								<th>下单时间</th>
+								<th>订单状态</th>
+								<th>管理</th>
+							</tr>
+						</thead>
+						<tbody>
+<% for(int i=0;i<orders.size();i++)
+{
+	Order o = orders.get(i);
+	%>
+
+							<tr>
+								<td><%= o.id%></td>
+								<td><%= o.commodities.size() %></td>
+								<td><%=o.buy_date%></td>
+								<td><span class="am-badge am-badge-success"><%= o.status%></span></td>
+
+								<td>
+									<div class="dropdown">
+										<button class="am-btn am-btn-default am-btn-xs  ">
+											<span class="am-icon-cog"></span> <span
+												class="am-icon-caret-down"></span>
+										</button>
+										<ul class="dropdown-content">
+											<li style="list-style-type: none"><a href="#"> 发货</a></li>
+											<hr>
+											<li style="list-style-type: none"><a href="#"> 确收</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+<% } %>
+
+							<tr>
+								<td><input></td>
+								<td><input></td>
+								<td><a href="#"> <input>
+								</a></td>
+								<td><input></td>
+								<td>
+									<button
+										class="am-btn am-btn-default am-btn-xs am-dropdown-toggle"
+										data-am-dropdown-toggle>查询</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+			<!--成交订单-->
+			<div id="thediv2" style="display: none">
+
+				<div class="table-scroll">
+					<table
+						class="am-table am-table-bd am-table-striped admin-content-table">
+						<thead>
+							<tr>
+								<th>订单号</th>
+								<th>发货日期</th>
+								<th>收货日期</th>
+								<th>交易价格</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+							<% for(int i=0;i<successOrders.size();i++)
+{
+	Order o = successOrders.get(i);
+	%>
+
+								<td><%= o.id%></td>
+								<td><%= o.ship_date %></td>
+								<td><%= o.receipt_date %></td>
+								<td><span class="am-badge am-badge-success"><%
+								List<Commodity> commodities = o.commodities;
+								price = 0;
+								for(int j = 0;j<commodities.size();j++)
+									price += commodities.get(j).price * commodities.get(j).count;
+								out.print(Math.floor(price));
+								%></span></td>
+<%} %>
+							
+
+							<tr>
+								<td><input></td>
+								<td><input></td>
+
+								<td><a href="#"> <input>
+								</a></td>
+
+								<td><input></td>
+								<td>
+									<button
+										class="am-btn am-btn-default am-btn-xs am-dropdown-toggle"
+										data-am-dropdown-toggle>查询</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+
+			<!--用户数量-->
+			<div id="thediv3" style="display: none">
+
+				<div class="table-scroll">
+					<table
+						class="am-table am-table-bd am-table-striped admin-content-table">
+						<thead>
+							<tr>
+								<th>用户ID</th>
+								<th>最近成交时</th>
+								<th>注册日期</th>
+								<th>交易的订单数</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>9608-0600</td>
+								<td>斗罗大陆</td>
+								<td><a href="#">2018.12.10</a></td>
+								<td><span class="am-badge am-badge-success">20</span></td>
+
+							</tr>
+							<tr>
+								<td>9608-0600</td>
+								<td>斗罗大陆</td>
+								<td><a href="#">2018.12.10</a></td>
+								<td><span class="am-badge am-badge-success">20</span></td>
+
+							</tr>
+							<tr>
+								<td>9608-0600</td>
+								<td>斗罗大陆</td>
+								<td><a href="#">2018.12.10</a></td>
+								<td><span class="am-badge am-badge-success">20</span></td>
+
+							</tr>
+							<tr>
+								<td>9608-0600</td>
+								<td>斗罗大陆</td>
+								<td><a href="#">2018.12.10</a></td>
+								<td><span class="am-badge am-badge-success">20</span></td>
+
+							</tr>
+
+							<tr>
+								<td><input></td>
+								<td><input></td>
+
+								<td><a href="#"> <input>
+								</a></td>
+
+								<td><input></td>
+								<td>
+									<button
+										class="am-btn am-btn-default am-btn-xs am-dropdown-toggle"
+										data-am-dropdown-toggle>查询</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+			<!--库存总量-->
+			<div id="thediv4" style="display: none">
+				<div class="table-scroll">
+					<table
+						class="am-table am-table-bd am-table-striped admin-content-table">
+						<thead>
+							<tr>
+								<th>ISBN</th>
+								<th>书名</th>
+								<th>上架日期</th>
+								<th>剩余库存</th>
+								<th>管理</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>9608-0600</td>
+								<td>斗罗大陆</td>
+								<td><a href="#">2018.12.10</a></td>
+								<td><span class="am-badge am-badge-success">20</span></td>
+								<td>
+									<div class="dropdown">
+										<button class="am-btn am-btn-default am-btn-xs  ">
+											<span class="am-icon-cog"></span> <span
+												class="am-icon-caret-down"></span>
+										</button>
+										<ul class="dropdown-content">
+											<li style="list-style-type: none"><a href="#"> 增加库存</a></li>
+											<br>
+											<li style="list-style-type: none"><a href="#"> 下架商品</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>9608-0600</td>
+								<td>斗罗大陆</td>
+								<td><a href="#">2018.12.10</a></td>
+								<td><span class="am-badge am-badge-success">20</span></td>
+								<td>
+									<div class="dropdown">
+										<button class="am-btn am-btn-default am-btn-xs  ">
+											<span class="am-icon-cog"></span> <span
+												class="am-icon-caret-down"></span>
+										</button>
+										<ul class="dropdown-content">
+											<li style="list-style-type: none"><a href="#"> 增加库存</a></li>
+											<br>
+											<li style="list-style-type: none"><a href="#"> 下架商品</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>9608-0600</td>
+								<td>斗罗大陆</td>
+								<td><a href="#">2018.12.10</a></td>
+								<td><span class="am-badge am-badge-success">20</span></td>
+								<td>
+									<div class="dropdown">
+										<button class="am-btn am-btn-default am-btn-xs  ">
+											<span class="am-icon-cog"></span> <span
+												class="am-icon-caret-down"></span>
+										</button>
+										<ul class="dropdown-content">
+											<li style="list-style-type: none"><a href="#"> 增加库存</a></li>
+											<br>
+											<li style="list-style-type: none"><a href="#"> 下架商品</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td>9608-0600</td>
+								<td>斗罗大陆</td>
+								<td><a href="#">2018.12.10</a></td>
+								<td><span class="am-badge am-badge-success">20</span></td>
+								<td>
+									<div class="dropdown">
+										<button class="am-btn am-btn-default am-btn-xs  ">
+											<span class="am-icon-cog"></span> <span
+												class="am-icon-caret-down"></span>
+										</button>
+										<ul class="dropdown-content">
+											<li style="list-style-type: none"><a href="#"> 增加库存</a></li>
+											<br>
+											<li style="list-style-type: none"><a href="#"> 下架商品</a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<td><input></td>
+								<td><input></td>
+
+								<td><a href="#"> <input>
+								</a></td>
+
+								<td><input></td>
+								<td>
+									<button
+										class="am-btn am-btn-default am-btn-xs am-dropdown-toggle"
+										data-am-dropdown-toggle>查询</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+			<!-- 上架商品 -->
+			<div id="shangjia_div" style="display: none">
+				<div class="am-text-center">
+					<b style="cursor: pointer">编号 : <input /></b> <b
+						style="cursor: pointer">库存 : <input /></b>
+				</div>
+				<hr>
+				<div class="am-text-center">
+					<b style="cursor: pointer">书名 : <input /></b> <b
+						style="cursor: pointer">作者 : <input /></b>
+				</div>
+				<hr>
+				<div class="am-text-center">
+					<b style="cursor: pointer">价格 : <input /></b> <b
+						style="cursor: pointer">出版社 : <input /></b>
+				</div>
+
+				<br> <br>
+				<div align="center">
+
+					<input type="file" style="display: block"
+						onchange="filechange(event)" /> <br> <img src=""
+						width="200px" height="200px" id="img-change"
+						style="text-align: center">
+
+				</div>
+
+				<hr>
+				<br>
+				<div class="am-text-center">
+					详细信息 :
+					<textarea cols="60" rows="8"></textarea>
+				</div>
+				<br> <br>
+				<div class="am-text-center">
+					<button
+						style="background-color: skyblue; border: none; padding: 14px 30px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 10px;">提交</button>
+				</div>
+			</div>
+		</div>
+		<!-- content end -->
+
+
+
+	</div>
+
+	<!--<footer class="footer-bottom" style="background-color:dimgrey">
     
     <div class="container">
       <div class="row">
@@ -547,7 +589,7 @@
 	-->
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	
 window.onload=function(){
     var obt1=document.getElementById("bt1");
@@ -770,7 +812,7 @@ window.onload=function(){
 
 
 	
-</script> 
+</script>
 
 
 
