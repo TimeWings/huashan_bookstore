@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.List"%>
-<%@ page import="org.huashan.database.DataBase"%>
-<%@ page import="org.huashan.entity.User"%>
-<%@ page import="org.huashan.entity.Order"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<MM:BeginLock translatorClass="MM_JSPSCRIPT" type="language" depFiles="" orig="%3C%25@ page language=%22java%22 contentType=%22text/html; charset=UTF-8%22 pageEncoding=%22UTF-8%22%25%3E" ><MM_SCRIPT_LANGUAGE NAME="java"><MM:EndLock>
+<MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25@ page import=%22java.util.List%22%25%3E" ><MM_JSPSCRIPT><MM:EndLock>
+<MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25@ page import=%22org.huashan.database.DataBase%22%25%3E" ><MM_JSPSCRIPT><MM:EndLock>
+<MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25@ page import=%22org.huashan.entity.User%22%25%3E" ><MM_JSPSCRIPT><MM:EndLock>
+<MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25@ page import=%22org.huashan.entity.Order%22%25%3E" ><MM_JSPSCRIPT><MM:EndLock>
+<MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25@taglib uri=%22http://java.sun.com/jsp/jstl/core%22 prefix=%22c%22%25%3E" ><MM_JSPSCRIPT><MM:EndLock>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,12 +50,12 @@
 </head>
 
 <c:if test="${myorder==null }">
-	<%
-		User u = (User) session.getAttribute("user");
+	<MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25
+		User u = (User) session.getAttribute(%22user%22);
 		DataBase database = DataBase.getInstance();
-		List<Order> myorder = database.getOrdersFromUser(u.getUsername());
-		session.setAttribute("myorder", myorder);
-	%>
+		List%3COrder%3E myorder = database.getOrdersFromUser(u.getUsername());
+		session.setAttribute(%22myorder%22, myorder);
+	%25%3E" ><MM_JSPSCRIPT><MM:EndLock>
 </c:if>
 
 <body class="body-wrapper">
@@ -100,11 +100,11 @@
 						<div class="profile-thumb">
 							<img src="images/user/user-thumb.jpg" alt="" class="rounded-circle">
 						</div>
-					<%
-					User u = (User) session.getAttribute("user");
-					%>
+					<MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25
+					User u = (User) session.getAttribute(%22user%22);
+					%25%3E" ><MM_JSPSCRIPT><MM:EndLock>
 						<!-- User Name -->
-						<h5 class="text-center" id = "user_name"><%=u.name%></h5>
+						<h5 class="text-center" id = "user_name"><MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25=u.name%25%3E" ><MM_JSPSCRIPT><MM:EndLock></h5>
 					
 					</div>
 				</div>
@@ -112,11 +112,11 @@
 				<div class="widget user">
                         <h4>详细信息</h4>
 					    <hr><br>
-						<p class="member-time">账号 ：<a   id ="user_id"> <%=u.getUsername()%></a></p>
+						<p class="member-time">账号 ：<a   id ="user_id"> <MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25=u.getUsername()%25%3E" ><MM_JSPSCRIPT><MM:EndLock></a></p>
 					    <hr><br>
-						<p class="member-time">地址 ：<a id = "user_address"><%=u.address%></a></p>
+						<p class="member-time">地址 ：<a id = "user_address"><MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25=u.address%25%3E" ><MM_JSPSCRIPT><MM:EndLock></a></p>
 					    <hr><br>
-					    <p class="member-time">电话 ：<a id = "user_birthary" ><%=u.phone%></a></p>
+					    <p class="member-time">电话 ：<a id = "user_birthary" ><MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25=u.phone%25%3E" ><MM_JSPSCRIPT><MM:EndLock></a></p>
 					    <hr><br>
 					    <p class="member-time" >兴趣爱好 ： <a id = "user_hobbies"> 打篮球 </a></p>
 					    <hr><br>
@@ -206,21 +206,21 @@
 						</thead>
 						<tbody>
 							
-					<%
-					List<Order> myorder = (List) session.getAttribute("myorder");
-					for (int i = 0; i < myorder.size(); i++) {
-						for(int j=0;j<myorder.get(i).commodities.size();j++)
+					<MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25
+					List%3COrder%3E myorder = (List) session.getAttribute(%22myorder%22);
+					for (int i = 0; i %3C myorder.size(); i++) {
+						for(int j=0;j%3Cmyorder.get(i).commodities.size();j++)
 						{
-					%>
+					%25%3E" ><MM_JSPSCRIPT><MM:EndLock>
 							
 							<tr>
 								
 								<td class="product-thumb">
 									<img width="80px" height="auto" src="images/products/products-2.jpg" alt="image description"></td>
 								<td class="product-details">
-									<h3 class="title"><a href="#">第一本书第一本书... </a> </h3>
-									<h3 class="title"><a href="#">第二本书第一本书... </a></h3>
-									<h3 class="title"><a href="#">第三本书第一本书...  </a></h3>
+									<h3 class="title"><a href="#">第一本书第... </a> </h3><br><br>
+									<h3 class="title"><a href="#">第二本书第... </a></h3><br><br>
+									<h3 class="title"><a href="#">第三本书第...  </a></h3><br><br>
 								</td>
 								
 								<td class="product-category">
@@ -248,10 +248,10 @@
 												
 												<div class="c"> 
                                               <ul class="text-left">
-											  <li>订单编号：<a><%=myorder.get(i).id%></a></li>
-                                              <li>订单状态：<a><%=myorder.get(i).status%></a></li>
-											  <li>快递单号：<a><%=myorder.get(i).id%></a></li> 
-											  <li>下单日期：<a style="width: 100px; font: 40px"><%=myorder.get(i).buy_date.toString()%></a></li> 
+											  <li>订单编号：<a><MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25=myorder.get(i).id%25%3E" ><MM_JSPSCRIPT><MM:EndLock></a></li>
+                                              <li>订单状态：<a><MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25=myorder.get(i).status%25%3E" ><MM_JSPSCRIPT><MM:EndLock></a></li>
+											  <li>快递单号：<a><MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25=myorder.get(i).id%25%3E" ><MM_JSPSCRIPT><MM:EndLock></a></li> 
+											  <li>下单日期：<a style="width: 100px; font: 40px"><MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25=myorder.get(i).buy_date.toString()%25%3E" ><MM_JSPSCRIPT><MM:EndLock></a></li> 
 												</ul> 
 										</div> 		
 											</li>
@@ -262,10 +262,10 @@
 									</div>
 								</td>
 							</tr>
-							<%
+							<MM:BeginLock translatorClass="MM_JSPSCRIPT" type="script" depFiles="" orig="%3C%25
 									}
 								}
-							%>
+							%25%3E" ><MM_JSPSCRIPT><MM:EndLock>
 							
 						</tbody>
 					</table>
