@@ -415,8 +415,8 @@ img {
 												class="am-icon-caret-down"></span>
 										</button>
 										<ul class="dropdown-content">
-											<li style="list-style-type: none"><a href="#"> 增加库存</a></li>
-											<li style="list-style-type: none"><a href="#"> 下架商品</a></li>
+											<li style="list-style-type: none"><a href="ChangeCommodity.do?id=<%= c.id %>"> 增加库存</a></li>
+											<li style="list-style-type: none"><a href="DeleteCommodity.do?id=<%= c.id %>"> 下架商品</a></li>
 										</ul>
 									</div>
 								</td>
