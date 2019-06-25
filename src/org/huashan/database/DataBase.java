@@ -899,7 +899,7 @@ public class DataBase
     		//Class.forName("com.mysql.jdbc.Driver");
     		try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
 		    {
-		    	String sql = "select * from commodity natural join cart where user_id = "+u_id+" and commodity.id=com_id";
+		    	String sql = "select * from commodity natural join cart where user_id = "+"'"+u_id+"'"+" and commodity.id=com_id";
 	            Statement statement = connection.createStatement();
 	            
 	            ResultSet resultSet = statement.executeQuery(sql);
@@ -918,7 +918,8 @@ public class DataBase
 	            	commodity.destine = resultSet.getInt(9);
 	            	commodity.sales = resultSet.getInt(10);
 	            	commodity.type = resultSet.getString(11);
-	            	commodity.count=resultSet.getInt(12);
+	            	commodity.title = resultSet.getString(12);
+	            	commodity.count=resultSet.getInt(14);
 	            	commodities.add(commodity);
 	            }
 	            
