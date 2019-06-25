@@ -1,5 +1,10 @@
 ﻿<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ page import="java.util.List"%>
+<%@ page import="org.huashan.database.DataBase"%>
+<%@ page import="org.huashan.entity.Commodity"%>
+<%@ page import="org.huashan.entity.User"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +39,15 @@
 		
 </head>
 
+<c:if test="${mycart==null }">
+	<%
+		User u = (User) session.getAttribute("user");
+		DataBase database = DataBase.getInstance();
+		List<Commodity> mycart = database.getUserCart(u.getUsername());
+		session.setAttribute("mycart", mycart);
+	%>
+</c:if>
+
 <body class="body-wrapper">
 
 <section>
@@ -54,7 +68,7 @@
 							
 							     &nbsp;
 					  
-								<a href="userAndorders.jsp" class="bbbtn" >我的订单</a>
+								<a href="MyOrder.jsp" class="bbbtn" >我的订单</a>
 							
 						</ul>
 					</div>
@@ -75,7 +89,10 @@
 			<div class="weidget">
 				<!-- Recently Favorited -->
 				<div class="widget dashboard-container my-adslist">
-					<h3 class="widget-header">用户XXX的购物车</h3>
+					<%
+					User u = (User) session.getAttribute("user");
+					%>
+					<h3 class="widget-header">用户<%=u.getUsername()%>的购物车</h3>
 					<table class="table table-responsive product-dashboard-table">
 						<thead>
 							<tr>
@@ -88,6 +105,10 @@
 							</tr>
 						</thead>
 						<tbody>
+					<%
+					List<Commodity> mycart = (List) session.getAttribute("mycart");
+					for (int i = 0; i < mycart.size(); i++) {
+					%>
 							<tr>
 								<td>
 									<div class="gw_num text-center"><a class="jian" href="javascript:void(0)"  onClick="show('sub','price_1','num_1')">-</a> <span id="num_1">1</span> <a class="add" href="javascript:void(0)" onClick="show('sum','price_1','num_1')">+</a></div>									
@@ -95,13 +116,13 @@
 								<td class="product-details text-center">
 									<img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
 								<td class="product-details">
-									<h3 class="title">斗罗大陆</h3>
-									<span class="add-id"> ISBN-9603 </span>
-									<span> 2019.12.1 </span>
-									<span class="status active">唐家三少</span>
-									<span class="location">北京师范大学出版社</span>
+									<h3 class="title"><%=mycart.get(i).name%></h3>
+									<span class="add-id"> <%=mycart.get(i).ISBN%> </span>
+									<span> <%=mycart.get(i).type%> </span>
+									<span class="status active"><%=mycart.get(i).author%></span>
+									<span class="location"><%=mycart.get(i).publisher%></span>
 								</td>
-								<td><span class="categories"><a>￥：</a><b id="price_1">26</b><c> 元</c></span></td>
+								<td><span class="categories"><a>￥：</a><b id="price_1"><%=mycart.get(i).price%></b><c> 元</c></span></td>
 								<td class="action" data-title="Action">
 									
 										<ul class="list-inline justify-content-center">
@@ -115,110 +136,10 @@
 								<td class="counts text-center"><button class="bbbtn" id="checkbox1" onClick="check('checkbox1' ,'price_1')"  >选中</button></td>
 								
 							</tr>
-							<tr>
-								<td>
-									<div class="gw_num text-center"><a class="jian" href="javascript:void(0)" onClick="show('sub','price_2','num_2')">-</a> <span id="num_2">1</span> <a class="add" href="javascript:void(0)"  onClick="show('sum','price_2','num_2')">+</a></div>									
-								</td>
-								<td class="product-thumb text-center">
-									<img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
-								<td class="product-details">
-									<h3 class="title">斗罗大陆</h3>
-									<span class="add-id"> ISBN-9603 </span>
-									<span> 2019.12.1 </span>
-									<span class="status active">唐家三少</span>
-									<span class="location">北京师范大学出版社</span>
-								</td>
-								<td class="product-category"><a>￥：</a><b id="price_2">26</b><c> 元</c></td>
-								<td class="action" data-title="Action">
-									<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a class="delete" href="">
-													<i class="fa fa-trash"></i>
-												</a>
-											</li>
-								        </ul>
-								</td>
-								<td class="counts text-center"><button class="bbbtn" id="checkbox2" onClick="check('checkbox2' ,'price_2')"  >选中</button></td>
-								
-							</tr>
-							<tr>
-								<td>
-									<div class="gw_num text-center"><a class="jian" href="javascript:void(0)"  onClick="show('sub','price_3','num_3')">-</a> <span id="num_3">1</span> <a class="add" href="javascript:void(0)" onClick="show('sum','price_3','num_3')">+</a></div>									
-								</td>
-								<td class="product-thumb text-center">
-									<img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
-								<td class="product-details">
-									<h3 class="title">斗罗大陆</h3>
-									<span class="add-id"> ISBN-9603 </span>
-									<span> 2019.12.1 </span>
-									<span class="status active">唐家三少</span>
-									<span class="location">北京师范大学出版社</span>
-								</td>
-								<td class="product-category"><a>￥：</a><b id="price_3">26</b><c> 元</c></td>
-								<td class="action" data-title="Action">
-									<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a class="delete" href="">
-													<i class="fa fa-trash"></i>
-												</a>
-											</li>
-								        </ul>
-								</td>
-								<td class="counts text-center"><button class="bbbtn" id="checkbox3" onClick="check('checkbox3' ,'price_3')"  >选中</button></td>
-								
-							</tr>
-							<tr>
-								<td>
-									<div class="gw_num text-center"><a class="jian" href="javascript:void(0)" onClick="show('sub','price_4','num_4')">-</a> <span id="num_4">1</span> <a class="add" href="javascript:void(0)" onClick="show('sum','price_4','num_4')">+</a></div>									
-								</td>
-								<td class="product-thumb text-center">
-									<img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
-								<td class="product-details">
-									<h3 class="title">斗罗大陆</h3>
-									<span class="add-id"> ISBN-9603 </span>
-									<span> 2019.12.1 </span>
-									<span class="status active">唐家三少</span>
-									<span class="location">北京师范大学出版社</span>
-								</td>
-								<td class="product-category"><a>￥：</a><b id="price_4">26</b><c> 元</c></td>
-								<td class="action" data-title="Action">
-									<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a class="delete" href="">
-													<i class="fa fa-trash"></i>
-												</a>
-											</li>
-								        </ul>
-								</td>
-							<td class="counts text-center"><button class="bbbtn" id="checkbox4" onClick="check('checkbox4' ,'price_4')"  >选中</button></td>
-								
-							</tr>
-							<tr>
-								<td>
-									<div class="gw_num text-center"><a class="jian" href="javascript:void(0)" onClick="show('sub','price_5','num_5')">-</a> <span id="num_5">1</span> <a class="add" href="javascript:void(0)" onClick="show('sum','price_5','num_5')">+</a></div>									
-								</td>
-								<td class="product-thumb text-center">
-									<img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
-								<td class="product-details">
-									<h3 class="title">斗罗大陆</h3>
-									<span class="add-id"> ISBN-9603 </span>
-									<span> 2019.12.1 </span>
-									<span class="status active">唐家三少</span>
-									<span class="location">北京师范大学出版社</span>
-								</td>
-								<td class="product-category"><a>￥：</a><b id="price_5">26</b><c> 元</c></td>
-								<td class="action" data-title="Action">
-									<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a class="delete" href="">
-													<i class="fa fa-trash"></i>
-												</a>
-											</li>
-								        </ul>
-								</td>
-							<td class="counts text-center"><button class="bbbtn" id="checkbox5" onClick="check('checkbox5' ,'price_5')"  >选中</button></td>
-								
-							</tr>
+							<%
+								}
+							%>
+							
 						</tbody>
 					</table>
 					
@@ -232,7 +153,14 @@
 	<div class="topD">
 						<div class="topf text-center">
 							
-							<p style="font-size:20px"><a>合计:<b id="allprice" >130</b>元</a></p>
+							<p style="font-size:20px"><a>合计:<b id="allprice" >			
+									<%double sum = 0.0; 
+									for(int j=0;j<mycart.size();j++)
+									{
+										sum+=mycart.get(j).price*mycart.get(j).count;
+									}
+									%>
+								<%=String.format("%.2f", sum)%></b>元</a></p>
 							<p id = "ppp"> 0  </p>
 							</div>
 						<hr>
