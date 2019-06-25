@@ -12,11 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>我的订单</title>
   
-
-
-  <!-- Bootstrap -->
   <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 
