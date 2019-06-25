@@ -209,8 +209,6 @@
 					<%
 					List<Order> myorder = (List) session.getAttribute("myorder");
 					for (int i = 0; i < myorder.size(); i++) {
-						for(int j=0;j<myorder.get(i).commodities.size();j++)
-						{
 					%>
 							
 							<tr>
@@ -218,24 +216,48 @@
 								<td class="product-thumb">
 									<img width="80px" height="auto" src="images/products/products-2.jpg" alt="image description"></td>
 								<td class="product-details">
-									<h3 class="title"><a href="#">第一本书第一本书... </a> </h3>
-									<h3 class="title"><a href="#">第二本书第一本书... </a></h3>
-									<h3 class="title"><a href="#">第三本书第一本书...  </a></h3>
+								<%
+								for(int j=0;j<myorder.get(i).commodities.size();j++)
+								{
+								%>
+									<h3 class="title"><a href="onebook.jsp?id=<%=myorder.get(i).commodities.get(j).id%>"><%String name = myorder.get(i).commodities.get(j).name; %>
+								<%=name.length()>15?name.substring(0, 15)+"..." :name%></a> </h3> <br><br>
+								<%
+								}
+								%>
 								</td>
 								
+								
 								<td class="product-category">
-									<span class="categories">&nbsp;&nbsp;36.5</span> <br><br>
-								    <span class="categories">&nbsp;&nbsp;80</span>   <br><br>
-									<span class="categories">&nbsp;&nbsp;70</span>    <br><br>
+																<%
+								for(int j=0;j<myorder.get(i).commodities.size();j++)
+								{
+								%>
+									<span class="categories">&nbsp;&nbsp;<%=myorder.get(i).commodities.get(j).price%></span> <br><br>
+																	<%
+								}
+								%>
 								</td>
 								<td class="product-category">
-									<span class="categories" >&nbsp;&nbsp;1</span><br><br>
-										<span class="categories">&nbsp;&nbsp;2</span><br><br>
-											<span class="categories">&nbsp;&nbsp;1</span><br><br>
+																								<%
+								for(int j=0;j<myorder.get(i).commodities.size();j++)
+								{
+								%>
+									<span class="categories" >&nbsp;&nbsp;<%=myorder.get(i).commodities.get(j).count%></span><br><br>
+																										<%
+								}
+								%>
 										
 								</td>
+
 								<td class="product-category" align="center">
-									36.5+80+70
+									<%double sum = 0.0; 
+									for(int j=0;j<myorder.get(i).commodities.size();j++)
+									{
+										sum+=myorder.get(i).commodities.get(j).price*myorder.get(i).commodities.get(j).count;
+									}
+									%>
+								<%=String.format("%.2f", sum)%>
 								</td>
 							<td class="action" data-title="Action">
 									<div class="text-right">
@@ -263,7 +285,6 @@
 								</td>
 							</tr>
 							<%
-									}
 								}
 							%>
 							
