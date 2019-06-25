@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"
+    import="org.huashan.database.*, org.huashan.entity.*" %>
 <!doctype html>
 <html>
 <head>
