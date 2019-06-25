@@ -167,7 +167,7 @@
 							</div>
 
 							<div class="topg text-center">
-								<a href="userAndorders.jsp" style="background-color: lightskyblue; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">订单</a>
+								<a href="MyOrder.jsp" style="background-color: lightskyblue; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">订单</a>
 							</div>
 
 							<div class="toph text-center">

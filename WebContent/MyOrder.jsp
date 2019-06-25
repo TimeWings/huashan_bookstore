@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="org.huashan.database.DataBase"%>
-<%@ page import="org.huashan.entity.Commodity"%>
+<%@ page import="org.huashan.entity.User"%>
+<%@ page import="org.huashan.entity.Order"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,6 +49,15 @@
 
 </head>
 
+<c:if test="${myorder==null }">
+	<%
+		User u = (User) session.getAttribute("user");
+		DataBase database = DataBase.getInstance();
+		List<Order> myorder = database.getOrdersFromUser(u.getUsername());
+		session.setAttribute("myorder", myorder);
+	%>
+</c:if>
+
 <body class="body-wrapper">
 
 <section>
@@ -63,12 +74,9 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						
 						<ul class="navbar-nav ml-auto mt-10">
-							<a  href="index3.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
-						
-							
+							<a href="index.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
 							     &nbsp;
-					  
-								<a href="ShoppingCart.jsp" style="background-color: burlywood; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >购物车</a>
+								<a href="cart.jsp" style="background-color: burlywood; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >购物车</a>
 						</ul>
 						</div>
 					</nav>
@@ -92,8 +100,11 @@
 						<div class="profile-thumb">
 							<img src="images/user/user-thumb.jpg" alt="" class="rounded-circle">
 						</div>
+					<%
+					User u = (User) session.getAttribute("user");
+					%>
 						<!-- User Name -->
-						<h5 class="text-center" id = "user_name">${user.username}</h5>
+						<h5 class="text-center" id = "user_name"><%=u.name%></h5>
 					
 					</div>
 				</div>
@@ -101,11 +112,11 @@
 				<div class="widget user">
                         <h4>详细信息</h4>
 					    <hr><br>
-						<p class="member-time">账号 ：<a   id ="user_id"> yhhbbgr</a></p>
+						<p class="member-time">账号 ：<a   id ="user_id"> <%=u.getUsername()%></a></p>
 					    <hr><br>
-						<p class="member-time">地址 ：<a id = "user_address"> 北京 </a></p>
+						<p class="member-time">地址 ：<a id = "user_address"><%=u.address%></a></p>
 					    <hr><br>
-					    <p class="member-time">生日 ：<a id = "user_birthary" >1990-10-10</a></p>
+					    <p class="member-time">电话 ：<a id = "user_birthary" ><%=u.phone%></a></p>
 					    <hr><br>
 					    <p class="member-time" >兴趣爱好 ： <a id = "user_hobbies"> 打篮球 </a></p>
 					    <hr><br>
@@ -152,7 +163,7 @@
 					    <hr><br>
 						<p class="member-time">地址 ：  <input type="text" id = "modify_address"></p>
 					    <hr><br>
-					    <p class="member-time">生日 ：  <input type="date" id = "modify_birthday"></p>
+					    <p class="member-time">电话 ：  <input type="date" id = "modify_birthday"></p>
 					    <hr><br>
 					    <p class="member-time">兴趣爱好 ： <input type="text" id = "modify_hobbies"></p>
 					    <hr><br>
@@ -193,34 +204,38 @@
 							</tr>
 						</thead>
 						<tbody>
+							
+					<%
+					List<Order> myorder = (List) session.getAttribute("myorder");
+					for (int i = 0; i < myorder.size(); i++) {
+						for(int j=0;j<myorder.get(i).commodities.size();j++)
+						{
+					%>
+							
 							<tr>
 								
 								<td class="product-thumb">
-									<img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
+									<img width="80px" height="auto" src="images/products/products-2.jpg" alt="image description"></td>
 								<td class="product-details">
-									<h3 class="title">Macbook Pro 15inch</h3>
-									<span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
-									<span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
-									<span class="status active"><strong>Status</strong>Active</span>
-									<span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
+									<h3 class="title"><%=myorder.get(i).commodities.get(j).name%></h3>
 								</td>
-								<td class="product-category"><span class="categories">￥：52</span></td>
-								<td class="product-category"><span class="categories">2</span></td>
-								<td class="action" data-title="Action">
+									<td class="product-category"><span class="categories">￥：<%=myorder.get(i).commodities.get(j).price%></span></td>
+								<td class="product-category"><span class="categories"><%=myorder.get(i).commodities.get(j).count%></span></td>
+							<td class="action" data-title="Action">
 									<div class="text-right">
 										<ul class="list-inline justify-content-center">
 											
 											<li class="list-inline-item a">
-												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
+												<a data-toggle="tooltip" data-placement="top" title="订单详情" class="view" href="">
 													<i class="fa fa-eye"></i>
 												</a>
 												
 												<div class="c"> 
                                               <ul class="text-left">
-											  <li>订单编号：<a>6003254646</a></li>
-                                              <li>订单状态：<a>已付款</a></li>
-											  <li>快递单号：<a>3302564698</a></li> 
-											  <li>下单日期：<a style="width: 100px; font: 40px">2018-12-12</a></li> 
+											  <li>订单编号：<a><%=myorder.get(i).id%></a></li>
+                                              <li>订单状态：<a><%=myorder.get(i).status%></a></li>
+											  <li>快递单号：<a><%=myorder.get(i).id%></a></li> 
+											  <li>下单日期：<a style="width: 100px; font: 40px"><%=myorder.get(i).buy_date.toString()%></a></li> 
 												</ul> 
 										</div> 		
 											</li>
@@ -231,119 +246,17 @@
 									</div>
 								</td>
 							</tr>
-							<tr>
-								
-								<td class="product-thumb">
-									<img width="80px" height="auto" src="images/products/products-2.jpg" alt="image description"></td>
-								<td class="product-details">
-									<h3 class="title">Study Table Combo</h3>
-									<span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
-									<span><strong>Posted on: </strong><time>Feb 12, 2017</time> </span>
-									<span class="status active"><strong>Status</strong>Active</span>
-									<span class="location"><strong>Location</strong>USA</span>
-								</td>
-									<td class="product-category"><span class="categories">￥：52</span></td>
-								<td class="product-category"><span class="categories">2</span></td>
-								<td class="action" data-title="Action">
-									<div class="text-right">
-										<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
-													<i class="fa fa-eye"></i>
-												</a>		
-											</li>
-											
-											
-										</ul>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								
-								<td class="product-thumb">
-									<img width="80px" height="auto" src="images/products/products-3.jpg" alt="image description"></td>
-								<td class="product-details">
-									<h3 class="title">Macbook Pro 15inch</h3>
-									<span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
-									<span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
-									<span class="status active"><strong>Status</strong>Active</span>
-									<span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
-								</td>
-									<td class="product-category"><span class="categories">￥：52</span></td>
-								<td class="product-category"><span class="categories">2</span></td>
-								<td class="action" data-title="Action">
-									<div class="text-right">
-										<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
-													<i class="fa fa-eye"></i>
-												</a>		
-											</li>
-											
-											
-										</ul>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								
-								<td class="product-thumb">
-									<img width="80px" height="auto" src="images/products/products-4.jpg" alt="image description"></td>
-								<td class="product-details">
-									<h3 class="title">Macbook Pro 15inch</h3>
-									<span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
-									<span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
-									<span class="status active"><strong>Status</strong>Active</span>
-									<span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
-								</td>
-									<td class="product-category"><span class="categories">￥：52</span></td>
-								<td class="product-category"><span class="categories">2</span></td>
-								<td class="action" data-title="Action">
-									<div class="text-right">
-										<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
-													<i class="fa fa-eye"></i>
-												</a>		
-											</li>
-											
-											
-										</ul>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								
-								<td class="product-thumb">
-									<img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
-								<td class="product-details">
-									<h3 class="title">Macbook Pro 15inch</h3>
-									<span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
-									<span><strong>Posted on: </strong><time>Jun 27, 2017</time> </span>
-									<span class="status active"><strong>Status</strong>Active</span>
-									<span class="location"><strong>Location</strong>Dhaka,Bangladesh</span>
-								</td>
-									<td class="product-category"><span class="categories">￥：52</span></td>
-								<td class="product-category"><span class="categories">2</span></td>
-								<td class="action" data-title="Action">
-									<div class="text-right">
-										<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
-													<i class="fa fa-eye"></i>
-												</a>		
-											</li>
-
-										</ul>
-									</div>
-								</td>
-							</tr>
+							<%
+									}
+								}
+							%>
+							
 						</tbody>
 					</table>
 					
 				</div>
 			</div>
-		</div>
+			</div>
 		<!-- Row End -->
 	</div>
 		
