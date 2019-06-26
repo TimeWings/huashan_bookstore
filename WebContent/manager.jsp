@@ -251,13 +251,13 @@ img {
 								<td>
 									<div class="dropdown">
 										<button class="am-btn am-btn-default am-btn-xs  ">
-											<span class="am-icon-cog"></span> <span
-												class="am-icon-caret-down"></span>
+											<span class="am-icon-cog"></span> 
+											<span class="am-icon-caret-down"></span>
 										</button>
-										<ul class="dropdown-content">
+										<ul class="dropdown-content" style="width:10px">
 											<li style="list-style-type: none"><a href="#"> 发货</a></li>
-											<hr>
-											<li style="list-style-type: none"><a href="#"> 确收</a></li>
+											<li style="list-style-type: none"><a href="#"> 取消</a></li>
+											
 										</ul>
 									</div>
 								</td>
@@ -479,7 +479,20 @@ img {
 					<textarea cols="60" rows="8" name="description"></textarea>
 				</b>
 				</div>
-				
+				<hr>
+				<div class="am-text-center">
+				<b>
+					商品类别 :
+					<select name="type" >
+					<option  value="计算机">计算机</option>
+					<option  value="数学">数学</option>
+					<option  value="英语">英语</option>
+					<option  value="小说">小说</option>
+					<option  value="哲学">哲学</option>
+					</select>
+				</b>
+				</div>
+				<hr>
 				<div align="center">
 					<b>商品图片：</b>
 					<input type="file" style="display: block" name="uploadFile"

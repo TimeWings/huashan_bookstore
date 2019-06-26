@@ -110,7 +110,7 @@ public class AddCommodityServlet extends HttpServlet {
 	        	        	case "name":commodity.name = item.getString("UTF-8");break;
 	        	        	case "ISBN":commodity.ISBN = item.getString("UTF-8");break;
 	        	        	case "publisher":commodity.publisher = item.getString("UTF-8");break;
-		        	        //commodity.type = (String) request.getAttribute("type");break;
+	        	        	case "type":commodity.type = item.getString("UTF-8");break;
 	        	        	case "price":commodity.price = Double.parseDouble(item.getString("UTF-8"));break;
 	        	        	case "author":commodity.author = item.getString("UTF-8");break;
 	        	        	case "stock":commodity.stock =Integer.parseInt(item.getString("UTF-8"));break;
