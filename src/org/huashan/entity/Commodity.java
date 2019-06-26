@@ -33,4 +33,9 @@ public class Commodity
 	{
 		
 	}
+	
+	public String getPrice()
+	{
+		return Format.formatDouble(price);
+	}
 }

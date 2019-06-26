@@ -919,7 +919,8 @@ public class DataBase
 	            	commodity.sales = resultSet.getInt(10);
 	            	commodity.type = resultSet.getString(11);
 	            	commodity.title = resultSet.getString(12);
-	            	commodity.count=resultSet.getInt(14);
+	            	commodity.count=resultSet.getInt(15);
+	            	//System.out.println(commodity.count);
 	            	commodities.add(commodity);
 	            }
 	            

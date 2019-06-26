@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=utf-8"
+﻿<%@page import="org.huashan.entity.Format"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="org.huashan.database.DataBase"%>
@@ -113,12 +114,12 @@
 							<tr>
 								<td>
 									<div class="gw_num text-center">
-									<a class="jian" href="javascript:void(0)"  onClick="show('sub','price_1','num_1')">-</a> 
-									<span id="num_1">1</span> 
-									<a class="add" href="javascript:void(0)" onClick="show('sum','price_1','num_1')">+</a></div>									
+									<a class="jian" href="javascript:void(0)"  onClick="show('sub','price_<%=c.id%>','count_<%=c.id%>')">-</a> 
+									<span id="count_<%=c.id%>"><%=c.count %></span> 
+									<a class="add" href="javascript:void(0)" onClick="show('add','price_<%=c.id%>','count_<%=c.id%>')">+</a></div>									
 								</td>
 								<td class="product-details text-center">
-									<img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
+									<img width="160px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
 								<td class="product-details">
 									<h3 class="title"><%=c.name%></h3>
 									<span class="add-id"> <%=c.ISBN%> </span>
@@ -126,7 +127,7 @@
 									<span class="status active"><%=c.author%></span>
 									<span class="location"><%=c.publisher%></span>
 								</td>
-								<td><span class="categories"><a>￥：</a><b id="price_1"><%=c.price%></b><c> 元</c></span></td>
+								<td><span class="categories"><a>￥：</a><b id="price_<%=c.id%>"><%=Format.formatDouble(c.price*c.count) %></b><c> 元</c></span></td>
 								<td class="action" data-title="Action">
 									
 										<ul class="list-inline justify-content-center">
@@ -137,7 +138,7 @@
 											</li>
 								        </ul>
 								</td>
-								<td class="counts text-center"><button class="bbbtn" id="checkbox1" onClick="check('checkbox1' ,'price_1')"  >选中</button></td>
+								<td class="counts text-center"><button class="bbbtn" id="checkbox<%=c.id%>" onClick="check('checkbox<%=c.id%>' ,'price_<%=c.id%>')"  >选中</button></td>
 								
 							</tr>
 							<%
@@ -169,7 +170,7 @@
 							</div>
 						<hr>
 						<div class="topg text-center" >
-							<a href="我的订单.html" style="background-color: darkseagreen; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >结账</a>
+							<a href="MyOrder.jsp" style="background-color: darkseagreen; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >结账</a>
 							</div>
 						
 						
@@ -236,13 +237,13 @@
 		}
 		
 	}
-			function show(state1,state2,state3){
+			function show(str,price_id,count_id){
 				
-				var count = document.getElementById(state3);
+				var count = document.getElementById(count_id);
 				
 				var x = parseInt(count.innerHTML);
 				
-				var pri = document.getElementById(state2);
+				var pri = document.getElementById(price_id);
 				
 				var allpri  = document.getElementById("allprice");
 				
@@ -257,7 +258,7 @@
 				var p = parseFloat(pri.innerHTML)/x;
 				
 				
-				if(state1=="sub"){
+				if(str=="sub"){
 					if(x<=0){
 						count.innerHTML="0";
 						pri.innerHTML="0";
@@ -266,26 +267,26 @@
 						x--;
 						count.innerHTML = x;
 						p=p*x;
-						pri.innerHTML=p.toString();						
-						allpri.innerHTML=sumpri.toString();
+						pri.innerHTML=p.toFixed(2);						
+						allpri.innerHTML=sumpri.toFixed(2);
 					}
 				}
 				
-				else if(state1=="sum"){
-					if(x==0)
+				else if(str=="add"){
+					if(x<=0)
 						{
 						  count.innerHTML="1";
 						  pri.innerHTML="26";					 
 						  sumpri= sumpri+parseFloat(pri.innerHTML);
-						 allpri.innerHTML=sumpri.toString();
+						 allpri.innerHTML=sumpri.toFixed(2);
 						}
 					else{
 					sumpri= sumpri+p;
 					x++;
 					count.innerHTML=x;
 					p=p*x;
-					pri.innerHTML=p.toString();					
-						allpri.innerHTML=sumpri.toString();
+					pri.innerHTML=p.toFixed(2);					
+						allpri.innerHTML=sumpri.toFixed(2);
 					}
 				}	
 			}

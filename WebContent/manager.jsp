@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"
 	import="org.huashan.database.*, org.huashan.entity.*,java.util.List,java.util.ArrayList"%>
+
 <!doctype html>
 <html class="no-js">
 <head>
@@ -162,7 +163,7 @@ img {
 							price += commodities3.get(j).price * commodities3.get(j).count;
 						
 					}
-					out.print(Math.floor(price));
+					out.print(Format.formatDouble(price));
 								%>
 								</p>
 				</div>
@@ -312,7 +313,7 @@ img {
 								price = 0;
 								for(int j = 0;j<commodities2.size();j++)
 									price += commodities2.get(j).price * commodities2.get(j).count;
-								out.print(Math.floor(price));
+								out.print(Format.formatDouble(price));
 								%></span></td>
 <%} %>
 							
