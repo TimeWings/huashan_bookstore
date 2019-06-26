@@ -45,14 +45,16 @@
 
 </head>
 
-<c:if test="${myorder==null }">
 	<%
 		User u = (User) session.getAttribute("user");
+	if(u == null)
+	{
+		response.sendRedirect("loginAndregister.jsp");
+		return;
+	}
 		DataBase database = DataBase.getInstance();
 		List<Order> myorder = database.getOrdersFromUser(u.getUsername());
-		session.setAttribute("myorder", myorder);
 	%>
-</c:if>
 
 <body class="body-wrapper">
 
@@ -70,7 +72,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						
 						<ul class="navbar-nav ml-auto mt-10">
-							<a href="index.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
+							<a href="#" onClick="javascript :history.back(-1);" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
 							     &nbsp;
 								<a href="cart.jsp" style="background-color: burlywood; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >购物车</a>
 						</ul>
@@ -96,9 +98,7 @@
 						<div class="profile-thumb">
 							<img src="images/user/user-thumb.jpg" alt="" class="rounded-circle">
 						</div>
-					<%
-					User u = (User) session.getAttribute("user");
-					%>
+
 						<!-- User Name -->
 						<h5 class="text-center" id = "user_name"><%=u.name%></h5>
 					
@@ -203,7 +203,6 @@
 						<tbody>
 							
 					<%
-					List<Order> myorder = (List) session.getAttribute("myorder");
 					for (int i = 0; i < myorder.size(); i++) {
 					%>
 							

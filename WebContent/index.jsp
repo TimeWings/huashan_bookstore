@@ -161,13 +161,14 @@
 									</a>
 								</c:if>
 								<c:if test="${not empty user }">
-  		欢迎你：${user.username } <a href="LoginOut.do">注销</a>
+  		欢迎你：${user.username } <br>
+  		<a href="LoginOut.do">注销</a>
 								</c:if>	
 
 							</div>
 
 							<div class="topg text-center">
-								<a href="MyOrder.jsp" style="background-color: lightskyblue; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">订单</a>
+								<a href="MyOrder.jsp" style="background-color: lightskyblue; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 15px; border-radius: 15px;">订单</a>
 							</div>
 
 							<div class="toph text-center">
@@ -176,7 +177,7 @@
 								<a href="cart.jsp" style="background-color: burlywood; border: none; color: white; padding: 4px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 15px; border-radius: 15px;">
 									购物车
 								</a>
-
+						
 							</div>
 
 						</div>

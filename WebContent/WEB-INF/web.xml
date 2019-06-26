@@ -65,4 +65,12 @@
     <servlet-name>AddCommodity</servlet-name>
     <url-pattern>/AddCommodity.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>AddCart</servlet-name>
+    <servlet-class>controller.AddCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddCart</servlet-name>
+    <url-pattern>/AddCart.do</url-pattern>
+  </servlet-mapping>
 </web-app>

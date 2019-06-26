@@ -39,14 +39,17 @@
 		
 </head>
 
-<c:if test="${mycart==null }">
 	<%
 		User u = (User) session.getAttribute("user");
+		if(u == null)
+		{
+			response.sendRedirect("loginAndregister.jsp");
+			return;
+		}
 		DataBase database = DataBase.getInstance();
 		List<Commodity> mycart = database.getUserCart(u.getUsername());
-		session.setAttribute("mycart", mycart);
 	%>
-</c:if>
+
 
 <body class="body-wrapper">
 
@@ -63,7 +66,7 @@
 						
 						<ul class="navbar-nav ml-auto mt-10">
 							
-								<a  href="index.jsp" class="bbbtn"  >返回</a>
+								<a href="#" onClick="javascript :history.back(-1);" class="bbbtn"  >返回</a>
 							
 							
 							     &nbsp;
@@ -89,9 +92,6 @@
 			<div class="weidget">
 				<!-- Recently Favorited -->
 				<div class="widget dashboard-container my-adslist">
-					<%
-					User u = (User) session.getAttribute("user");
-					%>
 					<h3 class="widget-header">用户<%=u.getUsername()%>的购物车</h3>
 					<table class="table table-responsive product-dashboard-table">
 						<thead>
@@ -106,23 +106,27 @@
 						</thead>
 						<tbody>
 					<%
-					List<Commodity> mycart = (List) session.getAttribute("mycart");
-					for (int i = 0; i < mycart.size(); i++) {
+					for (int i = 0; i < mycart.size(); i++) 
+					{
+						Commodity c = mycart.get(i);
 					%>
 							<tr>
 								<td>
-									<div class="gw_num text-center"><a class="jian" href="javascript:void(0)"  onClick="show('sub','price_1','num_1')">-</a> <span id="num_1">1</span> <a class="add" href="javascript:void(0)" onClick="show('sum','price_1','num_1')">+</a></div>									
+									<div class="gw_num text-center">
+									<a class="jian" href="javascript:void(0)"  onClick="show('sub','price_1','num_1')">-</a> 
+									<span id="num_1">1</span> 
+									<a class="add" href="javascript:void(0)" onClick="show('sum','price_1','num_1')">+</a></div>									
 								</td>
 								<td class="product-details text-center">
 									<img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
 								<td class="product-details">
-									<h3 class="title"><%=mycart.get(i).name%></h3>
-									<span class="add-id"> <%=mycart.get(i).ISBN%> </span>
-									<span> <%=mycart.get(i).type%> </span>
-									<span class="status active"><%=mycart.get(i).author%></span>
-									<span class="location"><%=mycart.get(i).publisher%></span>
+									<h3 class="title"><%=c.name%></h3>
+									<span class="add-id"> <%=c.ISBN%> </span>
+									<span> <%=c.type%> </span>
+									<span class="status active"><%=c.author%></span>
+									<span class="location"><%=c.publisher%></span>
 								</td>
-								<td><span class="categories"><a>￥：</a><b id="price_1"><%=mycart.get(i).price%></b><c> 元</c></span></td>
+								<td><span class="categories"><a>￥：</a><b id="price_1"><%=c.price%></b><c> 元</c></span></td>
 								<td class="action" data-title="Action">
 									
 										<ul class="list-inline justify-content-center">
@@ -161,7 +165,7 @@
 									}
 									%>
 								<%=String.format("%.2f", sum)%></b>元</a></p>
-							<p id = "ppp"> 0  </p>
+							<p id = "ppp" hidden="hidden"> 0  </p>
 							</div>
 						<hr>
 						<div class="topg text-center" >

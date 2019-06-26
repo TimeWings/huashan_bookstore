@@ -36,8 +36,11 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					
 						<ul class="navbar-nav ml-auto mt-10">
-							<a  href="index.jsp" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
-							
+							<a  href="#" onClick="javascript :history.back(-1);" style="background-color: lightskyblue; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;"  >返回</a>
+							&nbsp;
+							<a href="cart.jsp" style="background-color: burlywood; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 15px;">
+									购物车
+								</a>
 						</ul>
 					</div>
 				</nav>
@@ -52,9 +55,14 @@
 	
 	<div class="container">
 		<div class="row">
-			<%String id = request.getParameter("id"); 
+			<%String c_id = request.getParameter("id"); 
 			DataBase dataBase = DataBase.getInstance(); 
-			Commodity commodity = dataBase.getOneCommodity(id);%>
+			Commodity commodity = dataBase.getOneCommodity(c_id);
+			User user = (User)request.getSession().getAttribute("user");
+			String u_id = "";
+			if(user!=null)
+				u_id = user.getUsername();
+			%>
 			<div class="col-md-8">
 				<div class="product-details">
 					<h1 class="product-title"><%=commodity.title %></h1>
@@ -131,7 +139,7 @@
 				
 					<div class="widget coupon text-center">
 						
-						<a href="" class="btn btn-transparent-white">加入购物车</a>
+						<a href="AddCart.do?u_id=<%=u_id %>&c_id=<%=c_id %>" class="btn btn-transparent-white">加入购物车</a>
 					</div>
 					
 				</div>
