@@ -35,6 +35,12 @@
 		  font-size: 16px;
 		  border-radius: 15px;
 	  }
+	  
+	  
+	  
+	  .btnjiezhang{
+		  background-color: white; border: none;  color: black;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;
+	  }
 	  	  </style>
 	
 		
@@ -81,9 +87,11 @@
 		</div>
 	</div>
 </section>
-<!--==================================
-=            User Profile            =
-===================================-->
+
+	<hr>
+							
+	
+	
 <section class="dashboard section">
 	<!-- Container Start -->
 	<div class="container">
@@ -171,13 +179,38 @@
 							<p id = "ppp" hidden="hidden"> 0  </p>
 							</div>
 						<hr>
+		
+									
+						<div class="block"  align="center">
+						<p class="btnjiezhang" >收货地址：
+							<input type="text" class="form-control " id="search" style=" width: auto; height: auto; color:black" placeholder="请输入收货地址">
+							 </p>
+                       </div>
+                         <br>
+						<div class="block"  align="center" >
+						<p class="btnjiezhang">收货人：
+						<input type="text" class="form-control" id="search" style=" width: auto; height: auto  ;color:black" placeholder="请输入收货人信息">
+						</p>
+										
+						</div>
+						 <br>
+						<div class="block"  align="center">
+						<p class="btnjiezhang">电话号码：
+				        <input type="text" class="form-control " id="search" style=" width: auto; height: auto ;color:black" placeholder="请输入电话号码" value="1111111">
+							</p>
+                        </div>
+	                     <br>
 						<div class="topg text-center" >
-							<a href="Bill.do" style="background-color: darkseagreen; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >结账</a>
+							<a href="Bill.do" class="btn btn-main" >结账</a>
 							</div>
 						
 						
 						
 					</div>
+
+							
+	
+
 </section>
 
 <footer class="footer-bottom">
