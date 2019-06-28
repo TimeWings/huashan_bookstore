@@ -180,29 +180,30 @@
 							</div>
 						<hr>
 		
-									
+						<form action="Bill.do">
 						<div class="block"  align="center">
 						<p class="btnjiezhang" >收货地址：
-							<input type="text" class="form-control " id="search" style=" width: auto; height: auto; color:black" placeholder="请输入收货地址">
+							<input type="text" name="u_address" value="<%=u.address %>" required="required" class="form-control " id="search" style=" width: auto; height: auto; color:black" placeholder="请输入收货地址">
 							 </p>
                        </div>
                          <br>
 						<div class="block"  align="center" >
 						<p class="btnjiezhang">收货人：
-						<input type="text" class="form-control" id="search" style=" width: auto; height: auto  ;color:black" placeholder="请输入收货人信息">
+						<input type="text" name="u_name" value="<%=u.name %>" required="required" class="form-control" id="search" style=" width: auto; height: auto  ;color:black" placeholder="请输入收货人信息">
 						</p>
 										
 						</div>
 						 <br>
 						<div class="block"  align="center">
 						<p class="btnjiezhang">电话号码：
-				        <input type="text" class="form-control " id="search" style=" width: auto; height: auto ;color:black" placeholder="请输入电话号码" value="1111111">
+				        <input type="text" name="u_phone"  value=<%=u.phone %> required="required" class="form-control " id="search" style=" width: auto; height: auto ;color:black" placeholder="请输入电话号码">
 							</p>
                         </div>
 	                     <br>
 						<div class="topg text-center" >
-							<a href="Bill.do" class="btn btn-main" >结账</a>
+							<input type="submit" class="btn btn-main" value="结账 "/>
 							</div>
+						</form>
 						
 						
 						
@@ -293,9 +294,9 @@
 
 		if (str == "sub") 
 		{
-			if (count <= 0) 
+			if (count <= 1) 
 			{
-				count = 0;
+				count = 1;
 				count_ele.innerHTML = count;
 				price = per_price * count;
 				price_ele.innerHTML = price.toFixed(2);
