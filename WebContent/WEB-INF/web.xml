@@ -73,6 +73,15 @@
     <servlet-name>AddCart</servlet-name>
     <url-pattern>/AddCart.do</url-pattern>
   </servlet-mapping>
+
+    <servlet>
+    <servlet-name>ModifyPersonalInfo</servlet-name>
+    <servlet-class>controller.ModifyPersonalInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifyPersonalInfo</servlet-name>
+    <url-pattern>/ModifyPersonalInfo.do</url-pattern>
+
   <servlet>
     <servlet-name>ChangeCart</servlet-name>
     <servlet-class>controller.ChangeCartServlet</servlet-class>
@@ -96,5 +105,6 @@
   <servlet-mapping>
     <servlet-name>Bill</servlet-name>
     <url-pattern>/Bill.do</url-pattern>
+
   </servlet-mapping>
 </web-app>
