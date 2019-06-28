@@ -121,4 +121,20 @@
     <servlet-name>AdminCancel</servlet-name>
     <url-pattern>/AdminCancel.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>UserCancel</servlet-name>
+    <servlet-class>controller.UserCancelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserCancel</servlet-name>
+    <url-pattern>/UserCancel.do</url-pattern>
+  </servlet-mapping>
+<servlet>
+    <servlet-name>Receipt</servlet-name>
+    <servlet-class>controller.ReceiptServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Receipt</servlet-name>
+    <url-pattern>/Receipt.do</url-pattern>
+  </servlet-mapping>
 </web-app>
