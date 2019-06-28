@@ -9,7 +9,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>单个分类</title>
+  <title>搜索结果</title>
   
   
   <!-- Bootstrap -->
@@ -22,9 +22,9 @@
 </head>
 
 <%	
-	String type = request.getParameter("type");
+	String keyword = (String)session.getAttribute("keyword");
 	DataBase dataBase = DataBase.getInstance(); 
-	List<Commodity> data = dataBase.getAllCommoditiesByType(type);
+	List<Commodity> data = dataBase.getCommoditiesByTitle(keyword);
 %>
 
 <body class="body-wrapper">
@@ -83,7 +83,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="section-title">
-				  <h2><%=type%>类</h2>
+				  <h2>搜索'<%=keyword%>'的结果</h2>
 				</div>
 			</div>
 		</div>
@@ -517,7 +517,7 @@
 		
 		
 		
-		
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		
 		<div class="pagination justify-content-center ">
 					<nav aria-label="Page navigation example">
@@ -542,8 +542,7 @@
 				</div>
 </section>
 	
-	
-<footer class="footer-bottom">
+<footer class="footer-bottom" >
    
     <div class="container">
       <div class="row">
