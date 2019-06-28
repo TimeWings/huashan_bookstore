@@ -27,7 +27,22 @@
 </head>
 
 <body class="body-wrapper">
-	
+	<%
+	String o_id = request.getParameter("o_id");
+	if(o_id==null)
+	{
+		response.sendRedirect("loginAndregister.jsp");
+		return;
+	}
+	User user = (User)session.getAttribute("user");
+	if(user == null)
+	{
+		response.sendRedirect("loginAndregister.jsp");
+		return;
+	}
+	DataBase dataBase = DataBase.getInstance();
+	Order order = dataBase.getOneOrder(o_id);
+	%>
 	<section>
 	<div class="container">
 		<div class="row">
@@ -57,46 +72,65 @@
 		<h2 align="center">订单详情  </h2>		
 			 <br>
 			 <hr>
-			 <h6 >订单编号:  &nbsp; 6003254646</h6>
+			 <h6 >订单编号:  &nbsp; <%=order.id %></h6>
 		     <hr>  
-		     <h6 >快递单号:  &nbsp; 8888854646  </h6>
+		     <h6 >快递单号:  &nbsp; <%=order.id %>  </h6>
 	     	 <hr>  
-			 <h6 >订单状态:  &nbsp;  运送中    &nbsp;&nbsp;<a  href="#" class="btnqueren" > 确认收货 </a> </h6>			  
+			 <h6 >订单状态:  &nbsp;  <%=order.status.toString() %>    &nbsp;&nbsp;
+			 <a  href="Receipt.do?o_id=<%=order.id %>" class="btnqueren" > 确认收货 </a> 
+			 <a  href="UserCancel.do?o_id=<%=order.id %>" class="btnqueren" > 取消订单 </a> 
+			 </h6>			  
 		     <hr>
-			 <h6 >下单日期:  &nbsp; 2019/6/25   </h6>
+			 <h6 >下单日期:  &nbsp; <%=order.buy_date %>   </h6>
 		     <hr>
 			 <h6 >订单商品详情 </h6>
 		     <br>
 			 <table class="table table-responsive product-dashboard-table" >
 						<thead>
 							<tr>
-								<th>图片</th>
-								<th>信息</th>
-								<th>价钱</th>
-								<th>数量</th>
+								<th class="text-center">图片</th>
+								<th class="text-center">信息</th>
+								<th class="text-center">单价</th>
+								<th class="text-center">数量</th>
+								<th class="text-center">总价</th>
 							    <th class="text-right">选项</th>
 							</tr>
 						</thead>
 						<tbody>
+						<%for(int i=0;i<order.commodities.size();i++)
+							{
+							Commodity c = order.commodities.get(i);
+							%>
 							<tr>
 								
 								<td class="product-thumb"><br>
-									<img width="80px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
+									<a href="onebook.jsp?id=<%= c.id %>">
+									<img  width="250px" height="auto" src="images/commodity/<%=c.id %>.jpg" alt="image description">
+									</a>
+									</td>
 								<td class="product-details">
-									<h6 class="title">第一本书111111</h6><hr>
-									<a class="add-id">ISBN: 5599-4467-BBB</a>
-									<a>日期: 2017/7/27 </a>
+									<h6 class="title"><% 
+								if(c.title.length() > 30)
+									out.print(c.title.substring(0,30)+"..."); 
+								else
+									out.print(c.title); 
+								%></h6><hr>
+									
+									<h6>作者：<%=c.author %> </h6><hr>
+									<h6 class="add-id">ISBN：<%=c.ISBN %></h6>
 								</td>
-								<td class="product-category" align="center"><br><span class="categories">￥：52</span></td>
-								<td class="product-category" align="center"><br><span class="categories">2</span></td>
+								<td class="product-category" align="center"><br><span class="categories"><%=Format.formatDouble(c.price) %></span></td>
+								<td class="product-category" align="center"><br><span class="categories"><%=c.count %></span></td>
+								<td class="product-category" align="center"><br><span class="categories"><%=Format.formatDouble(c.price*c.count) %></span></td>
 							  <td class="action" data-title="Action"><br>
 									<div class="text-right">							
-												<a data-toggle="tooltip" data-placement="top" title="进入该书" class="view" href="">
+												<a data-toggle="tooltip" data-placement="top" title="进入该书" class="view" href="onebook.jsp?id=<%= c.id %>">
 													<i class="fa fa-eye"></i>
 												</a>				
 									</div>
 								</td>
 							</tr>
+							<%} %>
 		</table>
 	     	<hr>
 			<br>

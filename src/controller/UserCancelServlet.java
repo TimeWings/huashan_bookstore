@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,20 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.huashan.database.DataBase;
 import org.huashan.entity.Order;
-import org.huashan.entity.Order.Status;
 import org.huashan.entity.User;
+import org.huashan.entity.Order.Status;
 
 /**
- * Servlet implementation class ShipServlet
+ * Servlet implementation class UserCancelServlet
  */
-@WebServlet("/ShipServlet")
-public class ShipServlet extends HttpServlet {
+@WebServlet("/UserCancelServlet")
+public class UserCancelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ShipServlet() {
+    public UserCancelServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +32,7 @@ public class ShipServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute("user");
-		if( user == null || user.is_admin == false)
+		if( user == null)
 		{
 			response.sendRedirect("loginAndregister.jsp");
 			return;
@@ -43,10 +41,9 @@ public class ShipServlet extends HttpServlet {
 		DataBase dataBase = DataBase.getInstance();
 		Order order = dataBase.getOneOrder(o_id);
 		if(order.status == Status.等待发货)
-			order.status = Status.订单配送中;
-		order.ship_date = new java.sql.Date(new java.util.Date().getTime());
+			order.status = Status.订单已取消;
 		dataBase.updateOneOrder(order);
-		response.sendRedirect("manager.jsp");
+		response.sendRedirect("orderdetail.jsp?o_id="+order.id);
 	}
 
 	/**
@@ -54,7 +51,7 @@ public class ShipServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		doGet(request, response);
 	}
 
 }

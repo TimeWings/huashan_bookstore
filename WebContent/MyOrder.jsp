@@ -118,7 +118,7 @@
 					    <hr><br>
 					</div>
 				
-				<div class="widget disclaimer">
+				<div class="widget disclaimer" hidden="hidden">
 						<h4>其他信息</h4>
 						<hr><br>
 						<p class="member-time" >成交订单数 ：<a id = "user_orders"> 20  </a></p>
@@ -192,57 +192,39 @@
 					<table class="table table-responsive product-dashboard-table">
 						<thead>
 							<tr>
-								<th>图片</th>
-								<th>信息</th>
-								<th>单价</th>
-								<th>数量</th>
-								<th>总价</th>
+								<th class="text-center">图片</th>
+								<th class="text-center">信息</th>
+								<th class="text-center">状态</th>
+			
+								<th class="text-center">总价</th>
 								<th class="text-right">选项</th>
 							</tr>
 						</thead>
 						<tbody>
 							
 					<%
-					for (int i = 0; i < myorder.size(); i++) {
+					for (int i = 0; i < myorder.size(); i++) 
+					{
+						Order o = myorder.get(i);
 					%>
 							
 							<tr>
 								
-								<td class="product-thumb">
-									<img width="80px" height="auto" src="images/products/products-2.jpg" alt="image description"></td>
+								<td class="product-thumb" >
+									<img width="200px" height="auto" src="images/commodity/<%=o.commodities.get(0).id %>.jpg" alt="image description"></td>
 								<td class="product-details">
-								<%
-								for(int j=0;j<myorder.get(i).commodities.size();j++)
-								{
-								%>
-									<h3 class="title"><a href="onebook.jsp?id=<%=myorder.get(i).commodities.get(j).id%>"><%String name = myorder.get(i).commodities.get(j).name; %>
-								<%=name.length()>15?name.substring(0, 15)+"..." :name%></a> </h3> <br><br>
-								<%
-								}
+								<% 
+								if(o.commodities.get(0).title.length() > 15)
+									out.print(o.commodities.get(0).title.substring(0,15)+"..."); 
+								else
+									out.print(o.commodities.get(0).title); 
 								%>
 								</td>
 								
 								
-								<td class="product-category">
-																<%
-								for(int j=0;j<myorder.get(i).commodities.size();j++)
-								{
-								%>
-									<span class="categories">&nbsp;&nbsp;<%=myorder.get(i).commodities.get(j).price%></span> <br><br>
-																	<%
-								}
-								%>
-								</td>
-								<td class="product-category">
-																								<%
-								for(int j=0;j<myorder.get(i).commodities.size();j++)
-								{
-								%>
-									<span class="categories" >&nbsp;&nbsp;<%=myorder.get(i).commodities.get(j).count%></span><br><br>
-																										<%
-								}
-								%>
-										
+								<td class="product-category" >
+																
+								&nbsp;&nbsp;&nbsp;<%=o.status.toString() %>
 								</td>
 
 								<td class="product-category" align="center">
@@ -259,18 +241,11 @@
 										<ul class="list-inline justify-content-center">
 											
 											<li class="list-inline-item a">
-												<a data-toggle="tooltip" data-placement="top" title="订单详情" class="view" href="">
+												<a data-toggle="tooltip" data-placement="top" title="订单详情" class="view" href="orderdetail.jsp?o_id=<%= o.id %>">
 													<i class="fa fa-eye"></i>
 												</a>
 												
-												<div class="c"> 
-                                              <ul class="text-left">
-											  <li>订单编号：<a><%=myorder.get(i).id%></a></li>
-                                              <li>订单状态：<a><%=myorder.get(i).status%></a></li>
-											  <li>快递单号：<a><%=myorder.get(i).id%></a></li> 
-											  <li>下单日期：<a style="width: 100px; font: 40px"><%=myorder.get(i).buy_date.toString()%></a></li> 
-												</ul> 
-										</div> 		
+			
 											</li>
 										
 										
