@@ -901,7 +901,7 @@ public class DataBase
 		    	String sql = "select * from commodity natural join cart where user_id = ? and commodity.id=com_id";
 	            PreparedStatement pstmt = connection.prepareStatement(sql);
 	            pstmt.setString(1, u_id);
-	            ResultSet resultSet = pstmt.executeQuery(sql);
+	            ResultSet resultSet = pstmt.executeQuery();
 	            
 	            while(resultSet.next())
 	            {
