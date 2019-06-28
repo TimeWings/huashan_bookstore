@@ -1160,7 +1160,7 @@ public class DataBase
 	    }
 	} 
     /**
-     * 查找符合标题的商品
+     * 查找符合标题的商品(按销量降序)
      *@author 邓家豪
      * @param title 查询标题
      * @return 符合标题的商品
@@ -1173,7 +1173,7 @@ public class DataBase
         	//Class.forName("com.mysql.jdbc.Driver");
     	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
     	    {
-    	    	String sql = "select * from commodity where title like '%"+title+"%'";
+    	    	String sql = "select * from commodity where title like '%"+title+"%' order by sales desc";
                 Statement statement = connection.createStatement();
                 
                 ResultSet resultSet = statement.executeQuery(sql);
@@ -1205,7 +1205,52 @@ public class DataBase
         }
     }
     /**
-     * 查找符合类型的商品
+     * 查找符合类型的商品(按销量降序)排行榜
+     *@author 邓家豪
+     * @param type 商品类型
+     * @return 符合类型的商品
+     */
+    public List<Commodity> getCommoditiesByTypeInRange(String type)
+    {
+    	List<Commodity> commodities = new ArrayList<Commodity>();
+        try
+        {
+        	//Class.forName("com.mysql.jdbc.Driver");
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "select * from commodity where title like '%"+type+"%' order by sales desc limit 10";
+                Statement statement = connection.createStatement();
+                
+                ResultSet resultSet = statement.executeQuery(sql);
+                
+                while(resultSet.next())
+                {
+                	Commodity commodity = new Commodity();
+                	commodity.id = resultSet.getInt(1);
+                	commodity.name = resultSet.getString(2);
+                	commodity.author = resultSet.getString(3);
+                	commodity.description = resultSet.getString(4);
+                	commodity.ISBN = resultSet.getString(5);
+                	commodity.price = resultSet.getDouble(6);
+                	commodity.publisher = resultSet.getString(7);
+                	commodity.stock = resultSet.getInt(8);
+                	commodity.destine = resultSet.getInt(9);
+                	commodity.sales = resultSet.getInt(10);
+                	commodity.type = resultSet.getString(11);
+                	commodities.add(commodity);
+                }
+                
+                return commodities;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return commodities;
+        }
+    }
+    /**
+     * 查找符合类型的商品(按销量降序)
      *@author 邓家豪
      * @param type 商品类型
      * @return 符合类型的商品
@@ -1218,7 +1263,7 @@ public class DataBase
         	//Class.forName("com.mysql.jdbc.Driver");
     	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
     	    {
-    	    	String sql = "select * from commodity where title like '%"+type+"%'";
+    	    	String sql = "select * from commodity where title like '%"+type+"%' order by sales desc";
                 Statement statement = connection.createStatement();
                 
                 ResultSet resultSet = statement.executeQuery(sql);
