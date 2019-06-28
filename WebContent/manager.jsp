@@ -256,8 +256,8 @@ img {
 											<span class="am-icon-caret-down"></span>
 										</button>
 										<ul class="dropdown-content" style="width:10px">
-											<li style="list-style-type: none"><a href="#"> 发货</a></li>
-											<li style="list-style-type: none"><a href="#"> 取消</a></li>
+											<li style="list-style-type: none"><a href="Ship.do?o_id=<%= o.id%>"> 发货</a></li>
+											<li style="list-style-type: none"><a href="AdminCancel.do?o_id=<%= o.id%>"> 取消</a></li>
 											
 										</ul>
 									</div>
@@ -266,18 +266,7 @@ img {
 
 <% } %>
 
-							<tr>
-								<td><input></td>
-								<td><input></td>
-								<td><a href="#"> <input>
-								</a></td>
-								<td><input></td>
-								<td>
-									<button
-										class="am-btn am-btn-default am-btn-xs am-dropdown-toggle"
-										data-am-dropdown-toggle>查询</button>
-								</td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>
@@ -318,20 +307,7 @@ img {
 <%} %>
 							
 
-							<tr>
-								<td><input></td>
-								<td><input></td>
-
-								<td><a href="#"> <input>
-								</a></td>
-
-								<td><input></td>
-								<td>
-									<button
-										class="am-btn am-btn-default am-btn-xs am-dropdown-toggle"
-										data-am-dropdown-toggle>查询</button>
-								</td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>
@@ -366,20 +342,7 @@ img {
 
 							</tr>
 <%} %>
-							<tr>
-								<td><input></td>
-								<td><input></td>
-
-								<td><a href="#"> <input>
-								</a></td>
-
-								<td><input></td>
-								<td>
-									<button
-										class="am-btn am-btn-default am-btn-xs am-dropdown-toggle"
-										data-am-dropdown-toggle>查询</button>
-								</td>
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>
@@ -425,20 +388,7 @@ img {
 							</tr>
 <%} %>
 
-							<tr>
-								<td><input></td>
-								<td><input></td>
-
-								<td><a href="#"> <input>
-								</a></td>
-
-								<td><input></td>
-								<td>
-									<button
-										class="am-btn am-btn-default am-btn-xs am-dropdown-toggle"
-										data-am-dropdown-toggle>查询</button>
-								</td>
-							</tr>
+						
 						</tbody>
 					</table>
 				</div>
@@ -449,18 +399,18 @@ img {
 			<div id="shangjia_div" style="display: none">
 			<form method="post" action="AddCommodity.do" enctype="multipart/form-data">
 				<div class="am-text-center">
-					<b style="cursor: pointer">ISBN : <input name="ISBN"/></b> 
-					<b style="cursor: pointer">库存 : <input name="stock"/></b>
+					<b style="cursor: pointer">ISBN : <input name="ISBN" required="required"/></b> 
+					<b style="cursor: pointer">库存 : <input name="stock" required="required"/></b>
 				</div>
 				<hr>
 				<div class="am-text-center">
-					<b style="cursor: pointer">书名 : <input name="name"/></b> <b
-						style="cursor: pointer">作者 : <input name="author"/></b>
+					<b style="cursor: pointer">书名 : <input name="name" required="required"/></b> <b
+						style="cursor: pointer">作者 : <input name="author" required="required"/></b>
 				</div>
 				<hr>
 				<div class="am-text-center">
-					<b style="cursor: pointer">价格 : <input name="price"/></b> <b
-						style="cursor: pointer">出版社 : <input name="publisher"/></b>
+					<b style="cursor: pointer">价格 : <input name="price" required="required"/></b> <b
+						style="cursor: pointer">出版社 : <input name="publisher" required="required"/></b>
 				</div>
 
 				<br>
@@ -470,33 +420,27 @@ img {
 				<br>
 				<div class="am-text-center">
 					<b>商品标题 :
-					<textarea cols="60" rows="1" name="title"></textarea>
+					<textarea cols="60" rows="1" name="title" required="required"></textarea>
 					</b>
 				</div>
 				<hr>
 				<div class="am-text-center">
 				<b>
 					详细信息 :
-					<textarea cols="60" rows="8" name="description"></textarea>
+					<textarea cols="60" rows="8" name="description" required="required"></textarea>
 				</b>
 				</div>
 				<hr>
 				<div class="am-text-center">
 				<b>
 					商品类别 :
-					<select name="type" >
-					<option  value="计算机">计算机</option>
-					<option  value="数学">数学</option>
-					<option  value="英语">英语</option>
-					<option  value="小说">小说</option>
-					<option  value="哲学">哲学</option>
-					</select>
+					<input name="type" type="text" required="required"/>
 				</b>
 				</div>
 				<hr>
 				<div align="center">
 					<b>商品图片：</b>
-					<input type="file" style="display: block" name="uploadFile"
+					<input type="file" style="display: block" name="uploadFile" accept="image/jpg"
 						onchange="filechange(event)" /> 
 						<img src="" width="600px" height="600px" id="img-change"
 						style="text-align: center">
@@ -680,7 +624,7 @@ window.onload=function(){
 
         for(var i=0;i<iLen;i++){  
 
-            if (!input['value'].match(/.jpg|.gif|.png|.jpeg|.bmp/i)){　　//判断上传文件格式    
+            if (!input['value'].match(/.jpg/i)){　　//判断上传文件格式    
 
                 return alert("上传的图片格式不正确，请重新选择");    
 
