@@ -114,7 +114,7 @@
 					    <hr><br>
 					    <p class="member-time">电话 ：<a id = "user_birthary" ><%=u.phone%></a></p>
 					    <hr><br>
-					    <p class="member-time" >兴趣爱好 ： <a id = "user_hobbies"> 打篮球 </a></p>
+					    <p class="member-time" >兴趣爱好 ： <a id = "user_hobbies"> 唱,跳,rap,打篮球 </a></p>
 					    <hr><br>
 					</div>
 				
@@ -137,6 +137,7 @@
 			</div>
 			
 						<div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0" style="display: none" id="modify" >
+						<form method = "post" action = "ModifyPersonalInfo.do" accept-charset="UTF-8">
 				<div class="sidebar">
 					<!-- User Widget -->
 					<div class="widget user-dashboard-profile">
@@ -147,19 +148,18 @@
 						
 						<h5 class="text-center">图片:<input  id="modify_image"></h5>
 						<!-- User Name -->
-						<h5 class="text-center">用户名:<input  type="text" id="modify_name"></h5>
+						<h5 class="text-center">用户名:<input  type="text" name = "new_name" id="modify_name"></h5>
 					
 					</div>
 				</div>
-				
 				<div class="widget user">
                         <h4>详细信息</h4>
 					    <hr><br>
-						<p class="member-time">I  D ： <input type="text" disabled="disabled" id="modify_id"></p>
+						<p class="member-time">I  D ： <input type="text" readonly="readonly" id="modify_id"></p>
 					    <hr><br>
-						<p class="member-time">地址 ：  <input type="text" id = "modify_address"></p>
+						<p class="member-time">地址 ：  <input type="text" name = "new_address" id = "modify_address"></p>
 					    <hr><br>
-					    <p class="member-time">电话 ：  <input type="date" id = "modify_birthday"></p>
+					    <p class="member-time">电话 ：  <input type="text" name = "new_phone" id = "modify_birthday"></p>
 					    <hr><br>
 					    <p class="member-time">兴趣爱好 ： <input type="text" id = "modify_hobbies"></p>
 					    <hr><br>
@@ -168,9 +168,9 @@
 				<div class="widget disclaimer">
 						<h4>其他信息</h4>
 						<hr><br>
-						<p class="member-time">成交订单数 ：<input type="text" disabled="disabled" id = "modify_orders" ></p>
+						<p class="member-time">成交订单数 ：<input type="text" readonly="readonly" id = "modify_orders" ></p>
 					    <hr><br>
-						<p class="member-time">购物车总数 ：<input type="text" disabled="disabled" id = "modify_products"></p>
+						<p class="member-time">购物车总数 ：<input type="text" readonly="readonly" id = "modify_products"></p>
 					    <hr><br> 
 					</div>
 				
@@ -179,10 +179,10 @@
 						<p>请点击按钮确认修改
 						</p>
 					
-						<button class="btn btn-transparent-white" id="btn_mf">提交</button>
+						<input type = "submit" class="btn btn-transparent-white" id="btn_mf" value="提交"/>
 					</div>
 					
-				
+				</form>
 				
 			</div>
 			<div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
