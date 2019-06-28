@@ -207,7 +207,8 @@
 <script type="text/javascript">
 			
 		
-	  function check(state1,state2){
+	  function check(state1,state2)
+	  {
 		  
 		var checkbox = document.getElementById(state1);
 		
@@ -237,60 +238,63 @@
 		}
 		
 	}
-			function show(str,price_id,count_id){
-				
-				var count = document.getElementById(count_id);
-				
-				var x = parseInt(count.innerHTML);
-				
-				var pri = document.getElementById(price_id);
-				
-				var allpri  = document.getElementById("allprice");
-				
-				var sumpri = parseFloat(allpri.innerHTML);
-				
-				var p  = document.getElementById("ppp");
-				
-				p.innerHTML = sumpri.toString();
-				
-			
-				if(x>0)
-				var p = parseFloat(pri.innerHTML)/x;
-				
-				
-				if(str=="sub"){
-					if(x<=0){
-						count.innerHTML="0";
-						pri.innerHTML="0";
-					}else{
-						sumpri -= p;
-						x--;
-						count.innerHTML = x;
-						p=p*x;
-						pri.innerHTML=p.toFixed(2);						
-						allpri.innerHTML=sumpri.toFixed(2);
-					}
-				}
-				
-				else if(str=="add"){
-					if(x<=0)
-						{
-						  count.innerHTML="1";
-						  pri.innerHTML="26";					 
-						  sumpri= sumpri+parseFloat(pri.innerHTML);
-						 allpri.innerHTML=sumpri.toFixed(2);
-						}
-					else{
-					sumpri= sumpri+p;
-					x++;
-					count.innerHTML=x;
-					p=p*x;
-					pri.innerHTML=p.toFixed(2);					
-						allpri.innerHTML=sumpri.toFixed(2);
-					}
-				}	
+	function show(str,price_id,count_id)
+	{
+		
+		var count = document.getElementById(count_id);
+
+		var x = parseInt(count.innerHTML);
+
+		var pri = document.getElementById(price_id);
+
+		var allpri = document.getElementById("allprice");
+
+		var sumpri = parseFloat(allpri.innerHTML);
+
+		var p = document.getElementById("ppp");
+
+		p.innerHTML = sumpri.toString();
+
+		if (x > 0)
+			var p = parseFloat(pri.innerHTML) / x;
+
+		if (str == "sub") 
+		{
+			if (x <= 0) 
+			{
+				count.innerHTML = "0";
+				pri.innerHTML = "0";
+			} else 
+			{
+				sumpri -= p;
+				x--;
+				count.innerHTML = x;
+				p = p * x;
+				pri.innerHTML = p.toFixed(2);
+				allpri.innerHTML = sumpri.toFixed(2);
 			}
-		</script>
+		}
+
+		else if (str == "add") 
+		{
+			if (x <= 0) 
+			{
+				count.innerHTML = "1";
+				pri.innerHTML = "26";
+				sumpri = sumpri + parseFloat(pri.innerHTML);
+				allpri.innerHTML = sumpri.toFixed(2);
+			} else 
+			{
+				sumpri = sumpri + p;
+				x++;
+				count.innerHTML = x;
+				p = p * x;
+				pri.innerHTML = p.toFixed(2);
+				allpri.innerHTML = sumpri.toFixed(2);
+			}
+		}
+	}
+</script>
  
 </body>
 
