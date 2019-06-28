@@ -896,13 +896,12 @@ public class DataBase
     	List<Commodity> commodities = new ArrayList<Commodity>();
     	try
     	{
-    		//Class.forName("com.mysql.jdbc.Driver");
     		try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
 		    {
-		    	String sql = "select * from commodity natural join cart where user_id = "+"'"+u_id+"'"+" and commodity.id=com_id";
-	            Statement statement = connection.createStatement();
-	            
-	            ResultSet resultSet = statement.executeQuery(sql);
+		    	String sql = "select * from commodity natural join cart where user_id = ? and commodity.id=com_id";
+	            PreparedStatement pstmt = connection.prepareStatement(sql);
+	            pstmt.setString(1, u_id);
+	            ResultSet resultSet = pstmt.executeQuery(sql);
 	            
 	            while(resultSet.next())
 	            {
@@ -1027,6 +1026,91 @@ public class DataBase
 			System.out.println("更新Cart表时出错");
 			return 0;
 		}
+    }
+    
+    /**
+     * 修改购物车商品数量
+     * @author 何俊霖
+     * @param c_id 商品id
+     * @param u_id 用户id
+     * @return 修改的行数
+     */
+    public int updateUserCart(int c_id,String u_id,int count)
+    {
+    	int num = 0;
+		//Class.forName("com.mysql.jdbc.Driver");
+		try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+	    {		
+			String sql = "update `cart` set count=? where user_id=? and com_id=?";
+		    PreparedStatement pstmt = connection.prepareStatement(sql);
+		    	
+		    pstmt.setInt(1, count);
+		    pstmt.setString(2, u_id);
+		    pstmt.setInt(3, c_id);
+		    num = pstmt.executeUpdate();
+            System.out.println("成功更新cart表"+num+"行");
+         }
+		catch (Exception e) 
+		{
+			// TODO: handle exception
+			e.printStackTrace();
+			return 0;
+		}
+		return num;
+    }
+    
+    /**
+     * 删除指定用户购物车的指定商品
+     * @author 何俊霖
+     * @param c_id 商品id
+     * @param u_id 用户id
+     * @return 返回删除的商品行数
+     */
+    public int deleteUserCart(int c_id,String u_id)
+    {
+		int num = 0;
+		try (Connection connection = DriverManager.getConnection(DBurl, DBusername, DBpassword);)
+		{
+			String sql = "delete from `cart` where user_id=? and com_id=?";
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1, u_id);
+			pstmt.setInt(2, c_id);
+			num = pstmt.executeUpdate();
+			System.out.println("成功删除cart表" + num + "行");
+		} 
+		catch (Exception e)
+		{
+			// TODO: handle exception
+			e.printStackTrace();
+			return 0;
+		}
+		return num;
+    }
+    
+    /**
+     * 删除指定用户购物车的所有商品
+     * @author 何俊霖
+     * @param u_id 用户id
+     * @return 返回删除的商品行数
+     */
+    public int deleteUserCart(String u_id)
+    {
+		int num = 0;
+		try (Connection connection = DriverManager.getConnection(DBurl, DBusername, DBpassword);)
+		{
+			String sql = "delete from `cart` where user_id=?";
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1, u_id);
+			num = pstmt.executeUpdate();
+			System.out.println("成功删除cart表" + num + "行");
+		} 
+		catch (Exception e)
+		{
+			// TODO: handle exception
+			e.printStackTrace();
+			return num;
+		}
+		return num;
     }
     	
     /**
