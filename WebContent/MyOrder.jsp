@@ -211,7 +211,7 @@
 							<tr>
 								
 								<td class="product-thumb" >
-									<img width="200px" height="auto" src="images/products/products-2.jpg" alt="image description"></td>
+									<img width="200px" height="auto" src="images/commodity/<%=o.commodities.get(0).id %>.jpg" alt="image description"></td>
 								<td class="product-details">
 								<% 
 								if(o.commodities.get(0).title.length() > 15)

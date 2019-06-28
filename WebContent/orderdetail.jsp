@@ -105,7 +105,7 @@
 								
 								<td class="product-thumb"><br>
 									<a href="onebook.jsp?id=<%= c.id %>">
-									<img  width="250px" height="auto" src="images/products/products-1.jpg" alt="image description">
+									<img  width="250px" height="auto" src="images/commodity/<%=c.id %>.jpg" alt="image description">
 									</a>
 									</td>
 								<td class="product-details">

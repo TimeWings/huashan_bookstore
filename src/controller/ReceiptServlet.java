@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.huashan.database.DataBase;
+import org.huashan.entity.Commodity;
 import org.huashan.entity.Order;
 import org.huashan.entity.User;
 import org.huashan.entity.Order.Status;
@@ -42,7 +43,15 @@ public class ReceiptServlet extends HttpServlet {
 		Order order = dataBase.getOneOrder(o_id);
 		if(order.status == Status.订单配送中)
 			order.status = Status.交易完成;
+		order.receipt_date = new java.sql.Date(new java.util.Date().getTime());
 		dataBase.updateOneOrder(order);
+		
+		for(int i=0;i<order.commodities.size();i++)
+		{
+			Commodity commodity = order.commodities.get(i);
+			commodity.sales += commodity.count;
+			dataBase.updateOneCommodity(commodity);
+		}
 		response.sendRedirect("orderdetail.jsp?o_id="+order.id);
 	}
 

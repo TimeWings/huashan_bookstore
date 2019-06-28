@@ -48,16 +48,13 @@
 </style>
 
 </head>
-<c:if test="${data==null }">
 	<%
 		DataBase database = DataBase.getInstance();
-			List<Commodity> data = database.getAllCommodities();
-			List<Commodity> data2 = database.getAllCommoditiesOrderBySales();
-			session.setAttribute("data", data);
-			session.setAttribute("data2", data2);
+			List<Commodity> commodities = database.getAllCommodities();
+			List<Commodity> commoditiesOrderBySales = database.getAllCommoditiesOrderBySales();
 			//request.getRequestDispatcher("index.jsp").forward(request, response);
 	%>
-</c:if>
+
 <body class="body-wrapper">
 
 	<section>
@@ -247,8 +244,7 @@
 			</div>
 			<div class="row" style="opacity: 0.8">
 				<%
-					List<Commodity> d = (List) session.getAttribute("data");
-					for (int i = 0; i < 6; i++) {
+					for (int i = commodities.size()-1; i >=commodities.size()-6; i--) {
 				%>
 				<!-- offer 01 -->
 				<div class="col-sm-12 col-lg-4">
@@ -257,8 +253,8 @@
 						<div class="card">
 							<div class="thumb-content">
 
-								<a href="onebook.jsp?id=<%=d.get(i).id%>">
-									<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+								<a href="onebook.jsp?id=<%=commodities.get(i).id%>">
+									<img class="card-img-top img-fluid" src="images/commodity/<%=commodities.get(i).id %>.jpg" alt="Card image cap">
 								</a>
 							</div>
 
@@ -266,24 +262,24 @@
 							<div class="card-body">
 
 								<h4 class="card-title">
-									<a><%String name = d.get(i).name; %>
-								<%=name.length()>30?name.substring(0, 30)+"..." :name%></a>
+									<a><%String name = commodities.get(i).name; %>
+								<%=name.length()>15?name.substring(0, 15)+"..." :name%></a>
 								</h4>
 								<ul class="list-inline product-meta">
 									<li class="list-inline-item">
 										<a>
 											<em class="fa fa-id-card "></em>
-											<%=d.get(i).ISBN%>
+											<%=commodities.get(i).ISBN%>
 										</a>
 									</li>
 									<li class="list-inline-item">
 										<a>
 											<em class="fa fa-calendar"></em>
-											<%=d.get(i).publisher%>
+											<%=commodities.get(i).publisher%>
 										</a>
 									</li>
 								</ul>
-								<p class="card-text"><%String description = d.get(i).description; %>
+								<p class="card-text"><%String description = commodities.get(i).description; %>
 								<%=description.length()>50?description.substring(0, 50)+"..." :description%></p>
 								<hr>
 								<div class="product-ratings">
@@ -308,7 +304,7 @@
 										</li>
 									</ul>
 								</div>
-								<p>￥：<%=d.get(i).price%>元</p>
+								<p>￥：<%=commodities.get(i).price%>元</p>
 							</div>
 
 
@@ -336,7 +332,6 @@
 			</div>
 			<div class="row" style="opacity: 0.8">
 				<%
-					List<Commodity> d2 = (List) session.getAttribute("data2");
 					for (int i = 0; i < 6; i++) {
 				%>
 				<!-- offer 01 -->
@@ -346,8 +341,8 @@
 						<div class="card">
 							<div class="thumb-content">
 
-								<a href="onebook.jsp?id=<%=d2.get(i).id%>">
-									<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+								<a href="onebook.jsp?id=<%=commoditiesOrderBySales.get(i).id%>">
+									<img class="card-img-top img-fluid" src="images/commodity/<%=commoditiesOrderBySales.get(i).id %>.jpg" alt="Card image cap">
 								</a>
 							</div>
 
@@ -355,24 +350,24 @@
 							<div class="card-body">
 
 								<h4 class="card-title">
-									<a><%String name = d2.get(i).name; %>
-								<%=name.length()>30?name.substring(0, 30)+"..." :name%></a>
+									<a><%String name = commoditiesOrderBySales.get(i).name; %>
+								<%=name.length()>15?name.substring(0, 15)+"..." :name%></a>
 								</h4>
 								<ul class="list-inline product-meta">
 									<li class="list-inline-item">
 										<a>
 											<em class="fa fa-id-card "></em>
-											<%=d2.get(i).ISBN%>
+											<%=commoditiesOrderBySales.get(i).ISBN%>
 										</a>
 									</li>
 									<li class="list-inline-item">
 										<a>
 											<em class="fa fa-calendar"></em>
-											<%=d2.get(i).publisher%>
+											<%=commoditiesOrderBySales.get(i).publisher%>
 										</a>
 									</li>
 								</ul>
-								<p class="card-text"><%String description = d2.get(i).description; %>
+								<p class="card-text"><%String description = commoditiesOrderBySales.get(i).description; %>
 								<%=description.length()>50?description.substring(0, 50)+"..." :description%></p>
 								<hr>
 								<div class="product-ratings">
@@ -397,7 +392,7 @@
 										</li>
 									</ul>
 								</div>
-								<p>￥：<%=d2.get(i).price%>元</p>
+								<p>￥：<%=commoditiesOrderBySales.get(i).price%>元</p>
 							</div>
 
 

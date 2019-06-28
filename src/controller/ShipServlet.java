@@ -44,6 +44,7 @@ public class ShipServlet extends HttpServlet {
 		Order order = dataBase.getOneOrder(o_id);
 		if(order.status == Status.等待发货)
 			order.status = Status.订单配送中;
+		order.ship_date = new java.sql.Date(new java.util.Date().getTime());
 		dataBase.updateOneOrder(order);
 		response.sendRedirect("manager.jsp");
 	}
