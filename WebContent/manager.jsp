@@ -146,7 +146,7 @@ img {
 						首页</a></li>
 				<li><a href="#" id="shangjia"><span
 						class="am-icon-pencil-square-o"></span> 上架</a></li>
-				<li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
+				<li><a href="LoginOut.do"><span class="am-icon-sign-out"></span> 注销</a></li>
 			</ul>
 
 			<div class="am-panel am-panel-default admin-sidebar-panel">

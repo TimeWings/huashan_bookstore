@@ -121,6 +121,15 @@
     <servlet-name>AdminCancel</servlet-name>
     <url-pattern>/AdminCancel.do</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SearchBook</servlet-name>
+    <servlet-class>controller.SearchBookServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchBook</servlet-name>
+    <url-pattern>/SearchBook.do</url-pattern>
+    </servlet-mapping>
   <servlet>
     <servlet-name>UserCancel</servlet-name>
     <servlet-class>controller.UserCancelServlet</servlet-class>

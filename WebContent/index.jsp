@@ -3,6 +3,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="org.huashan.database.DataBase"%>
 <%@ page import="org.huashan.entity.Commodity"%>
+<%@ page import="org.huashan.entity.User"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
@@ -50,6 +51,10 @@
 </head>
 	<%
 		DataBase database = DataBase.getInstance();
+
+	%>
+
+	<%
 			List<Commodity> commodities = database.getAllCommodities();
 			List<Commodity> commoditiesOrderBySales = database.getAllCommoditiesOrderBySales();
 			//request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -72,13 +77,13 @@
 								<div style="cursor: pointer" class="text-center">教&nbsp;&nbsp;育</div>
 								<div class="dropdown-content text-center">
 									<p>
-										<a href="classification.jsp">历史类 </a>
+										<a href="classification.jsp?type=计算机">计算机类 </a>
 									</p>
 									<p>
-										<a href="#">数学类</a>
+										<a href="classification.jsp?type=数学">数学类</a>
 									</p>
 									<p>
-										<a href="#">英语类</a>
+										<a href="classification.jsp?type=英语">英语类</a>
 									</p>
 								</div>
 
@@ -88,13 +93,13 @@
 								<div style="cursor: pointer" class="text-center">文&nbsp;&nbsp;化</div>
 								<div class="dropdown-content text-center">
 									<p>
-										<a href="#">哲学类</a>
+										<a href="classification.jsp?type=哲学">哲学类</a>
 									</p>
 									<p>
-										<a href="#">历史类</a>
+										<a href="classification.jsp?type=历史">历史类</a>
 									</p>
 									<p>
-										<a href="#">宗教类</a>
+										<a href="classification.jsp?type=宗教">宗教类</a>
 									</p>
 								</div>
 
@@ -104,13 +109,13 @@
 								<div style="cursor: pointer" class="text-center">日常生活</div>
 								<div class="dropdown-content text-center">
 									<p>
-										<a href="#">旅游类</a>
+										<a href="classification.jsp?type=旅游">旅游类</a>
 									</p>
 									<p>
-										<a href="#">美食类</a>
+										<a href="classification.jsp?type=美食">美食类</a>
 									</p>
 									<p>
-										<a href="#">运动类</a>
+										<a href="classification.jsp?type=运动">运动类</a>
 									</p>
 								</div>
 
@@ -120,13 +125,13 @@
 								<div style="cursor: pointer" class="text-center">文&nbsp;&nbsp;艺</div>
 								<div class="dropdown-content text-center">
 									<p>
-										<a href="#">传记类</a>
+										<a href="classification.jsp?type=传记">传记类</a>
 									</p>
 									<p>
-										<a href="#">小说类</a>
+										<a href="classification.jsp?type=小说">小说类</a>
 									</p>
 									<p>
-										<a href="#">青春文学</a>
+										<a href="classification.jsp?type=青春文学">青春文学</a>
 									</p>
 								</div>
 
@@ -136,13 +141,13 @@
 								<div style="cursor: pointer" class="text-center">科&nbsp;&nbsp;学</div>
 								<div class="dropdown-content text-center">
 									<p>
-										<a href="#">航空航天</a>
+										<a href="classification.jsp?type=航空航天">航空航天</a>
 									</p>
 									<p>
-										<a href="#">自然科学</a>
+										<a href="classification.jsp?type=自然科学">自然科学</a>
 									</p>
 									<p>
-										<a href="#">海底世界</a>
+										<a href="classification.jsp?type=海底世界">海底世界</a>
 									</p>
 								</div>
 
@@ -159,8 +164,22 @@
 								</c:if>
 								<c:if test="${not empty user }">
   		欢迎你：${user.username } <br>
+  		<%
+			User u = (User) session.getAttribute("user");
+  		if(u.is_admin == false)
+  		{
+  	  	%>
   		<a href="LoginOut.do">注销</a>
-								</c:if>	
+  		<%
+  		}
+  		else
+  		{
+  		%>
+  		<a href="manager.jsp">管理员后台</a>
+  		<%
+  		}
+  		%>
+  		</c:if>
 
 							</div>
 
@@ -204,15 +223,15 @@
 					</div>
 					<!-- Advance Search -->
 					<div class="advance-search">
-						<form action="#">
+						<form method = "post" action = "SearchBook.do" accept-charset="UTF-8">
 							<div class="row" id="main">
 								<!-- Store Search -->
 
 								<div class="ctbox">
 									<div class="block d-flex" style="vertical-align: middel">
-										<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="请输入关键字">
+										<input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" name = "keyword" id="search" placeholder="请输入关键字">
 
-										<button class="btn btn-main">搜索</button>
+										<button type = "submit" class="btn btn-main">搜索</button>
 									</div>
 								</div>
 							</div>
@@ -427,31 +446,25 @@
 									<i class="fa fa-laptop icon-bg-1"></i>
 									<h4>计算机</h4>
 								</div>
+								<%
+									List<Commodity> data3 = database.getCommoditiesByTypeInRange("计算机");
+								%>
 								<ul class="category-list">
+								<%
+								for(int i=0;i<data3.size();i++)
+								{
+									if(i>=4) break;
+								%>
 									<li>
-										<a href="category.html">
-											第一本书
-											<span>销量</span>
+										<a href="onebook.jsp?id=<%=data3.get(i).id%>">
+											<%String name = data3.get(i).name; %>
+								<%=name.length()>12?name.substring(0, 12)+"..." :name%>
+											<span><%=data3.get(i).sales%></span>
 										</a>
 									</li>
-									<li>
-										<a href="category.html">
-											第二本书
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Microsoft
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Monitors
-											<span>销量</span>
-										</a>
-									</li>
+								<%
+								}
+								%>
 								</ul>
 							</div>
 						</div>
@@ -463,31 +476,25 @@
 									<i class="fa fa-apple icon-bg-2"></i>
 									<h4>自然科学</h4>
 								</div>
+								<%
+									data3 = database.getCommoditiesByTypeInRange("自然科学");
+								%>
 								<ul class="category-list">
+								<%
+								for(int i=0;i<data3.size();i++)
+								{
+									if(i>=4) break;
+								%>
 									<li>
-										<a href="category.html">
-											Cafe
-											<span>销量</span>
+										<a href="onebook.jsp?id=<%=data3.get(i).id%>">
+											<%String name = data3.get(i).name; %>
+								<%=name.length()>12?name.substring(0, 12)+"..." :name%>
+											<span><%=data3.get(i).sales%></span>
 										</a>
 									</li>
-									<li>
-										<a href="category.html">
-											Fast food
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Restaurants
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Food Track
-											<span>销量</span>
-										</a>
-									</li>
+								<%
+								}
+								%>
 								</ul>
 							</div>
 						</div>
@@ -499,31 +506,25 @@
 									<i class="fa fa-home icon-bg-3"></i>
 									<h4>青春文学</h4>
 								</div>
+								<%
+									data3 = database.getCommoditiesByTypeInRange("青春文学");
+								%>
 								<ul class="category-list">
+								<%
+								for(int i=0;i<data3.size();i++)
+								{
+									if(i>=4) break;
+								%>
 									<li>
-										<a href="category.html">
-											Farms
-											<span>销量</span>
+										<a href="onebook.jsp?id=<%=data3.get(i).id%>">
+											<%String name = data3.get(i).name; %>
+								<%=name.length()>12?name.substring(0, 12)+"..." :name%>
+											<span><%=data3.get(i).sales%></span>
 										</a>
 									</li>
-									<li>
-										<a href="category.html">
-											Gym
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Hospitals
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Parolurs
-											<span>销量</span>
-										</a>
-									</li>
+								<%
+								}
+								%>
 								</ul>
 							</div>
 						</div>
@@ -535,31 +536,25 @@
 									<i class="fa fa-shopping-basket icon-bg-4"></i>
 									<h4>美&nbsp;&nbsp;食</h4>
 								</div>
+								<%
+									data3 = database.getCommoditiesByTypeInRange("美食");
+								%>
 								<ul class="category-list">
+								<%
+								for(int i=0;i<data3.size();i++)
+								{
+									if(i>=4) break;
+								%>
 									<li>
-										<a href="category.html">
-											Mens Wears
-											<span>销量</span>
+										<a href="onebook.jsp?id=<%=data3.get(i).id%>">
+											<%String name = data3.get(i).name; %>
+								<%=name.length()>12?name.substring(0, 12)+"..." :name%>
+											<span><%=data3.get(i).sales%></span>
 										</a>
 									</li>
-									<li>
-										<a href="category.html">
-											Accessories
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Kids Wears
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											It & Software
-											<span>销量</span>
-										</a>
-									</li>
+								<%
+								}
+								%>
 								</ul>
 							</div>
 						</div>
@@ -571,31 +566,25 @@
 									<i class="fa fa-briefcase icon-bg-5"></i>
 									<h4>历&nbsp;&nbsp;史</h4>
 								</div>
+								<%
+									data3 = database.getCommoditiesByTypeInRange("历史");
+								%>
 								<ul class="category-list">
+								<%
+								for(int i=0;i<data3.size();i++)
+								{
+									if(i>=4) break;
+								%>
 									<li>
-										<a href="category.html">
-											It Jobs
-											<span>销量</span>
+										<a href="onebook.jsp?id=<%=data3.get(i).id%>">
+											<%String name = data3.get(i).name; %>
+								<%=name.length()>12?name.substring(0, 12)+"..." :name%>
+											<span><%=data3.get(i).sales%></span>
 										</a>
 									</li>
-									<li>
-										<a href="category.html">
-											Cleaning & Washing
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Management
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Voluntary Works
-											<span>销量</span>
-										</a>
-									</li>
+								<%
+								}
+								%>
 								</ul>
 							</div>
 						</div>
@@ -607,31 +596,25 @@
 									<i class="fa fa-car icon-bg-6"></i>
 									<h4>航空航天</h4>
 								</div>
+								<%
+									data3 = database.getCommoditiesByTypeInRange("航空航天");
+								%>
 								<ul class="category-list">
+								<%
+								for(int i=0;i<data3.size();i++)
+								{
+									if(i>=4) break;
+								%>
 									<li>
-										<a href="category.html">
-											Bus
-											<span>销量</span>
+										<a href="onebook.jsp?id=<%=data3.get(i).id%>">
+											<%String name = data3.get(i).name; %>
+								<%=name.length()>12?name.substring(0, 12)+"..." :name%>
+											<span><%=data3.get(i).sales%></span>
 										</a>
 									</li>
-									<li>
-										<a href="category.html">
-											Cars
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Motobike
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Rent a car
-											<span>销量</span>
-										</a>
-									</li>
+								<%
+								}
+								%>
 								</ul>
 							</div>
 						</div>
@@ -643,31 +626,25 @@
 									<i class="fa fa-paw icon-bg-7"></i>
 									<h4>运&nbsp;&nbsp;动</h4>
 								</div>
+								<%
+									data3 = database.getCommoditiesByTypeInRange("运动");
+								%>
 								<ul class="category-list">
+								<%
+								for(int i=0;i<data3.size();i++)
+								{
+									if(i>=4) break;
+								%>
 									<li>
-										<a href="category.html">
-											Cats
-											<span>销量</span>
+										<a href="onebook.jsp?id=<%=data3.get(i).id%>">
+											<%String name = data3.get(i).name; %>
+								<%=name.length()>12?name.substring(0, 12)+"..." :name%>
+											<span><%=data3.get(i).sales%></span>
 										</a>
 									</li>
-									<li>
-										<a href="category.html">
-											Dogs
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Birds
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Others
-											<span>销量</span>
-										</a>
-									</li>
+								<%
+								}
+								%>
 								</ul>
 							</div>
 						</div>
@@ -679,31 +656,25 @@
 									<i class="fa fa-laptop icon-bg-8"></i>
 									<h4>数&nbsp;&nbsp;学</h4>
 								</div>
+								<%
+									data3 = database.getCommoditiesByTypeInRange("数学");
+								%>
 								<ul class="category-list">
+								<%
+								for(int i=0;i<data3.size();i++)
+								{
+									if(i>=4) break;
+								%>
 									<li>
-										<a href="category.html">
-											Cleaning
-											<span>销量</span>
+										<a href="onebook.jsp?id=<%=data3.get(i).id%>">
+											<%String name = data3.get(i).name; %>
+								<%=name.length()>12?name.substring(0, 12)+"..." :name%>
+											<span><%=data3.get(i).sales%></span>
 										</a>
 									</li>
-									<li>
-										<a href="category.html">
-											Car Washing
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Clothing
-											<span>销量</span>
-										</a>
-									</li>
-									<li>
-										<a href="category.html">
-											Business
-											<span>销量</span>
-										</a>
-									</li>
+								<%
+								}
+								%>
 								</ul>
 							</div>
 						</div>
