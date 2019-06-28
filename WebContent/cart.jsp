@@ -12,7 +12,7 @@
   <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>购物车</title>
-  
+ <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script> 
 
   <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -114,9 +114,9 @@
 							<tr>
 								<td>
 									<div class="gw_num text-center">
-									<a class="jian" href="javascript:void(0)"  onClick="show('sub','price_<%=c.id%>','count_<%=c.id%>')">-</a> 
+									<a class="jian" href="javascript:void(0)"  onClick="show('sub','price_<%=c.id%>','count_<%=c.id%>',<%=c.id%>,'per_price_<%=c.id%>')">-</a> 
 									<span id="count_<%=c.id%>"><%=c.count %></span> 
-									<a class="add" href="javascript:void(0)" onClick="show('add','price_<%=c.id%>','count_<%=c.id%>')">+</a></div>									
+									<a class="add" href="javascript:void(0)" onClick="show('add','price_<%=c.id%>','count_<%=c.id%>',<%=c.id%>,'per_price_<%=c.id%>')">+</a></div>									
 								</td>
 								<td class="product-details text-center">
 									<img width="160px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
@@ -128,11 +128,13 @@
 									<span class="location"><%=c.publisher%></span>
 								</td>
 								<td><span class="categories"><a>￥：</a><b id="price_<%=c.id%>"><%=Format.formatDouble(c.price*c.count) %></b><c> 元</c></span></td>
+								<td id="per_price_<%=c.id%>" hidden="hidden"><%= c.price%></td>
 								<td class="action" data-title="Action">
 									
 										<ul class="list-inline justify-content-center">
-											<li class="list-inline-item">
-												<a class="delete" href="">
+										
+											<li class="list-inline-item">&nbsp;
+												<a class="delete" href="DeleteCart.do?c_id=<%=c.id%>">
 													<i class="fa fa-trash"></i>
 												</a>
 											</li>
@@ -170,7 +172,7 @@
 							</div>
 						<hr>
 						<div class="topg text-center" >
-							<a href="MyOrder.jsp" style="background-color: darkseagreen; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >结账</a>
+							<a href="Bill.do" style="background-color: darkseagreen; border: none;  color: white;  padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block;  font-size: 16px; border-radius: 15px;" >结账</a>
 							</div>
 						
 						
@@ -238,59 +240,61 @@
 		}
 		
 	}
-	function show(str,price_id,count_id)
+	function show(str,price_id,count_id,c_id,per_price_id)
 	{
 		
-		var count = document.getElementById(count_id);
+		var count_ele = document.getElementById(count_id);
 
-		var x = parseInt(count.innerHTML);
+		var count = parseInt(count_ele.innerHTML);
 
-		var pri = document.getElementById(price_id);
+		var price_ele = document.getElementById(price_id);
+		
+		var price = parseInt(price_ele.innerHTML);
 
-		var allpri = document.getElementById("allprice");
+		var allprice_ele = document.getElementById("allprice");
 
-		var sumpri = parseFloat(allpri.innerHTML);
-
-		var p = document.getElementById("ppp");
-
-		p.innerHTML = sumpri.toString();
-
-		if (x > 0)
-			var p = parseFloat(pri.innerHTML) / x;
+		var allprice = parseFloat(allprice_ele.innerHTML);
+		
+		var per_price = parseFloat(document.getElementById(per_price_id).innerHTML);
+		//alert(per_price);
 
 		if (str == "sub") 
 		{
-			if (x <= 0) 
+			if (count <= 0) 
 			{
-				count.innerHTML = "0";
-				pri.innerHTML = "0";
+				count = 0;
+				count_ele.innerHTML = count;
+				price = per_price * count;
+				price_ele.innerHTML = price.toFixed(2);
 			} else 
 			{
-				sumpri -= p;
-				x--;
-				count.innerHTML = x;
-				p = p * x;
-				pri.innerHTML = p.toFixed(2);
-				allpri.innerHTML = sumpri.toFixed(2);
+				count--;
+				count_ele.innerHTML = count;
+				price = per_price * count;
+				price_ele.innerHTML = price.toFixed(2);
+				allprice -= per_price;
+				allprice_ele.innerHTML = allprice.toFixed(2);
+				$.get("ChangeCart.do?c_id="+c_id+"&count="+count);
 			}
 		}
 
 		else if (str == "add") 
 		{
-			if (x <= 0) 
+			if (count < 0) 
 			{
-				count.innerHTML = "1";
-				pri.innerHTML = "26";
-				sumpri = sumpri + parseFloat(pri.innerHTML);
-				allpri.innerHTML = sumpri.toFixed(2);
+				count = 0;
+				count_ele.innerHTML = count;
+				price = per_price * count;
+				price_ele.innerHTML = price.toFixed(2);
 			} else 
 			{
-				sumpri = sumpri + p;
-				x++;
-				count.innerHTML = x;
-				p = p * x;
-				pri.innerHTML = p.toFixed(2);
-				allpri.innerHTML = sumpri.toFixed(2);
+				count++;
+				count_ele.innerHTML = count;
+				price = per_price * count;
+				price_ele.innerHTML = price.toFixed(2);
+				allprice += per_price;
+				allprice_ele.innerHTML = allprice.toFixed(2);
+				$.get("ChangeCart.do?c_id="+c_id+"&count="+count);
 			}
 		}
 	}
