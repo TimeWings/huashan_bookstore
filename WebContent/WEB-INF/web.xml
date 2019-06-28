@@ -81,7 +81,7 @@
   <servlet-mapping>
     <servlet-name>ModifyPersonalInfo</servlet-name>
     <url-pattern>/ModifyPersonalInfo.do</url-pattern>
-
+</servlet-mapping>
   <servlet>
     <servlet-name>ChangeCart</servlet-name>
     <servlet-class>controller.ChangeCartServlet</servlet-class>
@@ -105,6 +105,21 @@
   <servlet-mapping>
     <servlet-name>Bill</servlet-name>
     <url-pattern>/Bill.do</url-pattern>
-
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Ship</servlet-name>
+    <servlet-class>controller.ShipServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ship</servlet-name>
+    <url-pattern>/Ship.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminCancel</servlet-name>
+    <servlet-class>controller.AdminCancelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminCancel</servlet-name>
+    <url-pattern>/AdminCancel.do</url-pattern>
   </servlet-mapping>
 </web-app>
