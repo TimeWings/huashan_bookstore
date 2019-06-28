@@ -48,8 +48,10 @@ public class DataBase
 //    	dataBase.insertOneOrder(order);
 //    	String name = dataBase.getAllCommoditiesByType("玄幻").get(3).name;
 //    	System.out.println(name);
-
-
+    	List<Commodity> list=dataBase.getCommoditiesByType("计算机");
+    	for(int i=0;i<list.size();i++)
+    		System.out.println(list.get(i).name);
+    	System.out.println(1);
     }
     
     static 
@@ -1220,7 +1222,7 @@ public class DataBase
         	//Class.forName("com.mysql.jdbc.Driver");
     	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
     	    {
-    	    	String sql = "select * from commodity where title like '%"+type+"%' order by sales desc limit 10";
+    	    	String sql = "select * from commodity where type like '%"+type+"%' order by sales desc limit 10";
                 Statement statement = connection.createStatement();
                 
                 ResultSet resultSet = statement.executeQuery(sql);
@@ -1265,7 +1267,7 @@ public class DataBase
         	//Class.forName("com.mysql.jdbc.Driver");
     	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
     	    {
-    	    	String sql = "select * from commodity where title like '%"+type+"%' order by sales desc";
+    	    	String sql = "select * from commodity where type like '%"+type+"%' order by sales desc";
                 Statement statement = connection.createStatement();
                 
                 ResultSet resultSet = statement.executeQuery(sql);
