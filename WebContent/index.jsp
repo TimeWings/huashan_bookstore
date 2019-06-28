@@ -75,7 +75,7 @@
 								<div style="cursor: pointer" class="text-center">教&nbsp;&nbsp;育</div>
 								<div class="dropdown-content text-center">
 									<p>
-										<a href="单个分类.jsp">历史类 </a>
+										<a href="classification.jsp">历史类 </a>
 									</p>
 									<p>
 										<a href="#">数学类</a>
