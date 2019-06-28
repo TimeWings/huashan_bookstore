@@ -48,8 +48,7 @@ public class DataBase
 //    	dataBase.insertOneOrder(order);
 //    	String name = dataBase.getAllCommoditiesByType("玄幻").get(3).name;
 //    	System.out.println(name);
-  	
-		
+
 
     }
     
@@ -1002,6 +1001,7 @@ public class DataBase
      * @param commodities 购物车商品列表
      * @param u_id 用户id
      * @return 修改的商品数量
+     * 弃用
      */
     public int updateUserCart(List<Commodity> commodities,String u_id)
     {
@@ -1204,5 +1204,49 @@ public class DataBase
             return commodities;
         }
     }
-    
+    /**
+     * 查找符合类型的商品
+     *@author 邓家豪
+     * @param type 商品类型
+     * @return 符合类型的商品
+     */
+    public List<Commodity> getCommoditiesByType(String type)
+    {
+    	List<Commodity> commodities = new ArrayList<Commodity>();
+        try
+        {
+        	//Class.forName("com.mysql.jdbc.Driver");
+    	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
+    	    {
+    	    	String sql = "select * from commodity where title like '%"+type+"%'";
+                Statement statement = connection.createStatement();
+                
+                ResultSet resultSet = statement.executeQuery(sql);
+                
+                while(resultSet.next())
+                {
+                	Commodity commodity = new Commodity();
+                	commodity.id = resultSet.getInt(1);
+                	commodity.name = resultSet.getString(2);
+                	commodity.author = resultSet.getString(3);
+                	commodity.description = resultSet.getString(4);
+                	commodity.ISBN = resultSet.getString(5);
+                	commodity.price = resultSet.getDouble(6);
+                	commodity.publisher = resultSet.getString(7);
+                	commodity.stock = resultSet.getInt(8);
+                	commodity.destine = resultSet.getInt(9);
+                	commodity.sales = resultSet.getInt(10);
+                	commodity.type = resultSet.getString(11);
+                	commodities.add(commodity);
+                }
+                
+                return commodities;
+             }
+        }
+        catch(SQLException e)
+        {
+            e.printStackTrace();
+            return commodities;
+        }
+    }
 }
