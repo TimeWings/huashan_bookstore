@@ -126,7 +126,7 @@ public class AddCommodityServlet extends HttpServlet {
                     	List<Commodity> commodities =  dataBase.getAllCommodities();
                     	int lastID = commodities.get(commodities.size()-1).id;
                         String fileName = Integer.toString(lastID);
-                        String filePath = uploadPath + File.separator + fileName;
+                        String filePath = uploadPath + File.separator + fileName+".jpg";
                         File storeFile = new File(filePath);
                         // 在控制台输出文件的上传路径
                         System.out.println(storeFile.getAbsolutePath());
