@@ -11,7 +11,7 @@
 <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>我的订单</title>
+  <title>修改商品</title>
   
 
   <link href="plugins/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -71,27 +71,27 @@
 		<h2 align="center">修改书本信息  </h2>		
 			 <br>
 			 <hr>
-		     <form method = "post" action = "ChangeCommodity.do" accept-charset="UTF-8">
+		     <form method = "post" action = "ChangeCommodity.do" accept-charset="UTF-8" enctype="multipart/form-data">
 				 <input name = "id"  hidden="true" value=<%=commodity.id %>>
 				 <input name = "sales"  hidden="true" value=<%=commodity.sales %>>
-			<h6> 价格:  &nbsp;  <input name = "new_price" value=<%=commodity.price %>></h6>
+			<h6> 价格:  &nbsp;  <input name = "price" value=<%=commodity.price %>></h6>
 		     <hr>  	 
-			 <h6> ISBN:  &nbsp;  <input name = "new_ISBN" value=<%=commodity.ISBN %>></h6>
+			 <h6> ISBN:  &nbsp;  <input name = "ISBN" value=<%=commodity.ISBN %>></h6>
 		     <hr>  
-		     <h6> 书    名:  &nbsp;  <input name = "new_name" value=<%=commodity.name %>>      </h6> 
+		     <h6> 书    名:  &nbsp;  <input name = "name" value=<%=commodity.name %>>      </h6> 
 	     	 <hr>  
-			 <h6> 作    者:  &nbsp;  <input name = "new_author" value=<%=commodity.author %>>      </h6> 
+			 <h6> 作    者:  &nbsp;  <input name = "author" value=<%=commodity.author %>>      </h6> 
 	     	 <hr> 
-			 <h6> 类    别:  &nbsp;  <input name = "new_type" value=<%=commodity.type %>> </h6>
+			 <h6> 类    别:  &nbsp;  <input name = "type" value=<%=commodity.type %>> </h6>
 		     <hr>
-		     <h6> 标    题:  &nbsp;  <input name = "new_title" value=<%=commodity.title %>> </h6>
+		     <h6> 标    题:  &nbsp;  <input name = "title" value=<%=commodity.title %>> </h6>
 		     <hr>
-			 <h6> 库    存:  &nbsp;  <input name = "new_stock" value=<%=commodity.stock %>>       </h6> 
+			 <h6> 库    存:  &nbsp;  <input name = "stock" value=<%=commodity.stock %>>       </h6> 
 		     <hr>
-			 <h6>出版社:  &nbsp;  <input name = "new_publisher" value=<%=commodity.publisher %>>       </h6> 
+			 <h6>出版社:  &nbsp;  <input name = "publisher" value=<%=commodity.publisher %>>       </h6> 
 		     <hr>
 		     <h6 align="left">简    介:  &nbsp;   </h6>
-			 <textarea name="new_description" style="width: 800px; height: 80px" ><%=commodity.description %></textarea>    
+			 <textarea name="description" style="width: 800px; height: 80px" ><%=commodity.description %></textarea>    
 		     <hr>
 			 <h6 align="left">
 				  图    片:

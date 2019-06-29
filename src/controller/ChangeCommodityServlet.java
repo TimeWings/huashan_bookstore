@@ -17,6 +17,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.huashan.database.DataBase;
 import org.huashan.entity.Commodity;
 
+import com.sun.openpisces.Dasher;
+
 /**
  * Servlet implementation class AddCommodityServlet
  */
@@ -57,34 +59,6 @@ public class ChangeCommodityServlet extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-
-		
-		String id = request.getParameter("id");
-		String sales = request.getParameter("sales");
-		String new_title = request.getParameter("new_title");
-		String new_price = request.getParameter("new_price");
-		String new_ISBN = request.getParameter("new_ISBN");
-		String new_name = request.getParameter("new_name");
-		String new_author = request.getParameter("new_author");
-		String new_type = request.getParameter("new_type");
-		String new_stock = request.getParameter("new_stock");
-		String new_publisher = request.getParameter("new_publisher");
-		String new_description = request.getParameter("new_description");
-		DataBase dataBase = DataBase.getInstance();
-		Commodity commodity = new Commodity();
-		commodity.id = Integer.valueOf(id);
-		commodity.destine = 0;
-		commodity.sales = Integer.valueOf(sales);
-		commodity.price = Double.valueOf(new_price);
-		commodity.ISBN = new_ISBN;
-		commodity.name = new_name;
-		commodity.author = new_author;
-		commodity.type = new_type;
-		commodity.title = new_title;
-		commodity.stock = Integer.valueOf(new_stock);
-		commodity.publisher = new_publisher;
-		commodity.description = new_description;
-		//dataBase.updateOneCommodity(commodity);
 		
 		
 		 // 检测是否为多媒体上传
@@ -130,9 +104,21 @@ public class ChangeCommodityServlet extends HttpServlet {
             @SuppressWarnings("unchecked")
             List<FileItem> formItems = upload.parseRequest(request);
  
+            DataBase dataBase = DataBase.getInstance();
+            String id = "";
             if (formItems != null && formItems.size() > 0) 
             {
                 // 迭代表单数据
+            	for (FileItem item : formItems) 
+                {
+                	String fieldname = item.getFieldName();
+        	        switch(fieldname)
+        	        {
+        	        	case "id":id = item.getString("UTF-8");break;
+        	        }
+                }
+            	Commodity commodity = dataBase.getOneCommodity(id);
+                
                 for (FileItem item : formItems) 
                 {
                 	String fieldname = item.getFieldName();
@@ -156,8 +142,7 @@ public class ChangeCommodityServlet extends HttpServlet {
     	        // 处理不在表单中的字段
                 if (item.isFormField() == false) 
                 {
-                	List<Commodity> commodities =  dataBase.getAllCommodities();
-                	int lastID = commodities.get(commodities.size()-1).id;
+                	int lastID = Integer.valueOf(id);
                     String fileName = Integer.toString(lastID);
                     String filePath = uploadPath + File.separator + fileName+".jpg";
                     File storeFile = new File(filePath);
@@ -165,7 +150,7 @@ public class ChangeCommodityServlet extends HttpServlet {
                     System.out.println(storeFile.getAbsolutePath());
                     // 保存文件到硬盘
                     item.write(storeFile);
-                    response.sendRedirect("manager.jsp");
+                    response.sendRedirect("modify?id="+id+".jsp");
                     return;
                 }
                 }
@@ -173,7 +158,7 @@ public class ChangeCommodityServlet extends HttpServlet {
             }
         } catch (Exception ex) 
         {
-            System.out.println(ex);
+            ex.printStackTrace();
         }
 		response.sendRedirect("manager.jsp");
 	}
