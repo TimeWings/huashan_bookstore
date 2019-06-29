@@ -25,4 +25,5 @@ public class Order
 	public String u_id;
 	public String u_address;
 	public String u_Phone;
+	public String u_name;
 }

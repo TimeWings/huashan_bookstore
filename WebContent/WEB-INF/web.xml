@@ -73,15 +73,14 @@
     <servlet-name>AddCart</servlet-name>
     <url-pattern>/AddCart.do</url-pattern>
   </servlet-mapping>
-
-    <servlet>
+  <servlet>
     <servlet-name>ModifyPersonalInfo</servlet-name>
     <servlet-class>controller.ModifyPersonalInfoServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ModifyPersonalInfo</servlet-name>
     <url-pattern>/ModifyPersonalInfo.do</url-pattern>
-</servlet-mapping>
+  </servlet-mapping>
   <servlet>
     <servlet-name>ChangeCart</servlet-name>
     <servlet-class>controller.ChangeCartServlet</servlet-class>
@@ -121,5 +120,30 @@
   <servlet-mapping>
     <servlet-name>AdminCancel</servlet-name>
     <url-pattern>/AdminCancel.do</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>SearchBook</servlet-name>
+    <servlet-class>controller.SearchBookServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchBook</servlet-name>
+    <url-pattern>/SearchBook.do</url-pattern>
+    </servlet-mapping>
+  <servlet>
+    <servlet-name>UserCancel</servlet-name>
+    <servlet-class>controller.UserCancelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserCancel</servlet-name>
+    <url-pattern>/UserCancel.do</url-pattern>
+  </servlet-mapping>
+<servlet>
+    <servlet-name>Receipt</servlet-name>
+    <servlet-class>controller.ReceiptServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Receipt</servlet-name>
+    <url-pattern>/Receipt.do</url-pattern>
   </servlet-mapping>
 </web-app>

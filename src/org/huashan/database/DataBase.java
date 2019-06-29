@@ -48,8 +48,10 @@ public class DataBase
 //    	dataBase.insertOneOrder(order);
 //    	String name = dataBase.getAllCommoditiesByType("玄幻").get(3).name;
 //    	System.out.println(name);
-
-
+    	List<Commodity> list=dataBase.getCommoditiesByType("计算机");
+    	for(int i=0;i<list.size();i++)
+    		System.out.println(list.get(i).name);
+    	System.out.println(1);
     }
     
     static 
@@ -679,6 +681,7 @@ public class DataBase
                 	order.u_id = resultSet.getString(6);
                 	order.u_address = resultSet.getString(7);
                 	order.u_Phone = resultSet.getString(8);
+                	order.u_name = resultSet.getString(9);
                 }
                 sql = "select * from `orderlist` where o_id = ?";
                 pstmt = connection.prepareStatement(sql);
@@ -847,7 +850,7 @@ public class DataBase
     	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
     	    {
     	    	String sql = "insert `order`(id, status, buy_date, ship_date,"
-    	    			+ "receipt_date , u_id ,u_address, u_phone) values(?,?,?,?,?,?,?,?)";
+    	    			+ "receipt_date , u_id ,u_address, u_phone,u_name) values(?,?,?,?,?,?,?,?,?)";
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, order.id);
                 pstmt.setString(2, order.status.toString());
@@ -857,6 +860,7 @@ public class DataBase
                 pstmt.setString(6, order.u_id);
                 pstmt.setString(7, order.u_address);
                 pstmt.setString(8, order.u_Phone);
+                pstmt.setString(9, order.u_name);
                 
                 count = pstmt.executeUpdate();
                 System.out.println("成功插入order表"+count+"行");
@@ -1218,7 +1222,7 @@ public class DataBase
         	//Class.forName("com.mysql.jdbc.Driver");
     	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
     	    {
-    	    	String sql = "select * from commodity where title like '%"+type+"%' order by sales desc limit 10";
+    	    	String sql = "select * from commodity where type like '%"+type+"%' order by sales desc limit 10";
                 Statement statement = connection.createStatement();
                 
                 ResultSet resultSet = statement.executeQuery(sql);
@@ -1263,7 +1267,7 @@ public class DataBase
         	//Class.forName("com.mysql.jdbc.Driver");
     	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
     	    {
-    	    	String sql = "select * from commodity where title like '%"+type+"%' order by sales desc";
+    	    	String sql = "select * from commodity where type like '%"+type+"%' order by sales desc";
                 Statement statement = connection.createStatement();
                 
                 ResultSet resultSet = statement.executeQuery(sql);
