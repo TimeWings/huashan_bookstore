@@ -58,7 +58,7 @@ public class ModifyPersonalInfoServlet extends HttpServlet
 		user.name = new_name;
 		user.address = new_address;
 		user.phone = new_phone;
-		System.out.println(database.updateOneUser(user));
+		database.updateOneUser(user);
 		response.sendRedirect("MyOrder.jsp");
 	}
 
