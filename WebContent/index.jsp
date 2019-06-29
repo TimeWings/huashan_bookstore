@@ -299,30 +299,8 @@
 									</li>
 								</ul>
 								<p class="card-text"><%String description = commodities.get(i).description; %>
-								<%=description.length()>50?description.substring(0, 50)+"..." :description%></p>
+								<%=description.length()>50?description.substring(0, 50)+"..." :String.format("%1$-50s", description)%></p>
 								<hr>
-								<div class="product-ratings">
-									<ul class="list-inline">
-										<li class="list-inline-item selected">
-											<a>评价：</a>
-										</li>
-										<li class="list-inline-item selected">
-											<i class="fa fa-star"></i>
-										</li>
-										<li class="list-inline-item selected">
-											<i class="fa fa-star"></i>
-										</li>
-										<li class="list-inline-item selected">
-											<i class="fa fa-star"></i>
-										</li>
-										<li class="list-inline-item selected">
-											<i class="fa fa-star"></i>
-										</li>
-										<li class="list-inline-item">
-											<i class="fa fa-star"></i>
-										</li>
-									</ul>
-								</div>
 								<p>￥：<%=commodities.get(i).price%>元</p>
 							</div>
 
@@ -387,30 +365,9 @@
 									</li>
 								</ul>
 								<p class="card-text"><%String description = commoditiesOrderBySales.get(i).description; %>
-								<%=description.length()>50?description.substring(0, 50)+"..." :description%></p>
+								<%=description.length()>50?description.substring(0, 50)+"..." :String.format("%1$-50s", description) %></p>
 								<hr>
-								<div class="product-ratings">
-									<ul class="list-inline">
-										<li class="list-inline-item selected">
-											<a>评价：</a>
-										</li>
-										<li class="list-inline-item selected">
-											<i class="fa fa-star"></i>
-										</li>
-										<li class="list-inline-item selected">
-											<i class="fa fa-star"></i>
-										</li>
-										<li class="list-inline-item selected">
-											<i class="fa fa-star"></i>
-										</li>
-										<li class="list-inline-item selected">
-											<i class="fa fa-star"></i>
-										</li>
-										<li class="list-inline-item">
-											<i class="fa fa-star"></i>
-										</li>
-									</ul>
-								</div>
+
 								<p>￥：<%=commoditiesOrderBySales.get(i).price%>元</p>
 							</div>
 

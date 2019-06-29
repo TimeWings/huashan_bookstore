@@ -99,7 +99,7 @@
 		<div class="thumb-content">
 			<!-- <div class="price">$200</div> -->
 			<a href="onebook.jsp?id=<%=data.get(i).id%>">
-				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+				<img class="card-img-top img-fluid" src="images/commodity/<%=data.get(i).id %>.jpg" alt="Card image cap">
 			</a>
 		</div>
 
@@ -112,16 +112,6 @@
 		  </ul>
 		    <p class="card-text"><%String description = data.get(i).description; %>
 			<%=description.length()>80?description.substring(0, 80)+"..." :description%></p>			
-		    <div class="product-ratings">
-		    	<ul class="list-inline">
-					<li class="list-inline-item selected"><a >评价：</a></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
-		    		<li class="list-inline-item"><i class="fa fa-star"></i></li>
-		    	</ul>
-		    </div>
 			<p>￥：<%=data.get(i).price%>元 </p>
 		</div>
 				
