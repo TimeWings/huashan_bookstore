@@ -150,7 +150,7 @@ public class ChangeCommodityServlet extends HttpServlet {
                     System.out.println(storeFile.getAbsolutePath());
                     // 保存文件到硬盘
                     item.write(storeFile);
-                    response.sendRedirect("modify?id="+id+".jsp");
+                    response.sendRedirect("modify.jsp?id="+id);
                     return;
                 }
                 }

@@ -95,7 +95,7 @@
 		     <hr>
 			 <h6 align="left">
 				  图    片:
-			 <input type="file" id="file" onchange="filechange(event)">
+			 <input type="file" id="file" name="uploadFile" accept="image/jpg" onchange="filechange(event)">
 
              <img src="images/commodity/<%=commodity.id %>.jpg" width="200px" height="200px" id="img-change" style="text-align: center">				  
 			
