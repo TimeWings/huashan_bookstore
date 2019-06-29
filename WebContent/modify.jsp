@@ -2,6 +2,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="org.huashan.database.DataBase"%>
 <%@ page import="org.huashan.entity.User"%>
+<%@ page import="org.huashan.entity.Commodity"%>
 <%@ page import="org.huashan.entity.Order"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
@@ -33,7 +34,10 @@
 
 </head>
 
-	
+			<%String c_id = request.getParameter("id"); 
+			DataBase dataBase = DataBase.getInstance(); 
+			Commodity commodity = dataBase.getOneCommodity(c_id);
+			%>
 	
 <body>
 	
@@ -67,28 +71,33 @@
 		<h2 align="center">修改书本信息  </h2>		
 			 <br>
 			 <hr>
-		     <form>
-				 
-			 <h6> ISBN:  &nbsp;  <input  value="6644-8899-7666"></h6>
+		     <form method = "post" action = "ChangeCommodity.do" accept-charset="UTF-8">
+				 <input name = "id"  hidden="true" value=<%=commodity.id %>>
+				 <input name = "sales"  hidden="true" value=<%=commodity.sales %>>
+			<h6> 价格:  &nbsp;  <input name = "new_price" value=<%=commodity.price %>></h6>
+		     <hr>  	 
+			 <h6> ISBN:  &nbsp;  <input name = "new_ISBN" value=<%=commodity.ISBN %>></h6>
 		     <hr>  
-		     <h6> 书    名:  &nbsp;  <input  value="C++">      </h6> 
+		     <h6> 书    名:  &nbsp;  <input name = "new_name" value=<%=commodity.name %>>      </h6> 
 	     	 <hr>  
-			 <h6> 作    者:  &nbsp;  <input  value="古万荣">      </h6> 
+			 <h6> 作    者:  &nbsp;  <input name = "new_author" value=<%=commodity.author %>>      </h6> 
 	     	 <hr> 
-			 <h6> 类    别:  &nbsp;  <input  value="计算机科学"> </h6>
+			 <h6> 类    别:  &nbsp;  <input name = "new_type" value=<%=commodity.type %>> </h6>
 		     <hr>
-			 <h6> 库    存:  &nbsp;  <input  value="60">       </h6> 
+		     <h6> 标    题:  &nbsp;  <input name = "new_title" value=<%=commodity.title %>> </h6>
 		     <hr>
-			 <h6>出版社:  &nbsp;  <input  value="广州文学出版社">       </h6> 
+			 <h6> 库    存:  &nbsp;  <input name = "new_stock" value=<%=commodity.stock %>>       </h6> 
+		     <hr>
+			 <h6>出版社:  &nbsp;  <input name = "new_publisher" value=<%=commodity.publisher %>>       </h6> 
 		     <hr>
 		     <h6 align="left">简    介:  &nbsp;   </h6>
-			 <textarea name="textarea" style="width: 800px; height: 80px" >书本xxxxxxxxxxxx</textarea>    
+			 <textarea name="new_description" style="width: 800px; height: 80px" ><%=commodity.description %></textarea>    
 		     <hr>
 			 <h6 align="left">
 				  图    片:
 			 <input type="file" id="file" onchange="filechange(event)">
 
-             <img src="images/logo.png" width="200px" height="200px" id="img-change" style="text-align: center">				  
+             <img src="images/commodity/<%=commodity.id %>.jpg" width="200px" height="200px" id="img-change" style="text-align: center">				  
 			
 		     </h6>
 			 <button type="submit" class="btnaaa"> 提 交 </button>

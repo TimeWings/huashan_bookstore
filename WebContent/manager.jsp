@@ -385,7 +385,7 @@ img {
 										</button>
 										<ul class="dropdown-content">
 											<li style="list-style-type: none"><a href="onebook.jsp?id=<%= c.id %>"> 查看商品</a></li>
-											<li style="list-style-type: none"><a href="ChangeCommodity.do?id=<%= c.id %>"> 修改商品</a></li>
+											<li style="list-style-type: none"><a href="modify.jsp?id=<%= c.id %>"> 修改商品</a></li>
 											<li style="list-style-type: none"><a href="DeleteCommodity.do?id=<%= c.id %>"> 下架商品</a></li>
 										</ul>
 									</div>

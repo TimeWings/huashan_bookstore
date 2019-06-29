@@ -127,7 +127,7 @@
 									<a class="add" href="javascript:void(0)" onClick="show('add','price_<%=c.id%>','count_<%=c.id%>',<%=c.id%>,'per_price_<%=c.id%>')">+</a></div>									
 								</td>
 								<td class="product-details text-center">
-									<img width="160px" height="auto" src="images/products/products-1.jpg" alt="image description"></td>
+									<img width="160px" height="auto" src="images/commodity/<%=c.id %>.jpg" alt="image description"></td>
 								<td class="product-details">
 									<h3 class="title"><%=c.name%></h3>
 									<span class="add-id"> <%=c.ISBN%> </span>

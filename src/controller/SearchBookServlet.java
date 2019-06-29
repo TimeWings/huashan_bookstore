@@ -53,7 +53,6 @@ public class SearchBookServlet extends HttpServlet
 		PrintWriter out = response.getWriter();	
 		String keyword = request.getParameter("keyword");
 		request.getSession().setAttribute("keyword", keyword);
-		System.out.println(keyword);
 		response.sendRedirect("search.jsp");
 	}
 

@@ -54,11 +54,11 @@
 			<div class="col-md-12">
 				<!-- Advance Search -->
 				<div class="advance-search">
-					<form>
+					<form method = "post" action = "SearchBook.do" accept-charset="UTF-8">
 						<div class="form-row">
 							
 							<div class="">
-								<input type="text" class="form-control" id="search_single" placeholder="请输入关键字">
+								<input type="text" class="form-control" name = "keyword" id="search_single" placeholder="请输入关键字">
 							</div>
 							
 							<div class=" col-md-2">

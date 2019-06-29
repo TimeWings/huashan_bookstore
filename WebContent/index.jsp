@@ -273,7 +273,7 @@
 							<div class="thumb-content">
 
 								<a href="onebook.jsp?id=<%=commodities.get(i).id%>">
-									<img class="card-img-top img-fluid" src="images/commodity/<%=commodities.get(i).id %>.jpg" alt="Card image cap">
+									<img class="card-img-top img-fluid" src="images/commodity/<%=commodities.get(i).id %>.jpg" alt="Card image cap" width="200" height="200">
 								</a>
 							</div>
 
