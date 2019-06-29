@@ -1,5 +1,5 @@
 
-package com.mqtt;
+package org.huashan.mqttemail;
 
  
 
@@ -31,15 +31,15 @@ import javax.mail.internet.MimeMessage.RecipientType;
 
 public class MailUtils {
 
-	//1.´´½¨»á»°ÄÚÈİ
+	//1.åˆ›å»ºä¼šè¯å†…å®¹
 
-	//2.´´½¨ÓÊ¼şÄÚÈİ
+	//2.åˆ›å»ºé‚®ä»¶å†…å®¹
 
-	//3.·¢ËÍÓÊ¼ş
+	//3.å‘é€é‚®ä»¶
 
  
 
-	//email:ÓÊ¼ş·¢¸øË­  subject´ú±íÖ÷Ìâ  emailMsg ÓÊ¼şµÄÄÚÈİ
+	//email:é‚®ä»¶å‘ç»™è°  subjectä»£è¡¨ä¸»é¢˜  emailMsg é‚®ä»¶çš„å†…å®¹
 
 	public static void sendMail(String email, String subject, String emailMsg)
 
@@ -47,25 +47,25 @@ public class MailUtils {
 
  
 
-		// 1.´´½¨Ò»¸ö³ÌĞòÓëÓÊ¼ş·şÎñÆ÷»á»°¶ÔÏó Session
+		// 1.åˆ›å»ºä¸€ä¸ªç¨‹åºä¸é‚®ä»¶æœåŠ¡å™¨ä¼šè¯å¯¹è±¡ Session
 
 		Properties props = new Properties();
 
-		props.setProperty("mail.transport.protocol", "SMTP");  //·¢ÓÊ¼şµÄĞ­Òé
+		props.setProperty("mail.transport.protocol", "SMTP");  //å‘é‚®ä»¶çš„åè®®
 
-		props.setProperty("mail.host", "smtp.163.com");  //·¢ËÍÓÊ¼şµÄ·şÎñÆ÷µØÖ·
+		props.setProperty("mail.host", "smtp.163.com");  //å‘é€é‚®ä»¶çš„æœåŠ¡å™¨åœ°å€
 
-		props.setProperty("mail.smtp.auth", "true");// Ö¸¶¨ÑéÖ¤Îªtrue
+		props.setProperty("mail.smtp.auth", "true");// æŒ‡å®šéªŒè¯ä¸ºtrue
 
  
 
-		// ´´½¨ÑéÖ¤Æ÷
+		// åˆ›å»ºéªŒè¯å™¨
 
 		Authenticator auth = new Authenticator() {
 
 			public PasswordAuthentication getPasswordAuthentication() {
 
-                //·¢ËÍĞÅÏ¢µÄÓÊÏäÕËºÅ:XX
+                //å‘é€ä¿¡æ¯çš„é‚®ç®±è´¦å·:XX
 
 				return new PasswordAuthentication("yhhbbgr@163.com", "yhhbbgr123");
 
@@ -75,29 +75,29 @@ public class MailUtils {
 
  
 
-		//  Ïàµ±ÓëÓÊÏä·şÎñÆ÷´´½¨Á¬½Ó
+		//  ç›¸å½“ä¸é‚®ç®±æœåŠ¡å™¨åˆ›å»ºè¿æ¥
 
 		Session session = Session.getInstance(props, auth);
 
  
 
-		// 2.´´½¨Ò»¸öMessage£¬ËüÏàµ±ÓÚÊÇÓÊ¼şÄÚÈİ
+		// 2.åˆ›å»ºä¸€ä¸ªMessageï¼Œå®ƒç›¸å½“äºæ˜¯é‚®ä»¶å†…å®¹
 
 		Message message = new MimeMessage(session);
 
-        //·¢ËÍĞÅÏ¢µÄÓÊÏäÕËºÅ@163.com: XX@163.com
-		message.setFrom(new InternetAddress("yhhbbgr@163.com")); // ÉèÖÃ·¢ËÍÕß
-		message.setRecipient(RecipientType.TO, new InternetAddress(email)); // ÉèÖÃ·¢ËÍ·½Ê½Óë½ÓÊÕÕß
+        //å‘é€ä¿¡æ¯çš„é‚®ç®±è´¦å·@163.com: XX@163.com
+		message.setFrom(new InternetAddress("yhhbbgr@163.com")); // è®¾ç½®å‘é€è€…
+		message.setRecipient(RecipientType.TO, new InternetAddress(email)); // è®¾ç½®å‘é€æ–¹å¼ä¸æ¥æ”¶è€…
 		message.setSubject(subject);
-		// message.setText("ÕâÊÇÒ»·â¼¤»îÓÊ¼ş£¬Çë<a href='#'>µã»÷</a>");
+		// message.setText("è¿™æ˜¯ä¸€å°æ¿€æ´»é‚®ä»¶ï¼Œè¯·<a href='#'>ç‚¹å‡»</a>");
 
 		message.setContent(emailMsg, "text/html;charset=utf-8");
 
-		// 3.´´½¨ TransportÓÃÓÚ½«ÓÊ¼ş·¢ËÍ
+		// 3.åˆ›å»º Transportç”¨äºå°†é‚®ä»¶å‘é€
 
 		Transport.send(message);
 
-		System.out.println("·¢ËÍ³É¹¦......");
+		System.out.println("å‘é€æˆåŠŸ......");
 	}
 
 }

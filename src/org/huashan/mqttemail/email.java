@@ -1,4 +1,4 @@
-package com.mqtt;
+package org.huashan.mqttemail;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -18,29 +18,29 @@ public class email {
 		MqttClient  sampleClient;
 		try 
 		{
-			//ĞÂ½¨¿Í»§¶Ë
+			//æ–°å»ºå®¢æˆ·ç«¯
 			sampleClient= new MqttClient("tcp://127.0.0.1:1883", "sendEmail", persistence);				
  			MqttConnectOptions connOpts = new MqttConnectOptions();
 			connOpts.setCleanSession(true);
-			//³¢ÊÔÁ¬½Ó
+			//å°è¯•è¿æ¥
 			System.out.println("Connecting to broker: tcp://127.0.0.1:1883");
 			sampleClient.connect(connOpts);
-			//ÌáÊ¾ÊÇ·ñÁ¬½Ó³É¹¦;
-			System.out.println("Connected....ÒÑÁ¬½Ó");
+			//æç¤ºæ˜¯å¦è¿æ¥æˆåŠŸ;
+			System.out.println("Connected....å·²è¿æ¥");
 
-			//¶©ÔÄÖ÷ÌâµÄ×Ö·û´®±äÁ¿topic
+			//è®¢é˜…ä¸»é¢˜çš„å­—ç¬¦ä¸²å˜é‡topic
              String  topic = "email";
-			//¿Í»§¶Ë¶©ÔÄÏûÏ¢......subscribe("¶©ÔÄµÄÖ÷Ìâ......")
+			//å®¢æˆ·ç«¯è®¢é˜…æ¶ˆæ¯......subscribe("è®¢é˜…çš„ä¸»é¢˜......")
 			sampleClient.subscribe(topic);
 			
-			System.out.println("Ö÷Ìâ:" + topic + "ÒÑ¶©ÔÄ!!!");
+			System.out.println("ä¸»é¢˜:" + topic + "å·²è®¢é˜…!!!");
 			
-			//½ÓÊÜÏûÏ¢......
+			//æ¥å—æ¶ˆæ¯......
 			sampleClient.setCallback(new MqttCallback() {
-				//²ÎÊıÊÇÖ÷ÌâºÍ½ÓÊÜµÄÏûÏ¢......
+				//å‚æ•°æ˜¯ä¸»é¢˜å’Œæ¥å—çš„æ¶ˆæ¯......
 				@Override
 				public void messageArrived(String title, MqttMessage msg) throws Exception {
-					System.out.println("ÊÕµ½ÏûÏ¢:"+title);
+					System.out.println("æ”¶åˆ°æ¶ˆæ¯:"+title);
 				    String info = msg.toString();
 				    String message[] = info.split("\n");
 				    
@@ -48,15 +48,15 @@ public class email {
 				    for(String m : message)
 				    	System.out.println(m);
 				    
-				    //ÓÊ¼ş¡¢Ãû×Ö¡¢Òª·¢ËÍµÄĞÅÏ¢
+				    //é‚®ä»¶ã€åå­—ã€è¦å‘é€çš„ä¿¡æ¯
 				    String hisEmail = message[0].substring(6);
 				    String hisName  = message[1].substring(5); 
 					String information  = message[2].substring(15,message[2].length()-1);	
 					
-					//¿ªÊ¼·¢ËÍ
+					//å¼€å§‹å‘é€
 					
-					 System.out.println("×¼±¸·¢ËÍÓÊÏä....."  + hisEmail);
-						MailUtils.sendMail(hisEmail , hisName+",¹§Ï²Äã,ÒÑ¾­³É¹¦×¢²á£¡£¡£¡" , information);
+					 System.out.println("å‡†å¤‡å‘é€é‚®ç®±....."  + hisEmail);
+						MailUtils.sendMail(hisEmail , hisName+",æ­å–œä½ ,å·²ç»æˆåŠŸæ³¨å†Œï¼ï¼ï¼" , information);
 				}
 
 				@Override
@@ -70,14 +70,14 @@ public class email {
 				}
 				@Override
 				public void connectionLost(Throwable err) {
-	     			System.out.println("Á¬½Ó¶ªÊ§");
+	     			System.out.println("è¿æ¥ä¸¢å¤±");
 					System.out.println(err.getMessage());
 				}
 
 			});
 
 		} catch(MqttException me) {
-			//³öÏÖÒì³£Ôò´¦Àí......
+			//å‡ºç°å¼‚å¸¸åˆ™å¤„ç†......
 			System.out.println("reason "+me.getReasonCode());
 			System.out.println("msg "+me.getMessage());
 		    System.out.println("loc "+me.getLocalizedMessage());
