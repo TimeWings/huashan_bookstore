@@ -99,7 +99,7 @@
 		<div class="thumb-content">
 			<!-- <div class="price">$200</div> -->
 			<a href="onebook.jsp?id=<%=data.get(i).id%>">
-				<img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+				<img class="card-img-top img-fluid" src="images/commodity/<%=data.get(i).id %>.jpg" alt="Card image cap">
 			</a>
 		</div>
 

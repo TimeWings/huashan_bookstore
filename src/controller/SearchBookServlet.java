@@ -49,7 +49,7 @@ public class SearchBookServlet extends HttpServlet
 	{
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		String keyword = request.getParameter("keyword");
+		//String keyword = request.getParameter("keyword");
 		RequestDispatcher rd = request.getRequestDispatcher("search.jsp");
 		rd.forward(request, response);
 	}
