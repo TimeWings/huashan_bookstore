@@ -47,13 +47,11 @@ public class SearchBookServlet extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		response.setContentType("text/html;charset=gb2312");
+		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		DataBase database = DataBase.getInstance();
-		PrintWriter out = response.getWriter();	
-		String keyword = request.getParameter("keyword");
-		request.getSession().setAttribute("keyword", keyword);
-		response.sendRedirect("search.jsp");
+		//String keyword = request.getParameter("keyword");
+		RequestDispatcher rd = request.getRequestDispatcher("search.jsp");
+		rd.forward(request, response);
 	}
 
 }

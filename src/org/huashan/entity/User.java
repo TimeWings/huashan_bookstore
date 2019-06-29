@@ -41,4 +41,12 @@ public class User
 	{
 		this.password = Encrypt.getResult(password);
 	}
+
+	@Override
+	public String toString()
+	{
+		return "User [username=" + username + ", password=" + password + ", is_admin=" + is_admin + ", address="
+				+ address + ", phone=" + phone + ", name=" + name + "]";
+	}
+	
 }
