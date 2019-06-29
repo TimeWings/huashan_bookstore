@@ -288,22 +288,27 @@ img {
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							
 							<% for(int i=0;i<successOrders.size();i++)
 {
 	Order o = successOrders.get(i);
 	%>
-
+						<tr>
 								<td><%= o.id%></td>
 								<td><%= o.ship_date %></td>
 								<td><%= o.receipt_date %></td>
-								<td><span class="am-badge am-badge-success"><%
+								<td>
+								<span class="am-badge am-badge-success">
+								<%
 								List<Commodity> commodities2 = o.commodities;
 								price = 0;
 								for(int j = 0;j<commodities2.size();j++)
 									price += commodities2.get(j).price * commodities2.get(j).count;
 								out.print(Format.formatDouble(price));
-								%></span></td>
+								%>
+								</span>
+								</td>
+								</tr>
 <%} %>
 							
 
