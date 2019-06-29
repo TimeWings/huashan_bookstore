@@ -93,6 +93,10 @@
 							<label>密码</label>
 							<input type="password" name="new_password" autocomplete="current-password" class="lowin-input" placeholder="•••••••••••">
 						</div>
+						<div class="lowin-group">
+							<label>邮箱</label>
+							<input type="text" name="email" autocomplete="current-password" class="lowin-input" placeholder="******126@.com">
+						</div>
 						<div class="text-foot">
 							已有账号？ <a id="btn_rg" style="cursor: pointer" class="register-link">返回</a>
 						</div>

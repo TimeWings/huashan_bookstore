@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.huashan.database.DataBase;
 import org.huashan.entity.User;
 
@@ -49,22 +54,66 @@ public class RegisterServlet extends HttpServlet
 	{
 		response.setContentType("text/html;charset=gb2312");
 		DataBase database = DataBase.getInstance();
-		PrintWriter out = response.getWriter();	
+		PrintWriter out = response.getWriter();
 		String new_name = request.getParameter("new_name");
 		String new_username = request.getParameter("new_account");
 		String new_password = request.getParameter("new_password");
-		if (database.register(new_name,new_username, new_password))
+		String email = request.getParameter("email");
+		if (database.register(new_name, new_username, new_password))
 		{
-			User user = new User(new_username,new_password);
-			request.getSession().setAttribute("user", user);//如果登录成功就把username对象放到session对象中
-			//request.getRequestDispatcher("index3.jsp")
+			User user = new User(new_username, new_password);
+			request.getSession().setAttribute("user", user);// 如果登录成功就把username对象放到session对象中
+			String brokerIP = "tcp://127.0.0.1:1883";
+			String clientId = new_name;
+			// 发给订阅了email的客户端;
+			String pub_topic = "email";
+			// 发送的信息为;
+			String msg = "Email:" + email + "\n" + "Name:" + new_name + "\n" + "要发送的邮件信息:" + user.toString();
+			if (email != null && email != " ")
+			{
+				MemoryPersistence persistence = new MemoryPersistence();
+
+				try
+				{
+
+					MqttClient sampleClient = new MqttClient(brokerIP, clientId, persistence);
+					MqttConnectOptions connOpts = new MqttConnectOptions();
+					connOpts.setCleanSession(true);
+					// 尝试连接
+					System.out.println("Connecting to broker: " + brokerIP);
+					sampleClient.connect(connOpts);
+					// 提示是否连接成功;
+					System.out.println("Connected....已连接");
+
+					// 将内容转为二进制流;
+					MqttMessage message = new MqttMessage(msg.getBytes());
+
+					// 选择优先级别;设置优先级别;
+					message.setQos(1);
+
+					// 发送主题和信息，publish("主题","信息的二进制").......
+					sampleClient.publish(pub_topic, message);
+
+					// 断开连接;
+					sampleClient.disconnect();
+				}
+				catch (MqttException me)
+				{
+					// 出现异常则处理......
+					System.out.println("reason " + me.getReasonCode());
+					System.out.println("msg " + me.getMessage());
+					System.out.println("loc " + me.getLocalizedMessage());
+					System.out.println("cause " + me.getCause());
+					System.out.println("excep " + me);
+					me.printStackTrace();
+				}
+				System.out.println("注册成功......");
+			}
 			response.sendRedirect("index.jsp");
-			//out.print("<script>alert('成功!');window.location.href='Index1.jsp'</script>");
 		}
 		else
 		{
 			response.sendRedirect("loginAndregister.jsp");
-			//out.print("<script>alert('密码错误!');window.location.href='Login.jsp'</script>");
 		}
 	}
 
