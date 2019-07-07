@@ -3,6 +3,7 @@
  */
 package org.huashan.database;
 
+import java.io.IOException;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -20,10 +21,10 @@ import org.huashan.entity.*;
  */
 public class DataBase
 {
-	final static String driver="com.mysql.jdbc.Driver";
-	final static String DBurl = "jdbc:mysql://172.16.34.251:3306/huashan?characterEncoding=utf8&useSSL=false&serverTimezone=UTC";
-	final static String DBusername = "root";
-	final static String DBpassword = "root";
+	static String driver="";
+	static String DBurl = "";
+	static String DBusername = "";
+	static String DBpassword = "";
 	
 	private static DataBase instance = new DataBase();
 
@@ -34,35 +35,29 @@ public class DataBase
         return instance;
     }
 
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
     	DataBase dataBase = new DataBase();
-//    	Order order = dataBase.getOneOrder("201903222137421001722022");
-//    	System.out.println("订单id:"+order.id+" 状态:"+order.status.toString()+"  u_id:"+order.u_id);
-//    	for(int i=0;i<order.commodities.size();i++)
-//    	{
-//    		System.out.println("商品id:"+order.commodities.get(i).id+" "+order.commodities.get(i).name+" 数量:"+order.commodities.get(i).count);
-//    	}
-//    	order.commodities.get(0).count = 4;
-//    	//dataBase.updateOneOrder(order);
-//    	dataBase.insertOneOrder(order);
-//    	String name = dataBase.getAllCommoditiesByType("玄幻").get(3).name;
-//    	System.out.println(name);
-    	List<Commodity> list=dataBase.getCommoditiesByType("计算机");
-    	for(int i=0;i<list.size();i++)
-    		System.out.println(list.get(i).name);
-    	System.out.println(1);
+    	System.out.println(DBConfig.getDBURL());
     }
     
     static 
     {
         try 
         {
+            driver = DBConfig.getDBDriver();
+            DBurl = DBConfig.getDBURL();
+            DBusername = DBConfig.getDBUsername();
+            DBpassword = DBConfig.getDBPassword();
             Class.forName(driver);
         } catch (ClassNotFoundException e) 
         {
             e.printStackTrace();
-        }
+        } catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     public void test()
@@ -70,7 +65,6 @@ public class DataBase
     	
         try
         {
-        	//Class.forName("com.mysql.jdbc.Driver");
     	    try (Connection connection = DriverManager.getConnection(DBurl,DBusername,DBpassword);) 
     	    {
     	    	String sql = "insert into test(name) values(?)";

@@ -257,6 +257,7 @@ img {
 										</button>
 										<ul class="dropdown-content" style="width:10px">
 											<li style="list-style-type: none"><a href="Ship.do?o_id=<%= o.id%>"> 发货</a></li>
+											<li style="list-style-type: none"><a href="orderdetail2.jsp?o_id=<%= o.id%>"> 详情</a></li>
 											<li style="list-style-type: none"><a href="AdminCancel.do?o_id=<%= o.id%>"> 取消</a></li>
 											
 										</ul>
