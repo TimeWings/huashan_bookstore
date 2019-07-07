@@ -145,7 +145,8 @@ public class DataBase
                 PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, username);
                 String password_encrypt = Encrypt.getResult(password);
-                pstmt.setString(2, password);
+                System.out.println(password_encrypt);
+                pstmt.setString(2, password_encrypt);
                 pstmt.setString(3, name);
                 int result = pstmt.executeUpdate();
                 System.out.println("成功插入"+result+"行");
@@ -182,10 +183,10 @@ public class DataBase
                 while(resultSet.next())
                 {
                 	String password_encrypt = Encrypt.getResult(password);
-                	if(username.equals(resultSet.getString(1)) && password.equals(resultSet.getString(2)) )
+                	if(username.equals(resultSet.getString(1)) && password_encrypt.equals(resultSet.getString(2)) )
                 	{
                 		System.out.println("用户"+username+"登录成功");
-                		User user=new User(username, password);
+                		User user=new User(username, password_encrypt);
                 		user.is_admin=resultSet.getBoolean(3);
                 		user.address=resultSet.getString(4);
                 		user.phone=resultSet.getString(5);
